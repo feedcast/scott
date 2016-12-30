@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/marceloboeira/mongoid-uuid
+  revision: be0cfa220d72019a06f292cab071ca8a5bde982f
+  specs:
+    mongoid-uuid (1.1.0)
+      mongoid (>= 3.0, < 7)
+      rake
+      uuid (~> 2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,10 +47,19 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     bson (4.2.1)
     builder (3.2.2)
     byebug (9.0.6)
+    capybara (2.11.0)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
@@ -56,6 +74,8 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -72,6 +92,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
+    public_suffix (2.0.4)
     puma (3.6.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -134,6 +155,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    systemu (2.6.5)
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -141,6 +163,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    uuid (2.3.8)
+      macaddr (~> 1.0)
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -149,14 +173,18 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   byebug
+  capybara
   listen (~> 3.0.5)
   mongoid (~> 6.0.0)
+  mongoid-uuid!
   puma (~> 3.0)
   rails (~> 5.0.1)
   rspec-rails (~> 3.5)

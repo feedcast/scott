@@ -11,9 +11,11 @@ gem "uglifier", ">= 1.3.0"
 
 # Database
 gem "mongoid", "~> 6.0.0"
+gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.5"
+  gem "capybara"
   gem "byebug", platform: :mri
 end
 
