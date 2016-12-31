@@ -19,6 +19,7 @@ gem "rails_admin", "~> 1.0"
 group :development, :test do
   gem "rspec-rails", "~> 3.5"
   gem "capybara"
+  gem "database_cleaner"
   gem "byebug", platform: :mri
 end
 
