@@ -1,4 +1,4 @@
-# :headphones: Feedcast
+# :headphones: Feedcast [![Build Status](https://travis-ci.org/marceloboeira/feedcast.svg?branch=master)](https://travis-ci.org/marceloboeira/feedcast)
 > Listen to all your favorite podcasts in the same place
 
 ## Setup

@@ -1,0 +1,10 @@
+services:
+  - mongodb
+
+cache: bundler
+
+install:
+  - make
+
+script:
+  - make test
