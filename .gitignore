@@ -16,8 +16,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Igore local spec overrides
+# Igore local RSpec overrides
 .rspec-local
 
-# Ignore RSpec
+# Ignore RSpec failed examples
 spec/examples.txt
