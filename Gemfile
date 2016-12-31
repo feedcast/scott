@@ -13,6 +13,9 @@ gem "uglifier", ">= 1.3.0"
 gem "mongoid", "~> 6.0.0"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
 
+# Admin
+gem "rails_admin", "~> 1.0"
+
 group :development, :test do
   gem "rspec-rails", "~> 3.5"
   gem "capybara"
