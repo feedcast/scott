@@ -25,6 +25,9 @@ gem "podcast_reader", git: "https://github.com/kule/podcast_reader"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.5"
+  gem "guard-rails", require: false
+  gem "guard-rspec", require: false
+  gem "guard-bundler", require: false
   gem "capybara"
   gem "database_cleaner"
   gem "byebug", platform: :mri

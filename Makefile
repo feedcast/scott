@@ -16,6 +16,10 @@ spec:
 .PHONY: test
 test: spec
 
+.PHONY: guard
+guard:
+	bin/bundle exec guard
+
 .PHONY: synchronize
 synchronize:
 	bin/rake channels:synchronize
