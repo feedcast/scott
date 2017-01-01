@@ -15,3 +15,7 @@ spec:
 
 .PHONY: test
 test: spec
+
+.PHONY: synchronize
+synchronize:
+	bin/rake channels:synchronize

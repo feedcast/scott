@@ -5,6 +5,7 @@ class Channel
 
   field :name, type: String
   field :slug, type: String
+  field :feed_url, type: String
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true

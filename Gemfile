@@ -13,8 +13,15 @@ gem "uglifier", ">= 1.3.0"
 gem "mongoid", "~> 6.0.0"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
 
+# Operations
+gem "functional_operations"
+
 # Admin
 gem "rails_admin", "~> 1.0"
+
+# XML Feed
+gem "nokogiri"
+gem "podcast_reader", git: "https://github.com/kule/podcast_reader"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.5"

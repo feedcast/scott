@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/kule/podcast_reader
+  revision: 82328f88e5715b1f60f40e40c589af65287e2393
+  specs:
+    podcast_reader (0.1.0)
+
+GIT
   remote: https://github.com/marceloboeira/mongoid-uuid
   revision: be0cfa220d72019a06f292cab071ca8a5bde982f
   specs:
@@ -76,6 +82,7 @@ GEM
     ffi (1.9.14)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
+    functional_operations (2.3.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -222,9 +229,12 @@ DEPENDENCIES
   byebug
   capybara
   database_cleaner
+  functional_operations
   listen (~> 3.0.5)
   mongoid (~> 6.0.0)
   mongoid-uuid!
+  nokogiri
+  podcast_reader!
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails_admin (~> 1.0)
