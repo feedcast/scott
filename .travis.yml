@@ -3,6 +3,13 @@ services:
 
 cache: bundler
 
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+before_install:
+  - gem install nokogiri -- --with-cflags='--std=gnu99'
+
 install:
   - make
 
