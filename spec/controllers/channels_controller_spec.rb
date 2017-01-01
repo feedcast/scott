@@ -5,7 +5,7 @@ RSpec.describe ChannelsController, type: :controller do
     let(:channel) { double(Channel, name: "foo") }
     let(:slug) { "foo" }
     let(:params) do
-      { slug: slug }
+      { channel: slug }
     end
 
     context "with valid params" do

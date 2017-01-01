@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
   def show
-    @channel = Channel.find_by(slug: params[:slug])
+    @channel = Channel.find_by(slug: params[:channel])
   end
 end

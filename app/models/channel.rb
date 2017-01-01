@@ -9,6 +9,9 @@ class Channel
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
 
+  has_many :episodes
+  accepts_nested_attributes_for :episodes
+
   rails_admin do
     configure :uuid do
       hide

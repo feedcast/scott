@@ -1,1 +1,7 @@
-<%= @channel.name %>
+<h1><%= @channel.name %></h1>
+
+<ul>
+  <% @channel.episodes.order(published_at: :desc).each do |episode| %>
+    <li><%= episode.published_at %> - <%= episode.title %> - <%= episode.uuid %></li>
+  <% end %>
+</ul>
