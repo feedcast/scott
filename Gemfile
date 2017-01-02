@@ -28,6 +28,8 @@ group :development, :test do
   gem "guard-rails", require: false
   gem "guard-rspec", require: false
   gem "guard-bundler", require: false
+  gem "sinatra", "2.0.0.beta2"
+  gem "sham_rack"
   gem "capybara"
   gem "database_cleaner"
   gem "byebug", platform: :mri

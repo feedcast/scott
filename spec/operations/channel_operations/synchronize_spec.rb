@@ -103,7 +103,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     it "raises an error" do
       expect {
         run(ChannelOperations::Synchronize, channel: channel)
-      }.to raise_error(ChannelOperations::Synchronize::InvalidFeed)
+      }.to raise_error(ChannelOperations::DownloadFeed::InvalidFeed)
     end
   end
 end

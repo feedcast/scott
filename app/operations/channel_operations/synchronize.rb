@@ -1,16 +1,13 @@
-require "podcast_reader"
-
 module ChannelOperations
   class Synchronize < FunctionalOperations::Operation
-  class InvalidFeed < Exception; end
     def arguments
       required :channel, Channel
     end
 
     def perform
-      @podcast = PodcastReader.new(@channel.feed_url)
+      @feed = download_feed_for(@channel)
 
-      @podcast.items.each do |item|
+      @feed.items.each do |item|
         episode = @channel.episodes.where(published_at: item.publish_date).first
 
         if episode.present?
@@ -22,8 +19,12 @@ module ChannelOperations
                                     published_at: item.publish_date)
         end
       end
-    rescue RuntimeError => e
-      raise InvalidFeed.new("#{@channel.feed_url} is not a valid xml feed")
+    end
+
+    private
+
+    def download_feed_for(channel)
+      run(ChannelOperations::DownloadFeed, feed_url: channel.feed_url)
     end
   end
 end
