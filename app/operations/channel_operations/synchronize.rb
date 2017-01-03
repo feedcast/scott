@@ -8,15 +8,17 @@ module ChannelOperations
       @feed = download_feed_for(@channel)
 
       @feed.items.each do |item|
-        episode = @channel.episodes.where(published_at: item.publish_date).first
+        episode = Episode.where(published_at: item.publish_date, channel_id: @channel.id).first
 
         if episode.present?
           episode.title = item.title
+          episode.url = item.url
           episode.save
         else
-          @channel.episodes.create!(title: item.title,
-                                    url: item.url,
-                                    published_at: item.publish_date)
+          Episode.create(title: item.title,
+                         url: item.url,
+                         published_at: item.publish_date,
+                         channel_id: @channel.id)
         end
       end
 

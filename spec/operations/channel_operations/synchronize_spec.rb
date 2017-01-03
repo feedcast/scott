@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ChannelOperations::Synchronize, type: :operation do
   context "when the feed is valid" do
-    context "and the feed has episodes" do
+    context "and the feed has only valid episodes" do
       let(:channel) do
         Channel.create(name: "Foo",
                        slug: "foo",
@@ -13,20 +13,20 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
         it "creates the episodes" do
           expect {
             run(ChannelOperations::Synchronize, channel: channel)
-          }.to change{ channel.episodes.size }.from(0).to(2)
+          }.to change{ channel.reload.episodes.size }.from(0).to(2)
         end
 
         it "sets the channel status to synchronized" do
           run(ChannelOperations::Synchronize, channel: channel)
 
-          expect(channel).to be_synchronized
+          expect(channel.reload).to be_synchronized
         end
 
         describe "new episodes" do
           it "have the correct titles" do
             run(ChannelOperations::Synchronize, channel: channel)
 
-            expect(channel.episodes.map(&:title)).to eq([
+            expect(channel.reload.episodes.map(&:title)).to eq([
               "Episode 001",
               "Episode 002"
             ])
@@ -35,7 +35,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
           it "have the correct publication dates" do
             run(ChannelOperations::Synchronize, channel: channel)
 
-            expect(channel.episodes.map(&:published_at)).to eq([
+            expect(channel.reload.episodes.map(&:published_at)).to eq([
               "Thu, 22 Dec 2016 16:42:42.000000000 +0000",
               "Fri, 23 Dec 2016 15:42:42.000000000 +0000"
             ])
@@ -95,6 +95,26 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
             ])
           end
         end
+      end
+    end
+
+    context "and the feed has invalid episodes" do
+      let(:channel) do
+        Channel.create(name: "Foo",
+                       slug: "foo",
+                       feed_url: Rails.root.join("spec/fixtures/02_episodes_01_missing_url.xml"))
+      end
+
+      it "creates the valid episodes only" do
+        expect {
+          run(ChannelOperations::Synchronize, channel: channel)
+        }.to change{ channel.episodes.size }.from(0).to(1)
+      end
+
+      it "sets the channel status to synchronized" do
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel).to be_synchronized
       end
     end
   end

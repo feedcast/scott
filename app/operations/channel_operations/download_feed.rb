@@ -2,7 +2,8 @@ require "podcast_reader"
 
 module ChannelOperations
   class DownloadFeed < FunctionalOperations::Operation
-  class InvalidFeed < StandardError; end
+    class InvalidFeed < StandardError; end
+
     def arguments
       required :feed_url, String
     end
