@@ -16,6 +16,12 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
           }.to change{ channel.episodes.size }.from(0).to(2)
         end
 
+        it "sets the channel status to synchronized" do
+          run(ChannelOperations::Synchronize, channel: channel)
+
+          expect(channel).to be_synchronized
+        end
+
         describe "new episodes" do
           it "have the correct titles" do
             run(ChannelOperations::Synchronize, channel: channel)
@@ -95,15 +101,31 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
 
   context "when the feed is invalid" do
     let(:channel) do
-      Channel.create(name: "Foo",
-                     slug: "foo",
-                     feed_url: Rails.root.join("spec/fixtures/invalid.xml"))
+      Channel.create!(name: "Foo",
+                      slug: "foo",
+                      feed_url: Rails.root.join("spec/fixtures/invalid.xml"))
     end
 
-    it "raises an error" do
+    before do
+      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:download_feed_for).and_raise(ChannelOperations::DownloadFeed::InvalidFeed.new("invalid feed"))
+    end
+
+    it "does not raise an error" do
       expect {
         run(ChannelOperations::Synchronize, channel: channel)
-      }.to raise_error(ChannelOperations::DownloadFeed::InvalidFeed)
+      }.to_not raise_error
+    end
+
+    it "sets the channel status to failure" do
+      run(ChannelOperations::Synchronize, channel: channel)
+
+      expect(channel).to be_failed
+    end
+
+    it "sets the failure message" do
+      run(ChannelOperations::Synchronize, channel: channel)
+
+      expect(channel.synchronization_status_message).to include("invalid feed")
     end
   end
 end

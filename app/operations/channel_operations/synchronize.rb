@@ -19,6 +19,10 @@ module ChannelOperations
                                     published_at: item.publish_date)
         end
       end
+
+      @channel.synchronization_success!
+    rescue => e
+      @channel.synchronization_failure!(e.message)
     end
 
     private
