@@ -20,6 +20,9 @@ class Channel
   accepts_nested_attributes_for :episodes
 
   rails_admin do
+    configure :episodes do
+      hide
+    end
     configure :uuid do
       hide
     end
