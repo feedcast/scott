@@ -5,9 +5,6 @@ gem "rails", "~> 5.0.1"
 # Server
 gem "puma", "~> 3.0"
 
-# API
-gem "jbuilder", "~> 2.5"
-
 # Assets
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
