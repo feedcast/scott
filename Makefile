@@ -16,6 +16,10 @@ spec:
 .PHONY: test
 test: spec
 
+.PHONY: report_coverage
+report_coverage:
+	bin/bundle exec codeclimate-test-reporter
+
 .PHONY: guard
 guard:
 	bin/bundle exec guard

@@ -21,3 +21,6 @@
 
 # Ignore RSpec failed examples
 spec/examples.txt
+
+# Ignore coverage metrics
+coverage/

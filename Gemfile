@@ -24,14 +24,26 @@ gem "nokogiri"
 gem "podcast_reader", git: "https://github.com/kule/podcast_reader"
 
 group :development, :test do
-  gem "rspec-rails", "~> 3.5"
+  # Guard
   gem "guard-rails", require: false
   gem "guard-rspec", require: false
   gem "guard-bundler", require: false
+
+  # RSpec
+  gem "rspec-rails", "~> 3.5"
+
+  # Rack Server
   gem "sinatra", "2.0.0.beta2"
   gem "sham_rack"
+
   gem "capybara"
   gem "database_cleaner"
+
+  # Coverage
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
+
+  # Debug
   gem "byebug", platform: :mri
 end
 
