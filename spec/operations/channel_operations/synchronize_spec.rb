@@ -1,117 +1,63 @@
 require "rails_helper"
 
 RSpec.describe ChannelOperations::Synchronize, type: :operation do
+  let(:channel) { Channel.create(name: "Foo", slug: "foo", feed_url: "foo") }
+
   context "when the feed is valid" do
+    let(:items) do
+      [
+        double(:item, title: "foo-1", url: "bar-1.mp3", publish_date: Time.parse("01-01-2017 10:10:10")),
+        double(:item, title: "foo-2", url: "bar-2.mp3", publish_date: Time.parse("01-01-2017 11:10:10")),
+      ]
+    end
+    let(:feed) { double(:feed, items: items) }
+
+    before do
+      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(ChannelOperations::DownloadFeed, feed_url: channel.feed_url)
+                                                                            .and_return(feed)
+      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
+                                                                                  title: items[0].title,
+                                                                                  url: items[0].url,
+                                                                                  published_at: items[0].publish_date,
+                                                                                  channel: channel).and_return(true)
+      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
+                                                                                  title: items[1].title,
+                                                                                  url: items[1].url,
+                                                                                  published_at: items[1].publish_date,
+                                                                                  channel: channel).and_return(true)
+    end
+
     context "and the feed has only valid episodes" do
-      let(:channel) do
-        Channel.create(name: "Foo",
-                       slug: "foo",
-                       feed_url: Rails.root.join("spec/fixtures/02_episodes.xml"))
+      it "triggers the episode's synchronization" do
+        expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
+                                                                                     title: items[0].title,
+                                                                                     url: items[0].url,
+                                                                                     published_at: items[0].publish_date,
+                                                                                     channel: channel)
+
+        expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
+                                                                                     title: items[1].title,
+                                                                                     url: items[1].url,
+                                                                                     published_at: items[1].publish_date,
+                                                                                     channel: channel)
+
+        run(ChannelOperations::Synchronize, channel: channel)
       end
 
-      context "and it is the first time" do
-        it "creates the episodes" do
-          expect {
-            run(ChannelOperations::Synchronize, channel: channel)
-          }.to change{ channel.reload.episodes.size }.from(0).to(2)
-        end
+      it "sets the channel status to synchronized" do
+        run(ChannelOperations::Synchronize, channel: channel)
 
-        it "sets the channel status to synchronized" do
-          run(ChannelOperations::Synchronize, channel: channel)
-
-          expect(channel.reload).to be_synchronized
-        end
-
-        describe "new episodes" do
-          it "have the correct titles" do
-            run(ChannelOperations::Synchronize, channel: channel)
-
-            expect(channel.reload.episodes.map(&:title)).to eq([
-              "Episode 001",
-              "Episode 002"
-            ])
-          end
-
-          it "have the correct publication dates" do
-            run(ChannelOperations::Synchronize, channel: channel)
-
-            expect(channel.reload.episodes.map(&:published_at)).to eq([
-              "Thu, 22 Dec 2016 16:42:42.000000000 +0000",
-              "Fri, 23 Dec 2016 15:42:42.000000000 +0000"
-            ])
-          end
-        end
-      end
-
-      context "and it is the second time" do
-        let(:channel) do
-          Channel.create(name: "Foo",
-                         slug: "foo",
-                         feed_url: Rails.root.join("spec/fixtures/02_episodes.xml"))
-        end
-
-        before do
-          # Synchronize the first time
-          run(ChannelOperations::Synchronize, channel: channel)
-
-          # Update the feed url to simulate new episodes
-          channel.feed_url = Rails.root.join("spec/fixtures/05_episodes.xml")
-          channel.save!
-          channel.reload
-        end
-
-        it "creates the new episodes" do
-          expect {
-            run(ChannelOperations::Synchronize, channel: channel)
-          }.to change{ channel.episodes.size }.from(2).to(5)
-        end
-
-        it "updates the already existent episodes" do
-          expect {
-            run(ChannelOperations::Synchronize, channel: channel)
-          }.to change{ channel.episodes.first.title }.from("Episode 001").to("Foo - Episode 001")
-        end
-
-        describe "new episodes" do
-          let(:new_episodes) { channel.episodes.pop(3) }
-
-          it "have the correct titles" do
-            run(ChannelOperations::Synchronize, channel: channel)
-
-            expect(new_episodes.map(&:title)).to eq([
-              "Episode 003",
-              "Episode 004",
-              "Episode 005"
-            ])
-          end
-
-          it "have the correct publication dates" do
-            run(ChannelOperations::Synchronize, channel: channel)
-
-            expect(new_episodes.map(&:published_at)).to eq([
-              "Sat, 24 Dec 2016 15:42:42.000000000 +0000",
-              "Sun, 25 Dec 2016 15:42:42.000000000 +0000",
-              "Mon, 26 Dec 2016 15:42:42.000000000 +0000"
-            ])
-          end
-        end
+        expect(channel.reload).to be_synchronized
       end
     end
 
     context "and the feed has invalid episodes" do
-      let(:channel) do
-        Channel.create(name: "Foo",
-                       slug: "foo",
-                       feed_url: Rails.root.join("spec/fixtures/02_episodes_01_missing_url.xml"))
-      end
-
-      it "creates the valid episodes only" do
-        expect {
-          run(ChannelOperations::Synchronize, channel: channel)
-        }.to change{ channel.episodes.size }.from(0).to(1)
-      end
-
       it "sets the channel status to synchronized" do
+        allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
+                                                                                    title: items[0].title,
+                                                                                    url: items[0].url,
+                                                                                    published_at: items[0].publish_date,
+                                                                                    channel: channel).and_raise("InvalidEpisode")
         run(ChannelOperations::Synchronize, channel: channel)
 
         expect(channel).to be_synchronized
@@ -120,14 +66,8 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
   end
 
   context "when the feed is invalid" do
-    let(:channel) do
-      Channel.create!(name: "Foo",
-                      slug: "foo",
-                      feed_url: Rails.root.join("spec/fixtures/invalid.xml"))
-    end
-
     before do
-      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:download_feed_for).and_raise(ChannelOperations::DownloadFeed::InvalidFeed.new("invalid feed"))
+      allow_any_instance_of(ChannelOperations::DownloadFeed).to receive(:call).and_raise(ChannelOperations::DownloadFeed::InvalidFeed.new("invalid feed"))
     end
 
     it "does not raise an error" do

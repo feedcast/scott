@@ -7,18 +7,11 @@ module ChannelOperations
     def perform
       @feed = download_feed_for(@channel)
 
-      @feed.items.each do |item|
-        episode = Episode.where(published_at: item.publish_date, channel_id: @channel.id).first
-
-        if episode.present?
-          episode.title = item.title
-          episode.url = item.url
-          episode.save
-        else
-          Episode.create(title: item.title,
-                         url: item.url,
-                         published_at: item.publish_date,
-                         channel_id: @channel.id)
+      @feed.items.each do |episode|
+        begin
+          synchronize(episode, @channel)
+        rescue => e
+          # Ignore invalid episodes
         end
       end
 
@@ -31,6 +24,10 @@ module ChannelOperations
 
     def download_feed_for(channel)
       run(ChannelOperations::DownloadFeed, feed_url: channel.feed_url)
+    end
+
+    def synchronize(episode, channel)
+      run(EpisodeOperations::Synchronize, title: episode.title, url: episode.url, published_at: episode.publish_date, channel: channel)
     end
   end
 end
