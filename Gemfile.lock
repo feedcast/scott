@@ -84,6 +84,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    figaro (1.1.1)
+      thor (~> 0.14)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
@@ -287,6 +289,7 @@ DEPENDENCIES
   capybara
   codeclimate-test-reporter (~> 1.0.0)
   database_cleaner
+  figaro
   functional_operations
   guard-bundler
   guard-rails

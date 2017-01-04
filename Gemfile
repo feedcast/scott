@@ -19,6 +19,9 @@ gem "functional_operations"
 # Admin
 gem "rails_admin", "~> 1.0"
 
+# Environment Variables
+gem 'figaro'
+
 # XML Feed
 gem "nokogiri"
 gem "podcast_reader", git: "https://github.com/kule/podcast_reader"
