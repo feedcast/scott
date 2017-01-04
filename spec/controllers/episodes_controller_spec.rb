@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe EpisodesController, type: :controller do
   describe "show" do
-    let(:channel) { double(Channel, name: "foo", slug: "foo", episodes: episodes) }
+    let(:channel) { double(Channel, title: "foo", slug: "foo", episodes: episodes) }
     let(:episodes) { double(:episodes) }
     let(:episode) { double(Episode, uuid: "a32", title: "foo") }
     let(:params) do

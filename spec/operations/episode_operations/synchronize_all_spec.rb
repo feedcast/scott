@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe EpisodeOperations::SynchronizeAll, type: :operation do
-  let(:channel) { Channel.create(name: "Foo", slug: "foo", feed_url: "foo") }
+  let(:channel) { Channel.create(title: "Foo", slug: "foo", feed_url: "foo") }
 
   let(:items) do
     [

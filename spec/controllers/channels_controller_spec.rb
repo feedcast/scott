@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ChannelsController, type: :controller do
   describe "show" do
-    let(:channel) { double(Channel, name: "foo") }
+    let(:channel) { double(Channel, title: "foo") }
     let(:slug) { "foo" }
     let(:params) do
       { channel: slug }

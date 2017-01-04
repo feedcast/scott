@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe EpisodeOperations::Synchronize, type: :operation do
   context "when params are valid" do
-    let(:channel) { Channel.create(name: "Foo", slug: "foo") }
+    let(:channel) { Channel.create(title: "Foo", slug: "foo") }
 
     context "and the episode does not exists" do
       let(:params) do
