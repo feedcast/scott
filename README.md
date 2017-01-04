@@ -1,6 +1,10 @@
 # :headphones: Feedcast [![Build Status](https://travis-ci.org/marceloboeira/feedcast.svg?branch=master)](https://travis-ci.org/marceloboeira/feedcast)
 > Listen to all your favorite podcasts in the same place
 
+## Contributing
+
+Please consider reading our [Contribution Guide](CONTRIBUTING.md) before anything else.
+
 ## Setup
 
 It is expected to have already installed Ruby(2.4) and MongoDB or Docker.
