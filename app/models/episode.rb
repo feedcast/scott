@@ -2,11 +2,14 @@ class Episode
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Uuid
+  include Mongoid::Slug
 
   field :title, type: String
   field :description, type: String
   field :url, type: String
   field :published_at, type: DateTime
+
+  slug :title, scoped: :channel
 
   validates :title, presence: true
   validates :url, presence: true

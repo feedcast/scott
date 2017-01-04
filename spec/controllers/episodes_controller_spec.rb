@@ -4,18 +4,18 @@ RSpec.describe EpisodesController, type: :controller do
   describe "show" do
     let(:channel) { double(Channel, title: "foo", slug: "foo", episodes: episodes) }
     let(:episodes) { double(:episodes) }
-    let(:episode) { double(Episode, uuid: "a32", title: "foo") }
+    let(:episode) { double(Episode, slug: "bar", title: "Bar") }
     let(:params) do
       {
         channel: channel.slug,
-        episode: episode.uuid
+        episode: episode.slug
       }
     end
 
     context "with valid params" do
       before do
         allow(Channel).to receive(:find).and_return(channel)
-        allow(episodes).to receive(:find_by).and_return(episode)
+        allow(episodes).to receive(:find).and_return(episode)
       end
 
       it "returns success" do
