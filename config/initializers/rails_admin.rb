@@ -1,4 +1,11 @@
 RailsAdmin.config do |config|
+  config.authenticate_with do
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'feedcast' &&
+      password == 'feedcast'
+    end
+  end
+  
   config.actions do
     dashboard
     index
