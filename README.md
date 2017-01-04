@@ -5,7 +5,15 @@
 
 It is expected to have already installed Ruby(2.4) and MongoDB or Docker.
 
-Run `make setup` to install the dependencies.
+Run `make setup` to install the dependencies and set the default environment variables.
+
+### Environment variables
+
+We are currently using [Figaro](https://github.com/laserlemon/figaro) to manage the environment variables in the development environment.
+
+The variables can be defined at `config/application.yml`  and the default template setup is under `config/application.default.yml`.
+
+The command `make setup` already copies the default file template to `config/application.yml`.
 
 ## Showtime
 

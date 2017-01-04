@@ -4,6 +4,7 @@ default: setup
 .PHONY: setup
 setup:
 	bin/bundle install
+	cp config/application.default.yml config/application.yml
 
 .PHONY: start
 start:

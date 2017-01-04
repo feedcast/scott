@@ -1,0 +1,3 @@
+development:
+  FEEDCAST_HTTP_AUTH_USER: admin
+  FEEDCAST_HTTP_AUTH_PASSWORD: admin
