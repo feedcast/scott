@@ -12,6 +12,7 @@ gem "uglifier", ">= 1.3.0"
 # Database
 gem "mongoid", "~> 6.0.0"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
+gem "mongoid-slug"
 
 # Operations
 gem "functional_operations"
@@ -39,6 +40,7 @@ group :development, :test do
   gem "sinatra", "2.0.0.beta2"
   gem "sham_rack"
 
+  # Test Support
   gem "capybara"
   gem "database_cleaner"
 

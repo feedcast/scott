@@ -10,7 +10,7 @@ RSpec.describe ChannelsController, type: :controller do
 
     context "with valid params" do
       before do
-        allow(Channel).to receive(:find_by).and_return(channel)
+        allow(Channel).to receive(:find).and_return(channel)
       end
 
       it "returns success" do

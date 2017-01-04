@@ -2,18 +2,19 @@ class Channel
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Uuid
+  include Mongoid::Slug
 
   FEED_SYNCHRONIZATION_STATUSES = [:new, :success, :failure]
 
   field :title, type: String
-  field :slug, type: String
   field :feed_url, type: String
   field :synchronization_status, type: Symbol, default: :new
   field :synchronization_status_message, type: String
   field :synchronized_at, type: Time
 
+  slug :title
+
   validates :title, presence: true
-  validates :slug, presence: true, uniqueness: true
   validates :synchronization_status, inclusion: { in: FEED_SYNCHRONIZATION_STATUSES }
 
   has_many :episodes

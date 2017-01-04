@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ChannelOperations::Synchronize, type: :operation do
-  let(:channel) { Channel.create(title: "Foo", slug: "foo", feed_url: "foo") }
+  let(:channel) { Channel.create(title: "Foo", feed_url: "foo") }
 
   context "when the feed is valid" do
     let(:items) { double(:items) }
