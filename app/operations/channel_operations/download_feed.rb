@@ -11,7 +11,7 @@ module ChannelOperations
     def perform
       @feed = PodcastReader.new(@feed_url)
     rescue => e
-      raise InvalidFeed.new("#{@feed_url} is not a valid xml feed")
+      raise InvalidFeed.new("#{@feed_url} is not a valid xml feed: #{e.message}")
     end
   end
 end
