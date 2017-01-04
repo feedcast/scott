@@ -4,64 +4,24 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
   let(:channel) { Channel.create(name: "Foo", slug: "foo", feed_url: "foo") }
 
   context "when the feed is valid" do
-    let(:items) do
-      [
-        double(:item, title: "foo-1", url: "bar-1.mp3", publish_date: Time.parse("01-01-2017 10:10:10")),
-        double(:item, title: "foo-2", url: "bar-2.mp3", publish_date: Time.parse("01-01-2017 11:10:10")),
-      ]
-    end
+    let(:items) { double(:items) }
     let(:feed) { double(:feed, items: items) }
 
     before do
-      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(ChannelOperations::DownloadFeed, feed_url: channel.feed_url)
-                                                                            .and_return(feed)
-      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
-                                                                                  title: items[0].title,
-                                                                                  url: items[0].url,
-                                                                                  published_at: items[0].publish_date,
-                                                                                  channel: channel).and_return(true)
-      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
-                                                                                  title: items[1].title,
-                                                                                  url: items[1].url,
-                                                                                  published_at: items[1].publish_date,
-                                                                                  channel: channel).and_return(true)
+      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(ChannelOperations::DownloadFeed, feed_url: channel.feed_url).and_return(feed)
+      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items).and_return(true)
     end
 
-    context "and the feed has only valid episodes" do
-      it "triggers the episode's synchronization" do
-        expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
-                                                                                     title: items[0].title,
-                                                                                     url: items[0].url,
-                                                                                     published_at: items[0].publish_date,
-                                                                                     channel: channel)
+    it "triggers the episodes' synchronization" do
+      expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
 
-        expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
-                                                                                     title: items[1].title,
-                                                                                     url: items[1].url,
-                                                                                     published_at: items[1].publish_date,
-                                                                                     channel: channel)
-
-        run(ChannelOperations::Synchronize, channel: channel)
-      end
-
-      it "sets the channel status to synchronized" do
-        run(ChannelOperations::Synchronize, channel: channel)
-
-        expect(channel.reload).to be_synchronized
-      end
+      run(ChannelOperations::Synchronize, channel: channel)
     end
 
-    context "and the feed has invalid episodes" do
-      it "sets the channel status to synchronized" do
-        allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
-                                                                                    title: items[0].title,
-                                                                                    url: items[0].url,
-                                                                                    published_at: items[0].publish_date,
-                                                                                    channel: channel).and_raise("InvalidEpisode")
-        run(ChannelOperations::Synchronize, channel: channel)
+    it "sets the channel status to synchronized" do
+      run(ChannelOperations::Synchronize, channel: channel)
 
-        expect(channel).to be_synchronized
-      end
+      expect(channel.reload).to be_synchronized
     end
   end
 

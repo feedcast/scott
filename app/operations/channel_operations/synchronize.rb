@@ -7,13 +7,7 @@ module ChannelOperations
     def perform
       @feed = download_feed_for(@channel)
 
-      @feed.items.each do |episode|
-        begin
-          synchronize(episode, @channel)
-        rescue => e
-          # Ignore invalid episodes
-        end
-      end
+      synchronize_episodes_with!(@feed.items, @channel)
 
       @channel.synchronization_success!
     rescue => e
@@ -26,8 +20,8 @@ module ChannelOperations
       run(ChannelOperations::DownloadFeed, feed_url: channel.feed_url)
     end
 
-    def synchronize(episode, channel)
-      run(EpisodeOperations::Synchronize, title: episode.title, url: episode.url, published_at: episode.publish_date, channel: channel)
+    def synchronize_episodes_with!(items, channel)
+      run(EpisodeOperations::SynchronizeAll, feed_items: items, channel: channel)
     end
   end
 end
