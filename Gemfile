@@ -20,7 +20,7 @@ gem "functional_operations"
 gem "rails_admin", "~> 1.0"
 
 # Environment Variables
-gem 'figaro'
+gem "figaro"
 
 # XML Feed
 gem "nokogiri"
