@@ -16,3 +16,7 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+beta:
+  clients:
+    default:
+      uri: <%= ENV["MONGODB_URI"] %>
