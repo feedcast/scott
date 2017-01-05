@@ -4,7 +4,13 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
   let(:channel) { Channel.create(title: "Foo", feed_url: "foo") }
 
   context "when the feed is valid" do
-    let(:items) { double(:items) }
+    let(:items) do
+      [
+        double(:item, publish_date: 1.hour.ago),
+        double(:item, publish_date: 1.day.ago),
+        double(:item, publish_date: 3.days.ago)
+      ]
+    end
     let(:feed) { double(:feed, items: items) }
 
     before do
@@ -12,16 +18,54 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
       allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items).and_return(true)
     end
 
-    it "triggers the episodes' synchronization" do
-      expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
+    context "and it has no items" do
+      let(:items) do
+        []
+      end
 
-      run(ChannelOperations::Synchronize, channel: channel)
+      it "does not trigger the episodes' synchronization" do
+        expect_any_instance_of(ChannelOperations::Synchronize).to_not receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
+
+        run(ChannelOperations::Synchronize, channel: channel)
+      end
+
+      it "sets the channel status to synchronized" do
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.reload).to be_synchronized
+      end
     end
 
-    it "sets the channel status to synchronized" do
-      run(ChannelOperations::Synchronize, channel: channel)
+    context "and it already is up to date" do
+      let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronized_at: Time.now) }
 
-      expect(channel.reload).to be_synchronized
+      it "does not trigger the episodes' synchronization" do
+        expect_any_instance_of(ChannelOperations::Synchronize).to_not receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
+
+        run(ChannelOperations::Synchronize, channel: channel)
+      end
+
+      it "sets the channel status to synchronized" do
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.reload).to be_synchronized
+      end
+    end
+
+    context "and it is not up to date" do
+      let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronized_at: 3.hours.ago) }
+
+      it "triggers the episodes' synchronization" do
+        expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
+
+        run(ChannelOperations::Synchronize, channel: channel)
+      end
+
+      it "sets the channel status to synchronized" do
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.reload).to be_synchronized
+      end
     end
   end
 
