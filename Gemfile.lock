@@ -1,10 +1,4 @@
 GIT
-  remote: https://github.com/kule/podcast_reader
-  revision: 82328f88e5715b1f60f40e40c589af65287e2393
-  specs:
-    podcast_reader (0.1.0)
-
-GIT
   remote: https://github.com/marceloboeira/mongoid-uuid
   revision: be0cfa220d72019a06f292cab071ca8a5bde982f
   specs:
@@ -12,6 +6,14 @@ GIT
       mongoid (>= 3.0, < 7)
       rake
       uuid (~> 2.3)
+
+GIT
+  remote: https://github.com/marceloboeira/podcast_reader
+  revision: ad4ea6a4043123dd128d65a0de83d130ce73dd72
+  specs:
+    podcast_reader (0.1.0)
+      nokogiri
+      open_uri_redirections
 
 GEM
   remote: https://rubygems.org/
@@ -163,6 +165,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    open_uri_redirections (0.2.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)

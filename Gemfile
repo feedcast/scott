@@ -26,7 +26,7 @@ gem "figaro"
 
 # XML Feed
 gem "nokogiri"
-gem "podcast_reader", git: "https://github.com/kule/podcast_reader"
+gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
 
 group :development, :test do
   # Guard
