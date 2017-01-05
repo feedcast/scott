@@ -13,6 +13,7 @@ gem "uglifier", ">= 1.3.0"
 gem "mongoid", "~> 6.0.0"
 
 group :development, :test do
+  gem "rspec-rails", "~> 3.5"
   gem "byebug", platform: :mri
 end
 
