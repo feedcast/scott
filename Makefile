@@ -8,3 +8,10 @@ setup:
 .PHONY: start
 start:
 	bin/rails server -b 127.0.0.1 -p 5000
+
+.PHONY: spec
+spec:
+	bin/rspec
+
+.PHONY: test
+test: spec
