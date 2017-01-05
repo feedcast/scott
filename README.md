@@ -1,24 +1,16 @@
-# README
+# :headphones: Feedcast
+> Listen to all your favorite podcasts in the same place
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+It is expected to have already installed Ruby(2.4) and MongoDB or Docker.
 
-* Ruby version
+Run `make setup` to install the dependencies.
 
-* System dependencies
+## Showtime
 
-* Configuration
+If you are using MongoDB locally, make sure it is already running, otherwise, if you are using docker, run `make compose` to start the Docker containers.
 
-* Database creation
+Finally, run `make start` to start the server.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The server will start at `http://localhost:5000` by default.
