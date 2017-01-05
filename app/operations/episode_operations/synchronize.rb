@@ -2,6 +2,7 @@ module EpisodeOperations
   class Synchronize < FunctionalOperations::Operation
     def arguments
       required :title, String
+      required :summary, String
       required :description, String
       required :url, String
       required :published_at, Time
@@ -13,10 +14,12 @@ module EpisodeOperations
 
       if episode.present?
         episode.update!(title: @title,
+                        summary: @summary,
                         description: @description,
                         url: @url)
       else
         Episode.create!(title: @title,
+                        summary: @summary,
                         description: @description,
                         url: @url,
                         published_at: @published_at,

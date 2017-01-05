@@ -8,6 +8,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
       let(:params) do
         {
           title: "Foo 001",
+          summary: "shorter",
           description: "foo",
           url: "foo-001.mp3",
           published_at: Time.parse("01-01-2017 19:30"),
@@ -27,6 +28,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
         episode = Episode.last
 
         expect(episode.title).to eq(params[:title])
+        expect(episode.summary).to eq(params[:summary])
         expect(episode.description).to eq(params[:description])
         expect(episode.url).to eq(params[:url])
         expect(episode.channel_id).to eq(params[:channel].id)
@@ -37,6 +39,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
       let(:published_at) { Time.now }
       let!(:episode) do
         Episode.create(title: "Before Sync",
+                       summary: "Sum Before Sync",
                        description: "Desc Before Sync",
                        url: "before.mp3",
                        published_at: published_at,
@@ -45,6 +48,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
       let(:params) do
         {
           title: "After Sync",
+          summary: "Sum After Sync",
           description: "Desc After Sync",
           url: "after.mp3",
           published_at: published_at,
@@ -57,6 +61,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
         episode.reload
 
         expect(episode.title).to eq(params[:title])
+        expect(episode.summary).to eq(params[:summary])
         expect(episode.description).to eq(params[:description])
         expect(episode.url).to eq(params[:url])
         expect(episode.channel_id).to eq(params[:channel].id)

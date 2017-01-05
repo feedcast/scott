@@ -5,6 +5,7 @@ class Episode
   include Mongoid::Slug
 
   field :title, type: String
+  field :summary, type: String
   field :description, type: String
   field :url, type: String
   field :published_at, type: DateTime

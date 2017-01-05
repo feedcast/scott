@@ -20,6 +20,7 @@ module EpisodeOperations
     def synchronize(episode, channel)
       run(EpisodeOperations::Synchronize,
           title: episode.title,
+          summary: episode.summary,
           description: episode.description,
           url: episode.url,
           published_at: episode.publish_date,

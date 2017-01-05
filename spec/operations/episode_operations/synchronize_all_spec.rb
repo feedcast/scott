@@ -5,20 +5,22 @@ RSpec.describe EpisodeOperations::SynchronizeAll, type: :operation do
 
   let(:items) do
     [
-      double(:item, title: "foo-1", description: "001", url: "bar-1.mp3", publish_date: Time.parse("01-01-2017 10:10:10")),
-      double(:item, title: "foo-2", description: "002", url: "bar-2.mp3", publish_date: Time.parse("01-01-2017 11:10:10")),
+      double(:item, title: "foo-1", summary: "shorter-1", description: "001", url: "bar-1.mp3", publish_date: Time.parse("01-01-2017 10:10:10")),
+      double(:item, title: "foo-2", summary: "shorter-2", description: "002", url: "bar-2.mp3", publish_date: Time.parse("01-01-2017 11:10:10")),
     ]
   end
 
   before do
     allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
                                                                                 title: items[0].title,
+                                                                                summary: items[0].summary,
                                                                                 description: items[0].description,
                                                                                 url: items[0].url,
                                                                                 published_at: items[0].publish_date,
                                                                                 channel: channel).and_return(true)
     allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::Synchronize,
                                                                                 title: items[1].title,
+                                                                                summary: items[1].summary,
                                                                                 description: items[1].description,
                                                                                 url: items[1].url,
                                                                                 published_at: items[1].publish_date,
@@ -29,6 +31,7 @@ RSpec.describe EpisodeOperations::SynchronizeAll, type: :operation do
     it "triggers each episode's synchronization" do
       expect_any_instance_of(EpisodeOperations::SynchronizeAll).to receive(:run).with(EpisodeOperations::Synchronize,
                                                                                       title: items[0].title,
+                                                                                      summary: items[0].summary,
                                                                                       description: items[0].description,
                                                                                       url: items[0].url,
                                                                                       published_at: items[0].publish_date,
@@ -36,6 +39,7 @@ RSpec.describe EpisodeOperations::SynchronizeAll, type: :operation do
 
       expect_any_instance_of(EpisodeOperations::SynchronizeAll).to receive(:run).with(EpisodeOperations::Synchronize,
                                                                                       title: items[1].title,
+                                                                                      summary: items[1].summary,
                                                                                       description: items[1].description,
                                                                                       url: items[1].url,
                                                                                       published_at: items[1].publish_date,
@@ -49,6 +53,7 @@ RSpec.describe EpisodeOperations::SynchronizeAll, type: :operation do
     before do
       allow_any_instance_of(EpisodeOperations::SynchronizeAll).to receive(:run).with(EpisodeOperations::Synchronize,
                                                                                   title: items[0].title,
+                                                                                  summary: items[0].summary,
                                                                                   description: items[0].description,
                                                                                   url: items[0].url,
                                                                                   published_at: items[0].publish_date,
@@ -64,6 +69,7 @@ RSpec.describe EpisodeOperations::SynchronizeAll, type: :operation do
     it "triggers the next episodes in the sequence" do
       expect_any_instance_of(EpisodeOperations::SynchronizeAll).to receive(:run).with(EpisodeOperations::Synchronize,
                                                                                       title: items[1].title,
+                                                                                      summary: items[1].summary,
                                                                                       description: items[1].description,
                                                                                       url: items[1].url,
                                                                                       published_at: items[1].publish_date,
