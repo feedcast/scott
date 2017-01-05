@@ -28,6 +28,10 @@ gem "figaro"
 gem "nokogiri"
 gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
 
+# AB Testing
+gem "redis"
+gem "split"
+
 group :development, :test do
   # Guard
   gem "guard-rails", require: false

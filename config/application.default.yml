@@ -1,3 +1,4 @@
 development:
+  REDIS_URL: redis://127.0.0.1:6379
   FEEDCAST_HTTP_AUTH_USER: admin
   FEEDCAST_HTTP_AUTH_PASSWORD: admin

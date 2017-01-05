@@ -27,6 +27,12 @@ Finally, run `make start` to start the server.
 
 The server will start at `http://localhost:5000` by default.
 
+### Experiments
+
+We are running [Split](https://github.com/splitrb/split), an AB testing framework, at `http://localhost:5000/admin/experiments`.
+
+More information available at Split's [official page](https://github.com/splitrb/split).
+
 ### Synchronization
 
 In order to synchronize the channels' data with the XML feeds, run: `make synchronize`.
