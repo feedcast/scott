@@ -22,6 +22,15 @@ class Channel
   accepts_nested_attributes_for :episodes
 
   rails_admin do
+    list do
+      field :title do
+        searchable true
+      end
+
+      field :synchronization_status do
+        searchable true
+      end
+    end
     configure :episodes do
       hide
     end
