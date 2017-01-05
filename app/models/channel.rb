@@ -10,12 +10,13 @@ class Channel
   field :feed_url, type: String
   field :synchronization_status, type: Symbol, default: :new
   field :synchronization_status_message, type: String
-  field :synchronized_at, type: Time
+  field :synchronized_at, type: Time, default: 1.year.ago
 
   slug :title
 
   validates :title, presence: true
-  validates :synchronization_status, inclusion: { in: FEED_SYNCHRONIZATION_STATUSES }
+  validates :synchronized_at, presence: true
+  validates :synchronization_status, presence: true, inclusion: { in: FEED_SYNCHRONIZATION_STATUSES }
 
   has_many :episodes
   accepts_nested_attributes_for :episodes
