@@ -12,11 +12,9 @@ module EpisodeOperations
       episode = Episode.where(published_at: @published_at, channel_id: @channel.id).first
 
       if episode.present?
-        episode.title = @title
-        episode.url = @url
-        episode.description = @description
-
-        episode.save!
+        episode.update!(title: @title,
+                        description: @description,
+                        url: @url)
       else
         Episode.create!(title: @title,
                         description: @description,
