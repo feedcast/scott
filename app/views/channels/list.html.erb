@@ -1,0 +1,3 @@
+<% @channels.each do |channel| %>
+  <li><%= link_to(channel.title, channel_path(channel)) %></li>
+<% end %>
