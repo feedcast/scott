@@ -1,0 +1,18 @@
+development:
+  clients:
+    default:
+      database: feedcast_development
+      hosts:
+        - localhost:27017
+      options:
+  options:
+test:
+  clients:
+    default:
+      database: feedcast_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
