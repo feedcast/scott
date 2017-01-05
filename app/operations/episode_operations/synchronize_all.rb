@@ -18,7 +18,12 @@ module EpisodeOperations
     private
 
     def synchronize(episode, channel)
-      run(EpisodeOperations::Synchronize, title: episode.title, url: episode.url, published_at: episode.publish_date, channel: channel)
+      run(EpisodeOperations::Synchronize,
+          title: episode.title,
+          description: episode.description,
+          url: episode.url,
+          published_at: episode.publish_date,
+          channel: channel)
     end
   end
 end
