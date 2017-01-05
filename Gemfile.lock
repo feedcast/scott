@@ -159,6 +159,7 @@ GEM
     mustermann (1.0.0.beta2)
     nenv (0.3.0)
     nested_form (0.3.2)
+    newrelic_rpm (3.17.2.327)
     nio4r (1.2.1)
     nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
@@ -315,6 +316,7 @@ DEPENDENCIES
   mongoid (~> 6.0.0)
   mongoid-slug
   mongoid-uuid!
+  newrelic_rpm
   nokogiri
   podcast_reader!
   puma (~> 3.0)
