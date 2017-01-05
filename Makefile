@@ -8,7 +8,7 @@ setup:
 
 .PHONY: start
 start:
-	bin/rails server -b 127.0.0.1 -p 5000
+	bin/bundle exec puma -C config/puma.rb
 
 .PHONY: spec
 spec:
