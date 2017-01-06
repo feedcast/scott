@@ -49,3 +49,29 @@ $alternative-font-color: #fff
 
     &:hover
       background-color: $navbar-hover-color
+
+#subnav
+  background-color: #fff
+
+  li
+    border-left: 1px solid #e1e8ed
+    color: #292f33
+    font-size: 18px
+    font-weight: 200
+    margin: 0 auto
+
+    &:last-child
+      border-right: 1px solid #e1e8ed
+
+    a
+      border-bottom: 2px solid white
+      &:hover
+        border-bottom: 2px solid $navbar-bg-color
+
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover
+  background-color: $navbar-hover-color
