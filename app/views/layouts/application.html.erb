@@ -13,7 +13,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "layouts/navbar/top" %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 
   <%= render partial: "layouts/google_analytics" %>

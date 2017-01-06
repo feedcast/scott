@@ -6,10 +6,6 @@ gem "rails", "~> 5.0.1"
 # Server
 gem "puma", "~> 3.0"
 
-# Assets
-gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
-
 # Database
 gem "mongoid", "~> 6.0.0"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
@@ -31,6 +27,15 @@ gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
 # AB Testing
 gem "redis"
 gem "split"
+
+# Assets
+gem "sass-rails", "~> 5.0"
+gem "uglifier", ">= 1.3.0"
+
+source "https://rails-assets.org" do
+  gem "rails-assets-bootstrap"
+  gem "rails-assets-fontawesome", "~> 4.3.0"
+end
 
 # Log and Monitoring
 gem "newrelic_rpm"
