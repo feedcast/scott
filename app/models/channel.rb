@@ -26,10 +26,6 @@ class Channel
       field :title do
         searchable true
       end
-
-      field :synchronization_status do
-        searchable true
-      end
     end
     configure :episodes do
       hide
