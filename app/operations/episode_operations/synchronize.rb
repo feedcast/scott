@@ -2,7 +2,7 @@ module EpisodeOperations
   class Synchronize < FunctionalOperations::Operation
     def arguments
       required :title, String
-      required :summary, String
+      optional :summary, String
       required :description, String
       required :url, String
       required :published_at, Time
