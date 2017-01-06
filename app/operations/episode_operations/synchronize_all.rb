@@ -10,7 +10,7 @@ module EpisodeOperations
         begin
           synchronize(episode, @channel)
         rescue => e
-          # Ignore invalid episodes
+          logger.warn(e)
         end
       end
     end
@@ -25,6 +25,10 @@ module EpisodeOperations
           url: episode.url,
           published_at: episode.publish_date,
           channel: channel)
+    end
+
+    def logger
+      Rails.logger
     end
   end
 end
