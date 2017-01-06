@@ -3,3 +3,5 @@ development:
   FEEDCAST_HTTP_AUTH_USER: admin
   FEEDCAST_HTTP_AUTH_PASSWORD: admin
   # GOOGLE_ANALYTICS_ID: UA-XXXXXX-1
+  # ROLLBAR_ACCESS_TOKEN: <token>
+  # ROLLBAR_ENV: <env> - Defaults to Rails.env

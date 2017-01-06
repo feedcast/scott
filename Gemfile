@@ -32,8 +32,9 @@ gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
 gem "redis"
 gem "split"
 
-# Monitoring
+# Log and Monitoring
 gem "newrelic_rpm"
+gem "rollbar"
 
 group :development, :test do
   # Guard
