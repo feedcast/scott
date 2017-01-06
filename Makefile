@@ -27,4 +27,4 @@ guard:
 
 .PHONY: synchronize
 synchronize:
-	bin/rake channels:synchronize
+	bin/rake with:logger channels:synchronize
