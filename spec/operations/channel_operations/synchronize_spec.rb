@@ -17,7 +17,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     end
 
     context "and the channel is not synchronized" do
-      let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronization_status: :new, synchronized_at: 3.hours.ago) }
+      let(:channel) { Fabricate(:channel, synchronization_status: :new, synchronized_at: 3.hours.ago) }
 
       it "triggers the episodes' synchronization" do
         expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
@@ -33,7 +33,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     end
 
     context "and the channel is already synchronized" do
-      let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronization_status: :success) }
+      let(:channel) { Fabricate(:channel, synchronization_status: :success) }
 
       context "and it has no items" do
         let(:items) do
@@ -54,7 +54,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
       end
 
       context "and it already is up to date" do
-        let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronization_status: :success, synchronized_at: Time.now) }
+        let(:channel) { Fabricate(:channel, synchronization_status: :success, synchronized_at: Time.now) }
 
         it "does not trigger the episodes' synchronization" do
           expect_any_instance_of(ChannelOperations::Synchronize).to_not receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
@@ -70,7 +70,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
       end
 
       context "and it is not up to date" do
-        let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronization_status: :success, synchronized_at: 3.hours.ago) }
+        let(:channel) { Fabricate(:channel, synchronization_status: :success, synchronized_at: 3.hours.ago) }
 
         it "triggers the episodes' synchronization" do
           expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
@@ -88,7 +88,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
   end
 
   context "when the feed is invalid" do
-    let(:channel) { Channel.create(title: "Foo", feed_url: "foo", synchronized_at: 3.hours.ago) }
+    let(:channel) { Fabricate(:channel, synchronized_at: 3.hours.ago) }
 
     before do
       allow_any_instance_of(ChannelOperations::DownloadFeed).to receive(:call).and_raise(ChannelOperations::DownloadFeed::InvalidFeed.new("invalid feed"))

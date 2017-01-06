@@ -1,14 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Channel, type: :model do
-  it "has a valid factory" do
-    channel = Channel.new(title: "foo")
-
-    expect(channel.save).to eq(true)
-  end
-
   describe "synchronization" do
-    let(:channel) { Channel.create!(title: "foo") }
+    let(:channel) { Fabricate(:channel) }
 
     it "default value is new" do
       expect(channel.synchronization_status).to eq(:new)

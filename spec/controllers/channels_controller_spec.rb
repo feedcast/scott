@@ -2,10 +2,9 @@ require "rails_helper"
 
 RSpec.describe ChannelsController, type: :controller do
   describe "show" do
-    let(:channel) { double(Channel, title: "foo") }
-    let(:slug) { "foo" }
+    let(:channel) { Fabricate.build(:channel) }
     let(:params) do
-      { channel: slug }
+      { channel: channel.slug }
     end
 
     context "with valid params" do

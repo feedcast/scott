@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe ChannelOperations::SynchronizeAll, type: :operation do
   let(:channels) do
     [
-      double(Channel, title: "Foo1", slug: "foo1"),
-      double(Channel, title: "Foo2", slug: "foo2"),
-      double(Channel, title: "Foo3", slug: "foo3")
+      Fabricate.build(:channel),
+      Fabricate.build(:channel),
+      Fabricate.build(:channel)
     ]
   end
 

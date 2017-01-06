@@ -43,9 +43,9 @@ gem "rollbar"
 
 group :development, :test do
   # Guard
-  gem "guard-rails", require: false
-  gem "guard-rspec", require: false
   gem "guard-bundler", require: false
+  gem "guard-rspec", require: false
+  gem "guard-rails", require: false
 
   # RSpec
   gem "rspec-rails", "~> 3.5"
@@ -55,6 +55,8 @@ group :development, :test do
   gem "sham_rack"
 
   # Test Support
+  gem "fabrication"
+  gem "faker"
   gem "capybara"
   gem "database_cleaner"
 
