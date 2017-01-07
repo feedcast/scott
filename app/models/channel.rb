@@ -8,6 +8,7 @@ class Channel
 
   field :title, type: String
   field :feed_url, type: String
+  field :image_url, type: String
   field :synchronization_status, type: Symbol, default: :new
   field :synchronization_status_message, type: String
   field :synchronized_at, type: Time, default: 1.year.ago

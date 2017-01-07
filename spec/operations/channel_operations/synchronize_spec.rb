@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe ChannelOperations::Synchronize, type: :operation do
   context "when the feed is valid" do
+    let(:channel) { Fabricate(:channel, image_url: "foo.png") }
     let(:items) do
       [
         double(:item, publish_date: 1.hour.ago),
@@ -9,11 +10,29 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
         double(:item, publish_date: 3.days.ago)
       ]
     end
-    let(:feed) { double(:feed, items: items) }
+    let(:feed) { double(:feed, image_url: "http://foo.bar/logo.png",items: items) }
 
     before do
       allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(ChannelOperations::DownloadFeed, feed_url: channel.feed_url).and_return(feed)
       allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items).and_return(true)
+    end
+
+    context "and the image_url is present" do
+      it "updates it" do
+        expect {
+          run(ChannelOperations::Synchronize, channel: channel)
+        }.to change(channel, :image_url).from("foo.png").to(feed.image_url)
+      end
+    end
+
+    context "and the image_url is nil" do
+      let(:feed) { double(:feed, image_url: nil, items: items) }
+
+      it "does not updates it" do
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.image_url).to_not be_nil
+      end
     end
 
     context "and the channel is not synchronized" do

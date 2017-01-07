@@ -7,6 +7,8 @@ module ChannelOperations
     def perform
       @feed = download_feed_for(@channel)
 
+      @channel.image_url = @feed.image_url unless @feed.image_url.nil?
+
       synchronize_episodes_with!(@feed.items, @channel) if ready_to_synchronize?(@channel, @feed)
 
       @channel.synchronization_success!
