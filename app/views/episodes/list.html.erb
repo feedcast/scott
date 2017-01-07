@@ -3,9 +3,9 @@
     <h4 class="title-gallery"><%= t(:"episode.recent") %></h4>
     <div class="row">
       <% @episodes.each do |episode| %>
-        <div class="podcast col-xs-6 col-sm-3 col-md-2">
+        <div class="episode col-xs-6 col-sm-3 col-md-2">
           <a href="<%= episode_path(episode.channel, episode) %>">
-            <div class="podcast-img img-rounded"
+            <div class="episode-img img-rounded"
               style="background-image: url(<%= image_url_for(episode.channel) %>)"></div>
             <h3><%= episode.title %></h3>
             <h5 class="duration">--:--:--</h5>

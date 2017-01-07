@@ -16,10 +16,10 @@
     </div>
     <div class="panel-body">
     <% @channel.episodes.order(published_at: :desc).each do |episode| %>
-      <a class="col-xs-12 channel-podcast" href="<%= episode_path(episode.channel, episode) %>">
+      <a class="col-xs-12 channel-episode" href="<%= episode_path(episode.channel, episode) %>">
         <h4><%= episode.title %></h4>
         <p><%= episode.summary %></p>
-        <h5 class="channel-podcast__duration">--:--:--</h5>
+        <h5 class="channel-episode__duration">--:--:--</h5>
       </a>
     <% end %>
     </div>
