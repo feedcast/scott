@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.feature "Homepage", type: :feature do
+RSpec.feature "Recent Channels", type: :feature do
   scenario "list the 10 most recent channels" do
     given_several_channels
-    when_i_visit_the_home_page
+    when_i_visit_the_recent_channels_page
     then_i_see_a_list_with_the_10_most_recent_channels
   end
 
@@ -15,8 +15,8 @@ RSpec.feature "Homepage", type: :feature do
     end
   end
 
-  def when_i_visit_the_home_page
-    visit "/"
+  def when_i_visit_the_recent_channels_page
+    visit "/channels/recent"
     @page = page
   end
 

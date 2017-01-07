@@ -4,4 +4,8 @@ class EpisodesController < ApplicationController
 
     @episode = channel.episodes.find(params[:episode])
   end
+
+  def list
+    @episodes = Episode.all.order_by(published_at: :desc).limit(10)
+  end
 end

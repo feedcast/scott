@@ -1,0 +1,3 @@
+<% @episodes.each do |episode| %>
+  <li><%= link_to(episode.title, episode_path(episode.channel, episode)) %></li>
+<% end %>

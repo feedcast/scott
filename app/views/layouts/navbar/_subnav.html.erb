@@ -1,10 +1,8 @@
 <nav class="navbar navbar-default" id="subnav">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li><a class="subnav-link" href="/"><i class="fa fa-headphones"></i> Mais Ouvidos</a></li>
-      <li><a class="subnav-link" href="/"><i class="fa fa-download"></i> Mais Baixados</a></li>
-      <li><a class="subnav-link" href="/"><i class="fa fa-history"></i> Adicionados Recentemente</a></li>
-      <li><a class="subnav-link" href="/"><i class="fa fa-heart"></i> Recomendamos</a></li>
+      <li><a class="subnav-link" href="<%= channels_path %>"><i class="fa fa-rss"></i> <%= t(:new_channels) %></a></li>
+      <li><a class="subnav-link" href="<%= episodes_path %>"><i class="fa fa-history"></i> <%= t(:new_episodes) %></a></li>
     </ul>
   </div>
 </nav>
