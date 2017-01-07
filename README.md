@@ -11,6 +11,8 @@ It is expected to have already installed Ruby(2.4) with MongoDB and Redis or Doc
 
 Run `make setup` to install the dependencies and set the default environment variables.
 
+Run `make seed` to add sample channels.
+
 ### Environment variables
 
 We are currently using [Figaro](https://github.com/laserlemon/figaro) to manage the environment variables.

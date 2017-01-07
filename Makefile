@@ -6,6 +6,10 @@ setup:
 	bin/bundle install
 	cp config/application.default.yml config/application.yml
 
+.PHONY: seed
+seed:
+	bin/rake db:seed
+
 .PHONY: start
 start:
 	bin/puma -C config/puma.rb
