@@ -8,7 +8,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lato")
 @import url("https://fonts.googleapis.com/css?family=Droid+Sans")
 
-$background-color: #ECF0F1
+@import 'variables.sass'
 
 h1, h2, h3, h4, h5
   font-family: 'Droid Sans', sans-serif
@@ -23,3 +23,290 @@ html, body
 
 input, textarea, button, nav
   border-radius: 0px !important
+
+
+.channel
+  margin-bottom: 10px
+  a
+    position: relative
+    box-sizing: content-box
+    display: block
+    .channel-img
+      width: 100%
+      height: 140px
+      background-size: cover
+      background-position: center
+    &:hover h3
+      text-decoration: underline
+    h3
+      font-weight: bold
+      margin: 0px
+      padding: 10px 0px
+      color: #2980B9
+      width: 100%
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      font-size: 13px
+
+
+$font-size: 13px
+$line-height: 1.4
+$lines-to-show: 2
+
+.podcast
+  margin-bottom: 10px
+  a
+    position: relative
+    box-sizing: content-box
+    display: block
+    .podcast-img
+      width: 100%
+      height: 140px
+      background-size: cover
+      background-position: center
+      &:after
+        color: rgba(255,255,255, 0)
+        content: "\f04b"
+        display: inline-block
+        font: normal normal normal 14px/1 FontAwesome
+        font-size: inherit
+        text-rendering: auto
+        -webkit-font-smoothing: antialiased
+        position: absolute
+        left: 50%
+        top: 50%
+        margin-left: -25px
+        margin-top: -50px
+        font-size: 50px
+        transition: all .4s ease
+      &:hover:after
+        color: #fff
+    &:hover h3
+      text-decoration: underline
+    h3
+      font-weight: bold
+      // position: absolute
+      // bottom: 0px
+      color: #2980B9
+      width: 100%
+      height: 50px
+      // white-space: nowrap
+      // overflow: hidden
+      // text-overflow: ellipsis
+      display: block /* Fallback for non-webkit */
+      display: -webkit-box
+      height: $font-size*$line-height*$lines-to-show /* Fallback for non-webkit */
+      margin: 0 auto
+      font-size: $font-size
+      line-height: $line-height
+      -webkit-line-clamp: $lines-to-show
+      -webkit-box-orient: vertical
+      overflow: hidden
+      text-overflow: ellipsis
+    h5.duration
+      position: absolute
+      padding: 2px 2px
+      margin: 0px
+      background-color: rgba(0,0,0,.7)
+      color: #fefefe
+      bottom: $font-size*$line-height*$lines-to-show
+      right: 0px
+
+.title-gallery
+  font-weight: bold
+
+.search-form
+  position: relative
+  &:after
+    color: $navbar-bg-color
+    content: "\f002"
+    display: inline-block
+    font: normal normal normal 14px/1 FontAwesome
+    font-size: inherit
+    text-rendering: auto
+    -webkit-font-smoothing: antialiased
+    position: absolute
+    right: 8px
+    top: 6px
+    font-size: 20px
+  input#search-input.form-control
+    // background: none !important
+    // background-color: none !important
+    color: $color-font-search
+    border: 0px
+    padding-right: 30px
+    &:focus
+      outline: none
+      -webkit-box-shadow: none
+      box-shadow: none
+.panel
+  border-radius: 0px
+  background-color: $panel-bg
+  color: $panel-color
+  border: 0px
+
+  .panel-heading
+    color: $alternative-color  //$navbar-bg-color
+    background-color: $alternative-font-color //$color-font-navbar
+
+.menu-top
+  text-align: center
+
+@media ( min-width: 768px ) and (max-width: 992px)
+  .menu-top
+    font-size: 13px
+
+@media ( max-width: 768px )
+  #shortcut-navbar
+    ul.nav
+      margin-bottom: 0px
+  #navbar-feedcast
+    .navbar-header
+      display: inline-block
+    #feedcast-navbar
+      display: inline-block
+      float: right
+      form.navbar-form.navbar-left
+        border: 0px
+        margin: 0px
+      #search-input
+        height: 39px
+        width: calc(100vw - 200px)
+
+.player-podcast
+  width: 100%
+
+
+.channel-top
+  margin-bottom: 20px
+  padding: 0px
+.channel-top__navbar-left
+  float: right
+  display: inline-block
+  .btn-group-vertical
+    width: 100%
+.channel-top__image
+  height: 300px
+  width: 300px
+  background-size: auto 100%
+  background-repeat: no-repeat
+  background-color: $navbar-bg-color
+  background-position: center
+  position: relative
+
+  h3
+    position: absolute
+    bottom: -10px
+    background-color: $alternative-color  //$navbar-bg-color
+    color: $alternative-font-color //$color-font-navbar
+    width: 100%
+    padding: 10px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+.channel-top__info
+  float: left
+  display: inline-block
+  width: calc(100% - 350px)
+  margin-bottom: 0px
+  .panel-heading
+    color: $alternative-color  //$navbar-bg-color
+    background-color: $alternative-font-color //$color-font-navbar
+    i
+      font-size: 1.3em
+
+.btn-group-vertical
+  .btn, .btn:focus
+    outline: none
+    -webkit-box-shadow: none
+    box-shadow: none
+    background-color: #fff
+    color: #3498DB
+    border: 0px
+    border-bottom: 1px solid #efefef
+    margin: 10px 0px !important
+    border-radius: 0px !important
+  .btn:last-child
+    border-bottom: none
+    margin-bottom: 0px !important
+  .btn:hover
+    color: #2980B9
+
+
+
+
+$font-size: 14px
+$line-height: 1.4
+$lines-to-show: 2
+
+
+.channel-podcast,
+.channel-podcast:link,
+.channel-podcast:visited,
+.channel-podcast:focus
+  transition: background 1s ease
+  background-color: #eee
+  position: relative
+  padding-top: 24px
+  padding-left: 100px
+  padding-bottom: 24px
+  margin-bottom: 20px
+  cursor: pointer
+  color: #222
+  &:hover
+    background-color: #ddd
+
+  &:before
+    color: #E74C3C
+    content: "\f144"
+    font: normal normal normal 14px/1 FontAwesome
+    text-rendering: auto
+    -webkit-font-smoothing: antialiased
+    position: absolute
+    left: 12px
+    top: 50%
+    transform: translateY(-50%)
+    font-size: 88px
+
+  h4
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+  p
+    display: block /* Fallback for non-webkit */
+    display: -webkit-box
+    height: $font-size*$line-height*$lines-to-show /* Fallback for non-webkit */
+    margin: 0 auto
+    font-size: $font-size
+    line-height: $line-height
+    -webkit-line-clamp: $lines-to-show
+    -webkit-box-orient: vertical
+    overflow: hidden
+    text-overflow: ellipsis
+
+
+
+
+
+
+
+
+.channel-podcast__duration
+  position: absolute
+  bottom: -10px
+  right: 0px
+  padding: 4px
+  background-color: #E74C3C
+  color: #fff
+
+
+@media ( max-width: 768px )
+  .channel-top__navbar-left,
+  .channel-top__image,
+  .channel-top__info
+    width: 100% !important
+  .channel-top__image
+    height: 180px
