@@ -1,29 +1,27 @@
 <div class="col-xs-12 channel-top">
-  <div class="channel-top__navbar-left panel">
-    <div class="panel-body">
-      <div class="channel-top__image"
-        style="background-image: url(<%= image_url_for(@channel) %>)"></div>
-        <h3><%= @channel.title %></h3>
-      </div>
-      <div class="btn-group-vertical" role="group" aria-label="...">
-        <button class="btn btn-default"><i class="fa fa-link"></i> Acessar site</button>
-        <button class="btn btn-default"><i class="fa fa-star"></i> Adicionar aos favoritos</button>
-        <button class="btn btn-default"><i class="fa fa-share"></i> Compartilhar</button>
-      </div>
-    </div>
-  </div>
-  <div class="channel-top__info panel panel-default">
-    <div class="panel-heading">
-      <h3><i class="fa fa-podcast"></i> Episódios</h3>
-    </div>
-    <div class="panel-body">
-      <% @channel.episodes.order(published_at: :desc).each do |episode| %>
-        <a class="col-xs-12 channel-podcast" href="<%= episode_path(episode.channel, episode) %>">
-          <h4><%= episode.title %></h4>
-          <p><%= episode.summary %></p>
-          <h5 class="channel-podcast__duration">--:--:--</h5>
-        </a>
-      <% end %>
-    </div>
-  </div>
+	<div class="channel-top__navbar-left panel">
+		<div class="panel-body">
+			<div class="channel-top__image" style="background-image: url(<%= image_url_for(@channel) %>)"></div>
+			<h3><%= @channel.title %></h3>
+		</div>
+		<div class="btn-group-vertical" role="group" aria-label="...">
+			<button class="btn btn-default"><i class="fa fa-link"></i> Acessar site</button>
+			<button class="btn btn-default"><i class="fa fa-star"></i> Adicionar aos favoritos</button>
+			<button class="btn btn-default"><i class="fa fa-share"></i> Compartilhar</button>
+		</div>
+	</div>
+	<div class="channel-top__info panel panel-default">
+		<div class="panel-heading">
+			<h3><i class="fa fa-podcast"></i> Episódios</h3>
+		</div>
+		<div class="panel-body">
+		<% @channel.episodes.order(published_at: :desc).each do |episode| %>
+			<a class="col-xs-12 channel-podcast" href="<%= episode_path(episode.channel, episode) %>">
+				<h4><%= episode.title %></h4>
+				<p><%= episode.summary %></p>
+				<h5 class="channel-podcast__duration">--:--:--</h5>
+			</a>
+		<% end %>
+		</div>
+	</div>
 </div>
