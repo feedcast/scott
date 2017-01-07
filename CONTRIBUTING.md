@@ -4,7 +4,7 @@
 2. Open or find an issue [here](https://github.com/marceloboeira/feedcast/issues).
 3. Fork it (https://github.com/marceloboeira/feedcast/fork)
 4. Create your feature branch (git checkout -b my-awesome-new-feature)
-5. Commit your changes (**follwing our [commit police](#commit-policy) and [style guide](#style-guide)**)
+5. Commit your changes (**follwing our [commit policy](#commit-policy) and [style guide](#style-guide)**)
 6. Push to the branch (git push origin my-new-feature)
 7. Create a new Pull Request
 
