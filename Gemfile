@@ -17,6 +17,10 @@ gem "functional_operations"
 # Admin
 gem "rails_admin", "~> 1.0"
 
+# I18n
+gem "rails-i18n"
+gem "rails_admin-i18n"
+
 # Environment Variables
 gem "figaro"
 
