@@ -7,7 +7,7 @@ module ChannelOperations
     def perform
       @feed = download_feed_for(@channel)
 
-      synchronize_episodes_with!(@feed.items, @channel) if available_updates?(@feed, @channel)
+      synchronize_episodes_with!(@feed.items, @channel) if ready_to_synchronize?(@channel, @feed)
 
       @channel.synchronization_success!
     rescue => e
@@ -24,10 +24,12 @@ module ChannelOperations
       run(EpisodeOperations::SynchronizeAll, feed_items: items, channel: channel)
     end
 
-    def available_updates?(feed, channel)
-      return false if feed.items.empty?
+    def ready_to_synchronize?(channel, feed)
+      !channel.synchronized? || available_updates?(feed, channel)
+    end
 
-      feed.items.map(&:publish_date).max > channel.synchronized_at
+    def available_updates?(feed, channel)
+      feed.items.size > 0 && feed.items.map(&:publish_date).max > channel.synchronized_at
     end
   end
 end
