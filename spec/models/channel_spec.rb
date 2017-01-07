@@ -44,4 +44,44 @@ RSpec.describe Channel, type: :model do
       end
     end
   end
+
+  describe "search" do
+    let!(:channels) do
+      [
+        Fabricate(:channel, title: "Nerd"),
+        Fabricate(:channel, title: "Nerdcast"),
+        Fabricate(:channel, title: "Paranerdia"),
+        Fabricate(:channel, title: "This is nerd"),
+        Fabricate(:channel, title: "NeRD"),
+        Fabricate(:channel, title: "My Podcast"),
+        Fabricate(:channel, title: "Alone"),
+        Fabricate(:channel, title: "Foo"),
+        Fabricate(:channel, title: "Bar"),
+      ]
+    end
+
+    context "when there are results" do
+      it "finds exact matches" do
+        expect(Channel.search("Bar").map(&:title)).to include("Bar")
+      end
+
+      it "finds titles that start with" do
+        expect(Channel.search("Nerd").map(&:title)).to include("Nerdcast")
+      end
+
+      it "finds titles that include the word" do
+        expect(Channel.search("cast").map(&:title)).to eq(["Nerdcast", "My Podcast"])
+      end
+
+      it "finds title regardless of the case" do
+        expect(Channel.search("NeRd").map(&:title)).to eq(["Nerd", "Nerdcast", "Paranerdia", "This is nerd", "NeRD"])
+      end
+    end
+
+    context "when there are not results" do
+      it "returns an empty criteria" do
+        expect(Channel.search("Invalid").count).to eq(0)
+      end
+    end
+  end
 end

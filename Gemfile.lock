@@ -69,6 +69,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
     codeclimate-test-reporter (1.0.4)
       simplecov
     coderay (1.1.1)
@@ -259,6 +261,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    rubyzip (1.2.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -266,6 +269,10 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    selenium-webdriver (3.0.1)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     sham_rack (1.3.6)
       rack
     shellany (0.0.1)
@@ -308,6 +315,7 @@ GEM
       activemodel (>= 5.0)
       debug_inspector
       railties (>= 5.0)
+    websocket (1.2.3)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -347,6 +355,7 @@ DEPENDENCIES
   rollbar
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
+  selenium-webdriver
   sham_rack
   simplecov
   sinatra (= 2.0.0.beta2)

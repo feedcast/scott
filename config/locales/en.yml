@@ -1,9 +1,11 @@
 en:
   channel:
     recent: Last channels
+    zero: No Channels
     one: Channel
     other: Channels
   episode:
     recent: Last episodes
     one: Episode
     other: Episodes
+  search: Search

@@ -25,7 +25,7 @@ RSpec.feature "Recent Channels", type: :feature do
   def then_i_see_a_list_with_the_12_most_recent_channels
     expect(@page).to have_css(".channel a h3", count: 12)
 
-    @channels.first(12).each_with_index do |channel, index|
+    @channels.first(12).each do |channel|
       expect(@page).to have_selector(".channel a h3", text: channel.title)
     end
   end

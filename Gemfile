@@ -61,8 +61,11 @@ group :development, :test do
   # Test Support
   gem "fabrication"
   gem "faker"
-  gem "capybara"
   gem "database_cleaner"
+
+  # Feature tests
+  gem "capybara"
+  gem "selenium-webdriver"
 
   # Coverage
   gem "simplecov"

@@ -36,6 +36,11 @@ class Channel
     end
   end
 
+  def self.search(term)
+    criteria = Regexp.escape(term)
+    where(title: /#{criteria}/i)
+  end
+
   def synchronization_success!
     self.synchronization_status = :success
     self.synchronized_at = Time.now

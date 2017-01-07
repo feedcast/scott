@@ -70,3 +70,44 @@
 .navbar-default .navbar-nav>.open>a:focus,
 .navbar-default .navbar-nav>.open>a:hover
   background-color: $navbar-hover-color
+
+#narbar-search
+  .search-form
+    position: relative
+    &:after
+      color: $navbar-bg-color
+      content: "\f002"
+      display: inline-block
+      font: normal normal normal 14px/1 FontAwesome
+      font-size: inherit
+      text-rendering: auto
+      -webkit-font-smoothing: antialiased
+      position: absolute
+      right: 8px
+      top: 6px
+      font-size: 20px
+    input#search-input.form-control
+      color: $color-font-search
+      border: 0px
+      padding-right: 30px
+      &:focus
+        outline: none
+        -webkit-box-shadow: none
+        box-shadow: none
+
+@media ( max-width: 768px )
+  #subnav
+    ul.nav
+      margin-bottom: 0px
+  #navbar-top
+    .navbar-header
+      display: inline-block
+    #navbar-search
+      display: inline-block
+      float: right
+      form.navbar-form.navbar-left
+        border: 0px
+        margin: 0px
+      #search-input
+        height: 39px
+        width: calc(100vw - 200px)

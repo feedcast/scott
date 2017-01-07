@@ -2,7 +2,10 @@
   <div class="container">
     <div class="navbar-header">
       <%= link_to((render partial: "layouts/navbar/logo"), root_path, class: "navbar-brand", id: "navbar-logo") %>
+
     </div>
+
+      <%= render partial: "layouts/navbar/search_form" %>
   </div>
 </nav>
 <%= render partial: "layouts/navbar/subnav" %>

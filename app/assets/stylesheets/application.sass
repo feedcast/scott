@@ -112,28 +112,6 @@ $lines-to-show: 2
 .title-gallery
   font-weight: bold
 
-.search-form
-  position: relative
-  &:after
-    color: $navbar-bg-color
-    content: "\f002"
-    display: inline-block
-    font: normal normal normal 14px/1 FontAwesome
-    font-size: inherit
-    text-rendering: auto
-    -webkit-font-smoothing: antialiased
-    position: absolute
-    right: 8px
-    top: 6px
-    font-size: 20px
-  input#search-input.form-control
-    color: $color-font-search
-    border: 0px
-    padding-right: 30px
-    &:focus
-      outline: none
-      -webkit-box-shadow: none
-      box-shadow: none
 .panel
   border-radius: 0px
   background-color: $panel-bg
@@ -150,23 +128,6 @@ $lines-to-show: 2
 @media ( min-width: 768px ) and (max-width: 992px)
   .menu-top
     font-size: 13px
-
-@media ( max-width: 768px )
-  #shortcut-navbar
-    ul.nav
-      margin-bottom: 0px
-  #navbar-feedcast
-    .navbar-header
-      display: inline-block
-    #feedcast-navbar
-      display: inline-block
-      float: right
-      form.navbar-form.navbar-left
-        border: 0px
-        margin: 0px
-      #search-input
-        height: 39px
-        width: calc(100vw - 200px)
 
 .player-episode
   width: 100%
@@ -226,13 +187,9 @@ $lines-to-show: 2
   .btn:hover
     color: #2980B9
 
-
-
-
 $font-size: 14px
 $line-height: 1.4
 $lines-to-show: 2
-
 
 .channel-episode,
 .channel-episode:link,
@@ -268,9 +225,9 @@ $lines-to-show: 2
     text-overflow: ellipsis
 
   p
-    display: block /* Fallback for non-webkit */
+    display: block
     display: -webkit-box
-    height: $font-size*$line-height*$lines-to-show /* Fallback for non-webkit */
+    height: $font-size*$line-height*$lines-to-show
     margin: 0 auto
     font-size: $font-size
     line-height: $line-height

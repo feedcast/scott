@@ -1,1 +1,1 @@
-Rails.application.config.i18n.default_locale = :"pt-BR"
+Rails.application.config.i18n.default_locale = :"pt-BR" unless Rails.env.test?

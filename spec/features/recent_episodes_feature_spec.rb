@@ -25,7 +25,7 @@ RSpec.feature "Recent Episodes", type: :feature do
   def then_i_see_a_list_with_the_12_most_recent_episodes
     expect(@page).to have_css(".episode a h3", count: 12)
 
-    @episodes.first(12).each_with_index do |episode, index|
+    @episodes.first(12).each do |episode|
       expect(@page).to have_selector(".episode a h3", text: episode.title)
     end
   end

@@ -1,9 +1,11 @@
 pt-BR:
   channel:
     recent: Novos Canais
+    zero: Nenhum Canal
     one: Canal
     other: Canais
   episode:
     recent: Últimos Episódios
     one: Episódio
     other: Episódios
+  search: Pesquise

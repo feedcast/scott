@@ -1,0 +1,7 @@
+<div id="navbar-search">
+  <%= form_tag(search_path, method: "get", class: "navbar-form navbar-left", id: "search-form") do %>
+    <div class="form-group search-form">
+      <%= text_field_tag(:term, params[:term], { id: "search-input", class: "form-control", placeholder: t(:search) }) %>
+    </div>
+  <% end %>
+</div>
