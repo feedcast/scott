@@ -7,7 +7,7 @@ Please consider reading our [Contribution Guide](CONTRIBUTING.md) before anythin
 
 ## Setup
 
-It is expected to have already installed Ruby(2.4) and MongoDB or Docker.
+It is expected to have already installed Ruby(2.4) with MongoDB and Redis or Docker.
 
 Run `make setup` to install the dependencies and set the default environment variables.
 
