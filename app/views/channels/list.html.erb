@@ -5,7 +5,7 @@
       <% @channels.each do |channel| %>
         <div class="channel col-xs-6 col-sm-3 col-md-2">
           <a href="<%= channel_path(channel) %>">
-            <div class="channel-img" 
+            <div class="channel-img img-rounded"
               style="background-image: url(<%= image_url_for(channel) %>)"></div>
             <h3><%= channel.title %></h3>
           </a>
