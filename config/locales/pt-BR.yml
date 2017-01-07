@@ -1,3 +1,9 @@
 pt-BR:
-  new_channels: "Novos Canais"
-  new_episodes: "Últimos Episódios"
+  channel:
+    recent: Novos Canais
+    one: Canal
+    other: Canais
+  episode:
+    recent: Últimos Episódios
+    one: Episódio
+    other: Episódios

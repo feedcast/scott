@@ -12,7 +12,7 @@
   </div>
   <div class="channel-top__info panel panel-default">
     <div class="panel-heading">
-      <h3><i class="fa fa-podcast"></i> Episódios</h3>
+      <h3><i class="fa fa-podcast"></i> <%= t(:episode, count: 2) %></h3>
     </div>
     <div class="panel-body">
     <% @channel.episodes.order(published_at: :desc).each do |episode| %>

@@ -1,3 +1,9 @@
 en:
-  new_channels: "Last channels"
-  new_episodes: "Last episodes"
+  channel:
+    recent: Last channels
+    one: Channel
+    other: Channels
+  episode:
+    recent: Last episodes
+    one: Episode
+    other: Episodes
