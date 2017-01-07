@@ -13,9 +13,9 @@ Run `make setup` to install the dependencies and set the default environment var
 
 ### Environment variables
 
-We are currently using [Figaro](https://github.com/laserlemon/figaro) to manage the environment variables in the development environment.
+We are currently using [Figaro](https://github.com/laserlemon/figaro) to manage the environment variables.
 
-The variables can be defined at `config/application.yml`  and the default template setup is under `config/application.default.yml`.
+The variables can be defined at `config/application.yml`  and the default template setup with the list of all variables is available at `config/application.default.yml`.
 
 The command `make setup` already copies the default file template to `config/application.yml`.
 

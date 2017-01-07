@@ -1,7 +1,23 @@
-development:
-  REDIS_URL: redis://127.0.0.1:6379
-  FEEDCAST_HTTP_AUTH_USER: admin
-  FEEDCAST_HTTP_AUTH_PASSWORD: admin
-  # GOOGLE_ANALYTICS_ID: UA-XXXXXX-1
-  # ROLLBAR_ACCESS_TOKEN: <token>
-  # ROLLBAR_ENV: <env> - Defaults to Rails.env
+# Database
+REDIS_URL: redis://127.0.0.1:6379
+# MONGODB_URI: mongodb://<user>:<password>@<host>:<port>/<datab
+
+# Admin Area
+FEEDCAST_HTTP_AUTH_USER: admin
+FEEDCAST_HTTP_AUTH_PASSWORD: admin
+
+# Metrics
+# GOOGLE_ANALYTICS_ID: UA-XXXXXX-1
+
+# Rails
+# RAILS_SERVE_STATIC_FILES: <enable|disable>
+# RAILS_LOG_TO_STDOUT: <enable|disable>
+# RAILS_ENV: <production|production|beta>
+# RACK_ENV: <production|production|beta>
+# SECRET_KEY_BASE: output of <rake secret>
+
+# Monitoring
+# ROLLBAR_ACCESS_TOKEN: <token>
+# ROLLBAR_ENV: <env> - Defaults to Rails.env
+# NEW_RELIC_LICENSE_KEY: <New Relic Application Key>
+# NEW_RELIC_APP_NAME: <Application Name>
