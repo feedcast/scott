@@ -1,5 +1,5 @@
 Fabricator(:channel) do
-  title { Faker::Hipster.words(rand(10), true) }
+  title { Faker::Hipster.word }
   feed_url { Faker::Internet.url(path: "/feed") }
 end
 
