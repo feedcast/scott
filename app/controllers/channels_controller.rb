@@ -5,6 +5,6 @@ class ChannelsController < ApplicationController
   end
 
   def list
-    @channels = Channel.all.order_by(created_at: :desc)
+    @channels = Channel.all.order_by(created_at: :desc).limit(10)
   end
 end
