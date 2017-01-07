@@ -27,6 +27,12 @@ Finally, run `make start` to start the server.
 
 The server will start at `http://localhost:5000` by default.
 
+### Admin Area
+
+The application is using [Rails Admin](https://github.com/sferik/rails_admin).
+
+The admin area can be accessed at `http://localhost:5000/admin` by default.
+
 ### Experiments
 
 We are running [Split](https://github.com/splitrb/split), an AB testing framework, at `http://localhost:5000/admin/experiments`.
