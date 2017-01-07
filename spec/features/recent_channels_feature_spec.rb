@@ -10,8 +10,10 @@ RSpec.feature "Recent Channels", type: :feature do
   private
 
   def given_several_channels
+    @channels = []
+
     15.times do |i|
-      Fabricate(:channel, created_at: i.days.ago)
+      @channels << Fabricate(:channel, title: Faker::Hipster.sentence(3, true, 1), created_at: i.days.ago)
     end
   end
 
@@ -21,12 +23,10 @@ RSpec.feature "Recent Channels", type: :feature do
   end
 
   def then_i_see_a_list_with_the_12_most_recent_channels
-    recent_channels.each do |channel|
-      expect(@page).to have_text(channel.title)
-    end
-  end
+    expect(@page).to have_css(".channel a h3", count: 12)
 
-  def recent_channels
-    Channel.all.order(created_at: :desc).limit(12)
+    @channels.first(12).each_with_index do |channel, index|
+      expect(@page).to have_selector(".channel a h3", text: channel.title)
+    end
   end
 end
