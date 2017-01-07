@@ -1,11 +1,28 @@
 <div class="row panel panel-default">
 	<div class="panel-heading">
-	  <h3><%= @episode.title %></h3>
+		<h3><%= @episode.title %></h3>
 	</div>
 	<div class="panel-body">
-	  <p><%= @episode.summary %></p>
-	  <audio class="player-podcast" controls="controls">
-	    <source src="<%= @episode.url %>" type="audio/mpeg"/>
-	  </audio>
+		<p><%= @episode.summary %></p>
+		<audio class="player-podcast" controls="controls">
+			<source src="<%= @episode.url %>" type="audio/mpeg"/>
+		</audio>
 	</div>
 </div>
+<div class="row panel panel-default">
+	<div class="panel-heading">
+		<h3>Comentários</h3>
+	</div>
+	<div class="panel-body">
+		<div id="disqus_thread"></div>
+	</div>
+</div>
+<script>
+	(function() {
+	var d = document, s = d.createElement('script');
+	s.src = 'https://feedcast.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+</script>
+<script id="dsq-count-scr" src="https://feedcast.disqus.com/count.js" async></script>
