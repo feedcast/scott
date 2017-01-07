@@ -8,7 +8,7 @@ setup:
 
 .PHONY: start
 start:
-	bin/bundle exec puma -C config/puma.rb
+	bin/puma -C config/puma.rb
 
 .PHONY: spec
 spec:
@@ -23,7 +23,7 @@ report_coverage:
 
 .PHONY: guard
 guard:
-	bin/bundle exec guard
+	bin/guard
 
 .PHONY: synchronize
 synchronize:
