@@ -6,6 +6,6 @@ class EpisodesController < ApplicationController
   end
 
   def list
-    @episodes = Episode.all.order_by(published_at: :desc).limit(10)
+    @episodes = Episode.all.order_by(published_at: :desc).limit(12)
   end
 end
