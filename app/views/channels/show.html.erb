@@ -2,7 +2,7 @@
   <div class="channel-top__navbar-left panel">
     <div class="panel-body">
       <div class="channel-top__image"
-        style="background-image: url(<%= @channel.image_url || "http://placehold.it/350x150?text=#{@channel.title}" %>)" >
+        style="background-image: url(<%= image_url_for(@channel) %>)"></div>
         <h3><%= @channel.title %></h3>
       </div>
       <div class="btn-group-vertical" role="group" aria-label="...">

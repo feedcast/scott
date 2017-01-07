@@ -6,7 +6,7 @@
         <div class="podcast col-xs-6 col-sm-3 col-md-2">
           <a href="<%= episode_path(episode.channel, episode) %>">
             <div class="podcast-img"
-              style="background-image: url(<%= episode.channel.image_url || "http://placehold.it/350x150?text=#{episode.channel.title}" %>)"></div>
+              style="background-image: url(<%= image_url_for(episode.channel) %>)"></div>
             <h3><%= episode.title %></h3>
             <h5 class="duration">--:--:--</h5>
           </a>

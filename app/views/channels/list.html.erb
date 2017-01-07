@@ -6,7 +6,7 @@
         <div class="channel col-xs-6 col-sm-3 col-md-2">
           <a href="<%= channel_path(channel) %>">
             <div class="channel-img" 
-              style="background-image: url(<%= channel.image_url || "http://placehold.it/350x150?text=#{channel.title}" %>)"></div>
+              style="background-image: url(<%= image_url_for(channel) %>)"></div>
             <h3><%= channel.title %></h3>
           </a>
         </div>
