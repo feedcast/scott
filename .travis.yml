@@ -9,6 +9,17 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 
 before_install:
+  # Install GeckoDriver
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.13.0/geckodriver-v0.13.0-linux64.tar.gz
+  - tar -xvzf geckodriver-v0.13.0-linux64.tar.gz
+  - rm geckodriver-v0.13.0-linux64.tar.gz
+  - chmod +x geckodriver
+  - sudo cp geckodriver /usr/local/bin/
+  # Start xvfb
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+  # Nokogiri local binds
   - gem install nokogiri -- --with-cflags='--std=gnu99'
 
 install:
@@ -21,6 +32,7 @@ after_success:
   - make report_coverage
 
 addons:
+  firefox: "50.0"
   code_climate:
     repo_token:
       secure: NVRBL7LTRjZFuFM7fb2I6visCA7vIgXm/TFMwC/j1ZdGqv1z+piD1qU1BRsN9EkTdY4Hp+Op8k76u2krFiMSAv145RwRmoDBI69Jl5kXcdeipIzBKP+Wi2kwr+5YN2gbKj8F19NQFGoIyRBy2ZQh9EhIBj2f9a+n+FC519Yw1tqQM8h19opDrXvaE/S9jO7z3za+q7AJijtaodoIuMBoQ84yDXqdva5iE8eB3p90ZebMFYIp9xvwMUjTM3tGVZKqSI0MJITia1NTzfj0h6Xm+mnuFN0NIUcnaZVj/m7VbBJ1stJjgYQT1Xy0B8eUhRpMzrqXwcNCT3N+MnXX7CBkpAd2vlMhg/inR10jt/+TQiScBsMjXsrCeG/3UltN1gdlDQAbb5QhHfwjs6JauWCnIL34oIzpQPYx4MsbulVjwTM9jJfrR4zbSDwb3KCm4KorRPZ9B/sCxGjEnBv0zKGJGrL6JY4L6wYG6Yb3XWdRXqlFY7z9vNoMwuhsnV8MvM+O2xd3Iy8FgR3da/pgWU3h5adYJtbkxBqsB2Y8oGDZ4URPhCFy4G2MXhr9JtUq1ay7JTuHREz+WnmHDTMfUOFrxsZ3TOyi8A+gdXhEUOzK0XVQXSCQVp95mxwc1naU0KsHuyEIx4Gx/VO6RrfFEr+TffPAdUH6pk4lTF+bVf3WVtw=
