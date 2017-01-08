@@ -20,3 +20,7 @@ beta:
   clients:
     default:
       uri: <%= ENV["MONGODB_URI"] %>
+production:
+  clients:
+    default:
+      uri: <%= ENV["MONGODB_URI"] %>

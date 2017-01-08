@@ -245,6 +245,7 @@ test:
 production:
   <<: *default_settings
   monitor_mode: true
+  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %>
 
 # Many applications have a staging environment which behaves
 # identically to production.  Support for that environment is provided
