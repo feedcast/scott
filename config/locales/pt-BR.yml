@@ -1,4 +1,6 @@
 pt-BR:
+  errors:
+    not_found: Oops! Página não encontrada!
   channel:
     recent: Novos Canais
     zero: Nenhum Canal

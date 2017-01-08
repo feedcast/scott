@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   http_basic_authenticate_with name: ENV["FEEDCAST_HTTP_AUTH_USER"], password: ENV["FEEDCAST_HTTP_AUTH_PASSWORD"] if Rails.env.beta?
 
   rescue_from Mongoid::Errors::DocumentNotFound do
-    head :not_found
+    render "errors/404", status: :not_found
   end
 end
