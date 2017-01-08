@@ -8,4 +8,8 @@ pt-BR:
     recent: Últimos Episódios
     one: Episódio
     other: Episódios
-  search: Pesquise
+  search:
+    option_a: Pesquise
+    option_b: Pesquise por canais
+    option_c: Encontre seu canal favorito
+    option_d: O que você quer ouvir?

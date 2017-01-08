@@ -8,4 +8,8 @@ en:
     recent: Last episodes
     one: Episode
     other: Episodes
-  search: Search
+  search:
+    option_a: Search
+    option_b: Channel search
+    option_c: Find your favorite channel
+    option_d: What do you want to listen?
