@@ -19,7 +19,7 @@ class Channel
   validates :synchronized_at, presence: true
   validates :synchronization_status, presence: true, inclusion: { in: FEED_SYNCHRONIZATION_STATUSES }
 
-  has_many :episodes
+  has_many :episodes, dependent: :destroy
   accepts_nested_attributes_for :episodes
 
   rails_admin do
