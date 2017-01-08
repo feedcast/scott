@@ -31,8 +31,6 @@
       height: 34px
       margin-left: -4px
       border: 0px
-      &:hover
-        background-color: $navbar-hover-color
 
   .navbar-header > a,
   ul.nav > li > a
@@ -71,7 +69,12 @@
 .navbar-default .navbar-nav>.open>a:hover
   background-color: $navbar-hover-color
 
+#search-input
+  display: inline-block !important
+
 #narbar-search
+  & .search-form > *
+    display: inline-block !important
   .search-form
     position: relative
     &:after
@@ -96,6 +99,13 @@
         box-shadow: none
 
 @media ( max-width: 768px )
+  .search-form
+    button
+      margin: 0px !important
+      height: 39px !important
+      margin-left: -4px !important
+      margin-top: -1px !important
+      border: 0px !important
   #subnav
     ul.nav
       margin-bottom: 0px
@@ -110,4 +120,4 @@
         margin: 0px
       #search-input
         height: 39px
-        width: calc(100vw - 200px)
+        width: calc(100vw - 230px)
