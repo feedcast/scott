@@ -18,6 +18,8 @@ class Episode
 
   belongs_to :channel
 
+  index({ published_at: 1, channel_id: 1 }, unique: true)
+
   rails_admin do
     list do
       field :title do
