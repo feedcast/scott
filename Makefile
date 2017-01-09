@@ -37,6 +37,6 @@ synchronize:
 deploy:
 	git push heroku master
 
-.PHONY: deploy-beta
-deploy-beta:
+.PHONY: deploy_beta
+deploy_beta:
 	git push heroku-beta master
