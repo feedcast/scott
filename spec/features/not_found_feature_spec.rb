@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "Not found", type: :feature do
-  scenario "as a user I access a 404 error page" do
+  scenario "user access a 404 error page" do
     when_i_visit_an_invalid_page
     then_i_see_a_proper_error_page
   end

@@ -1,4 +1,14 @@
 module ApplicationHelper
+  def application_title
+    default_title = t(:feedcast)
+
+    if content_for?(:title)
+      "#{content_for(:title)} | #{default_title}"
+    else
+      default_title
+    end
+  end
+
   def image_url_for(channel)
     return placeholdit(channel.title) if channel.image_url.nil? || channel.image_url.empty?
 

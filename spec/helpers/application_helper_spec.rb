@@ -1,6 +1,21 @@
 require "rails_helper"
 
 RSpec.describe ApplicationHelper, type: :helper do
+  describe "application title" do
+    context "when there is no content" do
+      it "returns the default title" do
+        expect(helper.application_title).to eq("Feedcast")
+      end
+    end
+
+    context "when there is content" do
+      it "returns the compound title" do
+        helper.content_for(:title, "foo")
+
+        expect(helper.application_title).to eq("foo | Feedcast")
+      end
+    end
+  end
   describe "image url for cannel" do
     context "when the channel image is present" do
       let(:channel) { Fabricate.build(:channel, image_url: "foo.png") }
