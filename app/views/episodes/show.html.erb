@@ -17,16 +17,7 @@
       <h3><%= t(:comment, count: 2) %></h3>
     </div>
     <div class="panel-body">
-      <div id="disqus_thread"></div>
+      <%= render partial: "episodes/comments" %>
     </div>
   </div>
 </div>
-<script>
-  (function() {
-  var d = document, s = d.createElement('script');
-  s.src = 'https://feedcast.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-</script>
-<script id="dsq-count-scr" src="https://feedcast.disqus.com/count.js" async></script>
