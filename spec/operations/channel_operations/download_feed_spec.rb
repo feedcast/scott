@@ -1,16 +1,9 @@
 require "rails_helper"
-require "sham_rack"
-
-ShamRack.at("feed.feedcast.com").sinatra do
-  get "/:file" do
-    File.read(File.join("spec", "fixtures", params[:file]))
-  end
-end
 
 RSpec.describe ChannelOperations::Synchronize, type: :operation do
   context "when the feed is valid" do
     let(:params) do
-      { feed_url: "http://feed.feedcast.com/valid.xml" }
+      { feed_url: "http://feedcast.com/valid.xml" }
     end
 
     it "returns the feed object" do
@@ -23,7 +16,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
 
   context "when the feed is invalid" do
     let(:params) do
-      { feed_url: "http://feed.feedcast.com/invalid.xml" }
+      { feed_url: "http://feedcast.com/invalid.xml" }
     end
 
     it "raises an error" do
