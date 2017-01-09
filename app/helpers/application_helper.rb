@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include SanitizeHelper
+
   def application_title
     default_title = t(:feedcast)
 

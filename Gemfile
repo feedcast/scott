@@ -24,6 +24,10 @@ gem "rails_admin-i18n"
 # Environment Variables
 gem "figaro"
 
+# Log and Monitoring
+gem "newrelic_rpm"
+gem "rollbar"
+
 # XML Feed
 gem "nokogiri"
 gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
@@ -31,6 +35,9 @@ gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
 # AB Testing
 gem "redis"
 gem "split"
+
+# Sanitize
+gem "sanitize"
 
 # Assets
 gem "sass-rails", "~> 5.0"
@@ -40,10 +47,6 @@ source "https://rails-assets.org" do
   gem "rails-assets-bootstrap"
   gem "rails-assets-fontawesome", "~> 4.3.0"
 end
-
-# Log and Monitoring
-gem "newrelic_rpm"
-gem "rollbar"
 
 group :development, :test do
   # Guard
