@@ -32,3 +32,11 @@ guard:
 .PHONY: synchronize
 synchronize:
 	bin/rake with:logger channels:synchronize
+
+.PHONY: deploy
+deploy:
+	git push heroku master
+
+.PHONY: deploy-beta
+deploy-beta:
+	git push heroku-beta master
