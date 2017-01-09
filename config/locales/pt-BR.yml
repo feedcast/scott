@@ -16,3 +16,7 @@ pt-BR:
     option_b: Pesquise por canais
     option_c: Encontre seu canal favorito
     option_d: O que você quer ouvir?
+  comment:
+    zero: Nenhum comentario
+    one: Comentário
+    other: Comentários
