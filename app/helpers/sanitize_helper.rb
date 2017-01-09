@@ -7,7 +7,7 @@ module SanitizeHelper
       "a" => ["href"],
     },
     :add_attributes => {
-      "a" => { 
+      "a" => {
         "rel" => "nofollow noopener"
       }
     }
