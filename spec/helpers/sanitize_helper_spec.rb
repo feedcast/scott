@@ -38,8 +38,16 @@ RSpec.describe SanitizeHelper, type: :helper do
               "This is <a href=\"http://google.com\">HTML</a> content"
             end
 
-            it "adds nofollow noopener attribute" do
-              expect(helper.html_sanitize(input)).to eq("This is <a href=\"http://google.com\" rel=\"nofollow noopener\">HTML</a> content")
+            it "adds nofollow attribute" do
+              expect(helper.html_sanitize(input)).to match(/nofollow/)
+            end
+
+            it "adds noopener attribute" do
+              expect(helper.html_sanitize(input)).to match(/noopener/)
+            end
+
+            it "adds target blank attribute" do
+              expect(helper.html_sanitize(input)).to match(/target="_blank">/)
             end
           end
         end

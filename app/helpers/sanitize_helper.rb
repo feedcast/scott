@@ -8,7 +8,8 @@ module SanitizeHelper
     },
     :add_attributes => {
       "a" => {
-        "rel" => "nofollow noopener"
+        "rel" => "nofollow noopener",
+        "target" => "_blank"
       }
     }
   }
