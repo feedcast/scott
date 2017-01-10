@@ -163,12 +163,6 @@ GEM
       mongoid (>= 3.0)
       mongoid-compatibility
       stringex (~> 2.0)
-    mongoid_rails_migrations (1.1.0)
-      activesupport (>= 4.2.0)
-      bundler (>= 1.0.0)
-      mongoid (>= 4.0.0)
-      rails (>= 4.2.0)
-      railties (>= 4.2.0)
     multi_json (1.12.1)
     mustermann (1.0.0.beta2)
     nenv (0.3.0)
@@ -354,7 +348,6 @@ DEPENDENCIES
   mongoid (~> 6.0.0)
   mongoid-slug
   mongoid-uuid!
-  mongoid_rails_migrations
   newrelic_rpm
   nokogiri
   podcast_reader!
