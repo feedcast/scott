@@ -1,7 +1,7 @@
 # Contributing
 
 1. Star the project.
-2. Open or find an issue [here](https://github.com/marceloboeira/feedcast/issues).
+2. Open or find an issue [here](https://github.com/feedcast/core/issues).
 3. Fork it (https://github.com/marceloboeira/feedcast/fork)
 4. Create your feature branch (git checkout -b my-awesome-new-feature)
 5. Commit your changes (**follwing our [commit policy](#commit-policy) and [style guide](#style-guide)**)
