@@ -8,7 +8,6 @@ class Episode
   field :summary, type: String
   field :description, type: String
   field :published_at, type: DateTime
-  field :url, type: String
 
   slug :title, scoped: :channel
 
