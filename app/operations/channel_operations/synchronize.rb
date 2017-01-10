@@ -31,7 +31,7 @@ module ChannelOperations
     end
 
     def available_updates?(feed, channel)
-      feed.items.size > 0 && feed.items.map(&:publish_date).max > channel.synchronized_at
+      feed.items.map(&:publish_date).max > channel.synchronized_at
     end
   end
 end

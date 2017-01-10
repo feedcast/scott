@@ -6,6 +6,8 @@ module EpisodeOperations
     end
 
     def perform
+      return unless @feed_items.size > 0
+
       @feed_items.each do |episode|
         begin
           synchronize(episode, @channel)
