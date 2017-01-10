@@ -30,7 +30,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
         expect(episode.title).to eq(params[:title])
         expect(episode.summary).to eq(params[:summary])
         expect(episode.description).to eq(params[:description])
-        expect(episode.url).to eq(params[:url])
+        expect(episode.audio.url).to eq(params[:url])
         expect(episode.channel_id).to eq(params[:channel].id)
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
         expect(episode.title).to eq(params[:title])
         expect(episode.summary).to eq(params[:summary])
         expect(episode.description).to eq(params[:description])
-        expect(episode.url).to eq(params[:url])
+        expect(episode.audio.url).to eq(params[:url])
         expect(episode.channel_id).to eq(params[:channel].id)
       end
     end

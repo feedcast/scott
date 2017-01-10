@@ -5,4 +5,7 @@ Fabricator(:episode) do
   url { Faker::Internet.url }
   published_at { Faker::Time.between(30.minutes.ago.to_time, Time.now) }
   channel
+  audio do |episode|
+    Fabricate.build(:audio, episode: episode)
+  end
 end

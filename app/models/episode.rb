@@ -7,16 +7,18 @@ class Episode
   field :title, type: String
   field :summary, type: String
   field :description, type: String
-  field :url, type: String
   field :published_at, type: DateTime
+  field :url, type: String
 
   slug :title, scoped: :channel
 
   validates :title, presence: true
-  validates :url, presence: true
+  validates :audio, presence: true
   validates :published_at, presence: true
 
   belongs_to :channel
+  embeds_one :audio
+  accepts_nested_attributes_for :audio
 
   index({ published_at: 1, channel_id: 1 }, unique: true)
 

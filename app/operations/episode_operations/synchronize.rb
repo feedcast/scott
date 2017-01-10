@@ -16,12 +16,12 @@ module EpisodeOperations
         episode.update!(title: @title,
                         summary: @summary,
                         description: @description,
-                        url: @url)
+                        audio: { url: @url })
       else
         Episode.create!(title: @title,
                         summary: @summary,
                         description: @description,
-                        url: @url,
+                        audio: { url: @url },
                         published_at: @published_at,
                         channel_id: @channel.id)
       end

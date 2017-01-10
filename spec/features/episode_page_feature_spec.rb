@@ -19,7 +19,7 @@ RSpec.feature "Episode", type: :feature do
   end
 
   def then_i_see_the_episode_attributes
-    expect(@page).to have_text(@episode.title)
+    expect(@page).to have_text("My cool episode")
   end
 
   def and_the_pages_title_include_the_episode_title

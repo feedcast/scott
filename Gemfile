@@ -8,6 +8,7 @@ gem "puma", "~> 3.0"
 
 # Database
 gem "mongoid", "~> 6.0.0"
+gem "mongoid_rails_migrations"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
 gem "mongoid-slug"
 

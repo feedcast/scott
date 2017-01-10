@@ -7,7 +7,7 @@
   <div class="panel-body">
     <p><%= html_sanitize(@episode.summary) %></p>
     <audio class="player-episode" controls="controls">
-      <source src="<%= @episode.url %>" type="audio/mpeg"/>
+      <source src="<%= @episode.audio.url %>" type="audio/mpeg"/>
     </audio>
   </div>
 </div>
