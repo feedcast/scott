@@ -55,23 +55,6 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     context "and the channel is already synchronized" do
       let(:channel) { Fabricate(:channel, synchronization_status: :success) }
 
-      context "and it already is up to date" do
-        let(:channel) { Fabricate(:channel, synchronization_status: :success, synchronized_at: Time.now) }
-
-        it "does not trigger the episodes' synchronization" do
-          expect_any_instance_of(ChannelOperations::Synchronize).to_not receive(:run)
-            .with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
-
-          run(ChannelOperations::Synchronize, channel: channel)
-        end
-
-        it "sets the channel status to synchronized" do
-          run(ChannelOperations::Synchronize, channel: channel)
-
-          expect(channel.reload).to be_synchronized
-        end
-      end
-
       context "and it is not up to date" do
         let(:channel) { Fabricate(:channel, synchronization_status: :success, synchronized_at: 3.hours.ago) }
 

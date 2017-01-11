@@ -6,7 +6,7 @@ module EpisodeOperations
     end
 
     def perform
-      return unless @feed_items.size > 0
+      return if !any_updates?
 
       @feed_items.each do |episode|
         begin
@@ -18,6 +18,13 @@ module EpisodeOperations
     end
 
     private
+
+    def any_updates?
+      last_episode = @channel.episodes.map(&:published_at).max
+      last_item = @feed_items.map(&:publish_date).max
+
+      !last_episode.nil? && !last_item.nil? && last_item > last_episode
+    end
 
     def synchronize(episode, channel)
       run(EpisodeOperations::Synchronize,

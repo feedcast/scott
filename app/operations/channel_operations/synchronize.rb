@@ -9,7 +9,7 @@ module ChannelOperations
 
       @channel.image_url = @feed.image_url unless @feed.image_url.nil?
 
-      synchronize_episodes_with!(@feed.items, @channel) if ready_to_synchronize?(@channel, @feed)
+      synchronize_episodes_with!(@feed.items, @channel)
 
       @channel.synchronization_success!
     rescue => e
@@ -24,14 +24,6 @@ module ChannelOperations
 
     def synchronize_episodes_with!(items, channel)
       run(EpisodeOperations::SynchronizeAll, feed_items: items, channel: channel)
-    end
-
-    def ready_to_synchronize?(channel, feed)
-      !channel.synchronized? || available_updates?(feed, channel)
-    end
-
-    def available_updates?(feed, channel)
-      feed.items.map(&:publish_date).max > channel.synchronized_at
     end
   end
 end
