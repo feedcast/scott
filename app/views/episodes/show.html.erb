@@ -2,22 +2,28 @@
 
 <div class="row panel panel-default">
   <div class="panel-heading">
-    <h3><%= @episode.title %></h3>
+    <h3>
+      <a href="<%= channel_path(@episode.channel) %>" class="fc-backlink-channel">
+        <i class="fa fa-angle-left"></i>
+      </a>
+      <%= @episode.title %>
+    </h3>
   </div>
   <div class="panel-body">
-    <p><%= html_sanitize(@episode.summary) %></p>
     <audio class="player-episode" controls="controls">
       <source src="<%= @episode.audio.url %>" type="audio/mpeg"/>
     </audio>
+    <p><%= html_sanitize(@episode.summary) %></p>
+  </div>
+  <div class="panel-footer">
+    <p class="fc-episode-extra-info"><a href="<%= channel_path(@episode.channel) %>"><%= @episode.channel.title %></a> | Publicado em <%= @episode.published_at %></p>
   </div>
 </div>
-<div class="row">
-  <div class="col-xs-12 panel panel-default">
-    <div class="panel-heading">
-      <h3><%= t(:comment, count: 2) %></h3>
-    </div>
-    <div class="panel-body">
-      <%= render partial: "episodes/comments" %>
-    </div>
+<div class="row panel panel-default">
+  <div class="panel-heading">
+    <h3><%= t(:comment, count: 2) %></h3>
+  </div>
+  <div class="panel-body">
+    <%= render partial: "episodes/comments" %>
   </div>
 </div>
