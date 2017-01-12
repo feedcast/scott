@@ -13,7 +13,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     let(:feed) do
       double(:feed,
              description: "Foo",
-             site_url: "http://feedcast.com.br/my-cool-channel",
+             site_link: "http://feedcast.com.br/my-cool-channel",
              image_url: "http://foo.bar/logo.png",
              items: items)
     end
@@ -61,7 +61,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
 
     context "and the site_url is nil" do
       it "does not updates it" do
-        allow(feed).to receive(:site_url).and_return(nil)
+        allow(feed).to receive(:site_link).and_return(nil)
 
         run(ChannelOperations::Synchronize, channel: channel)
 
@@ -73,13 +73,13 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
       it "updates it" do
         expect {
           run(ChannelOperations::Synchronize, channel: channel)
-        }.to change(channel, :site_url).from("http://google.com").to(feed.site_url)
+        }.to change(channel, :site_url).from("http://google.com").to(feed.site_link)
       end
     end
 
     context "and the site_url is nil" do
       it "does not updates it" do
-        allow(feed).to receive(:site_url).and_return(nil)
+        allow(feed).to receive(:site_link).and_return(nil)
 
         run(ChannelOperations::Synchronize, channel: channel)
 

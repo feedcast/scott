@@ -9,7 +9,7 @@ module ChannelOperations
 
       @channel.description = @feed.description unless @feed.description.nil?
       @channel.image_url = @feed.image_url unless @feed.image_url.nil?
-      @channel.site_url = @feed.site_url unless @feed.site_url.nil?
+      @channel.site_url = @feed.site_link unless @feed.site_link.nil?
 
       synchronize_episodes_with!(@feed.items, @channel)
 
