@@ -122,7 +122,7 @@ $lines-to-show: 2
   color: $panel-color
   border: 0px
 
-  .panel-heading
+  .panel-heading, .panel-footer
     color: $alternative-color
     background-color: $alternative-font-color
 
@@ -258,4 +258,8 @@ $lines-to-show: 2
 
 .feedcast-player
   margin-bottom: 10px
-  width: 100%
+  width: calc(100% + 30px)
+  margin-left: -15px
+  margin-top: -15px
+.fc-episode-channel .panel-body
+  padding: 0px
