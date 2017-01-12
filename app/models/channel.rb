@@ -7,6 +7,8 @@ class Channel
   FEED_SYNCHRONIZATION_STATUSES = [:new, :success, :failure]
 
   field :title, type: String
+  field :description, type: String
+  field :site_url, type: String
   field :feed_url, type: String
   field :image_url, type: String
   field :synchronization_status, type: Symbol, default: :new

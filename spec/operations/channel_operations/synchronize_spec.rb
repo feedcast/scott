@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ChannelOperations::Synchronize, type: :operation do
   context "when the feed is valid" do
-    let(:channel) { Fabricate(:channel, image_url: "foo.png") }
+    let(:channel) { Fabricate(:channel, image_url: "foo.png", description: "bar", site_url: "http://google.com") }
     let(:items) do
       [
         double(:item, publish_date: 1.hour.ago),
@@ -10,11 +10,35 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
         double(:item, publish_date: 3.days.ago)
       ]
     end
-    let(:feed) { double(:feed, image_url: "http://foo.bar/logo.png",items: items) }
+    let(:feed) do
+      double(:feed,
+             description: "Foo",
+             site_url: "http://feedcast.com.br/my-cool-channel",
+             image_url: "http://foo.bar/logo.png",
+             items: items)
+    end
 
     before do
       allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(ChannelOperations::DownloadFeed, feed_url: channel.feed_url).and_return(feed)
       allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items).and_return(true)
+    end
+
+    context "and the description is present" do
+      it "updates it" do
+        expect {
+          run(ChannelOperations::Synchronize, channel: channel)
+        }.to change(channel, :description).from("bar").to("Foo")
+      end
+    end
+
+    context "and the description is nil" do
+      it "does not updates it" do
+        allow(feed).to receive(:description).and_return(nil)
+
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.description).to_not be_nil
+      end
     end
 
     context "and the image_url is present" do
@@ -26,12 +50,40 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     end
 
     context "and the image_url is nil" do
-      let(:feed) { double(:feed, image_url: nil, items: items) }
-
       it "does not updates it" do
+        allow(feed).to receive(:image_url).and_return(nil)
+
         run(ChannelOperations::Synchronize, channel: channel)
 
         expect(channel.image_url).to_not be_nil
+      end
+    end
+
+    context "and the site_url is nil" do
+      it "does not updates it" do
+        allow(feed).to receive(:site_url).and_return(nil)
+
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.site_url).to_not be_nil
+      end
+    end
+
+    context "and the site_url is present" do
+      it "updates it" do
+        expect {
+          run(ChannelOperations::Synchronize, channel: channel)
+        }.to change(channel, :site_url).from("http://google.com").to(feed.site_url)
+      end
+    end
+
+    context "and the site_url is nil" do
+      it "does not updates it" do
+        allow(feed).to receive(:site_url).and_return(nil)
+
+        run(ChannelOperations::Synchronize, channel: channel)
+
+        expect(channel.site_url).to_not be_nil
       end
     end
 
