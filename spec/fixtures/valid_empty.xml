@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+  <channel>
+    <title>Podcast Title</title>
+    <atom:link href="http://pod.cast/feed/" rel="self" type="application/rss+xml" />
+    <link>http://pod.cast/</link>
+    <description>Podcast Description</description>
+    <lastBuildDate>Wed, 28 Dec 2016 21:49:18 +0000</lastBuildDate>
+    <language>pt-BR</language>
+  </channel>
+</rss>
