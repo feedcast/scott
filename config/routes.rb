@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get "/episodes/recent", to: "episodes#list", as: "episodes"
 
   get "/:channel", to: "channels#show", as: "channel"
+  get "/:channel/page/:page", to: "channels#show"
+
   get "/:channel/:episode", to: "episodes#show", as: "episode"
 end

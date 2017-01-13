@@ -1,6 +1,8 @@
 class ChannelsController < ApplicationController
   def show
     @channel = Channel.find(params[:channel])
+    @episodes = @channel.episodes.order_by(published_at: :desc).page(page).per(5)
+
     ab_finished(:channel_sorting_strategy)
   end
 

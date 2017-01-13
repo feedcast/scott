@@ -17,13 +17,16 @@
       <h3><i class="fa fa-podcast"></i> <%= t(:episode, count: 2) %></h3>
     </div>
     <div class="panel-body">
-    <% @channel.episodes.order(published_at: :desc).each do |episode| %>
-      <a class="col-xs-12 channel-episode" href="<%= episode_path(episode.channel, episode) %>">
-        <h4><%= episode.title %></h4>
-        <p><%= html_clean(episode.summary) %></p>
-        <h5 class="channel-episode__duration">--:--:--</h5>
-      </a>
-    <% end %>
+      <% @episodes.each do |episode| %>
+        <a class="col-xs-12 channel-episode" href="<%= episode_path(@channel, episode) %>">
+          <h4><%= episode.title %></h4>
+          <p><%= html_clean(episode.summary) %></p>
+          <h5 class="channel-episode__duration">--:--:--</h5>
+        </a>
+      <% end %>
+    </div>
+    <div "row pagination">
+      <%= paginate @episodes %>
     </div>
   </div>
 </div>

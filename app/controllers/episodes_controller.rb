@@ -6,6 +6,12 @@ class EpisodesController < ApplicationController
   end
 
   def list
-    @episodes = Episode.all.order_by(published_at: :desc).limit(12)
+    @episodes = Episode.order_by(published_at: :desc).page(page).per(24)
+  end
+
+  private
+
+  def page
+    params[:page]
   end
 end
