@@ -10,6 +10,9 @@ gem "puma", "~> 3.0"
 gem "mongoid", "~> 6.0.0"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
 gem "mongoid-slug"
+gem "kaminari"
+gem "kaminari-mongoid"
+gem "kaminari-actionview"
 
 # Operations
 gem "functional_operations"

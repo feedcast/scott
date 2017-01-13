@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/search/:term", to: "channels#search"
 
   get "/channels/recent", to: "channels#list", as: "channels"
+  get "/channels/recent/page/:page", to: "channels#list"
+
   get "/episodes/recent", to: "episodes#list", as: "episodes"
 
   get "/:channel", to: "channels#show", as: "channel"
