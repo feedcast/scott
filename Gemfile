@@ -31,9 +31,8 @@ gem "figaro"
 gem "newrelic_rpm"
 gem "rollbar"
 
-# XML Feed
-gem "nokogiri"
-gem "podcast_reader", git: "https://github.com/marceloboeira/podcast_reader"
+# Podcast RSS Feeds
+gem "house.rb"
 
 # AB Testing
 gem "redis"

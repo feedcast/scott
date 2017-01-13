@@ -9,7 +9,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     it "returns the feed object" do
       feed = run(ChannelOperations::DownloadFeed, params)
 
-      expect(feed).to be_an_instance_of(PodcastReader)
+      expect(feed).to be_an_instance_of(House::Podcast)
       expect(feed.items.size).to eq(2)
     end
   end

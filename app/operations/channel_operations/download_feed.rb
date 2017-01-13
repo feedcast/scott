@@ -1,4 +1,4 @@
-require "podcast_reader"
+require "house.rb"
 
 module ChannelOperations
   class DownloadFeed < FunctionalOperations::Operation
@@ -9,7 +9,7 @@ module ChannelOperations
     end
 
     def perform
-      @feed = PodcastReader.new(@feed_url)
+      @feed = House::Podcast.new(@feed_url)
     rescue => e
       raise InvalidFeed.new("#{@feed_url} is not a valid xml feed: #{e.message}")
     end
