@@ -116,7 +116,7 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     haml (4.0.7)
       tilt
-    house.rb (0.1.0)
+    house.rb (0.1.1)
       nokogiri (~> 1)
       open_uri_redirections (~> 0)
     i18n (0.7.0)
@@ -171,7 +171,7 @@ GEM
     nested_form (0.3.2)
     newrelic_rpm (3.17.2.327)
     nio4r (1.2.1)
-    nokogiri (1.7.0)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     nokogumbo (1.4.10)
       nokogiri
@@ -347,7 +347,7 @@ DEPENDENCIES
   guard-bundler
   guard-rails
   guard-rspec
-  house.rb
+  house.rb (>= 0.1.1)
   kaminari
   kaminari-actionview
   kaminari-mongoid

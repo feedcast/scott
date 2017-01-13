@@ -32,7 +32,7 @@ gem "newrelic_rpm"
 gem "rollbar"
 
 # Podcast RSS Feeds
-gem "house.rb"
+gem "house.rb", ">= 0.1.1"
 
 # AB Testing
 gem "redis"
