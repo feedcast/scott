@@ -10,11 +10,7 @@
         </h3>
       </div>
       <div class="panel-body">
-        <div class="feedcast-player"
-              data-media-url="<%= @episode.audio.url %>"
-              data-download-url="<%= @episode.audio.url %>"
-              data-next-episode="<%= episode_path(@next_episode.channel, @next_episode) unless @next_episode.nil? %>"
-        ></div>
+        <%= render partial: "episodes/item/player", locals: { episode: @episode, next_episode: @next_episode } %>
         <p><%= html_sanitize(@episode.summary) %></p>
       </div>
       <div class="panel-footer">
