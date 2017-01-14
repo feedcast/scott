@@ -21,6 +21,18 @@ class Episode
 
   index({ published_at: 1, channel_id: 1 }, unique: true)
 
+  def next
+    recentest = self.channel.episodes
+                            .where(:id.ne => self.id,
+                                   :published_at.gt => self.published_at)
+                            .order_by(published_at: :desc)
+                            .first
+
+    return recentest unless recentest.nil?
+
+    Episode.where(:id.ne => self.id).sample
+  end
+
   rails_admin do
     list do
       field :title do

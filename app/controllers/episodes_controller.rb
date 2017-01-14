@@ -3,6 +3,7 @@ class EpisodesController < ApplicationController
     channel = Channel.find(params[:channel])
 
     @episode = channel.episodes.find(params[:episode])
+    @next_episode = @episode.next
   end
 
   def list
