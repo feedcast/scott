@@ -18,10 +18,19 @@
         <p><%= html_sanitize(@episode.summary) %></p>
       </div>
       <div class="panel-footer">
-        <p class="fc-episode-extra-info">
-          <i class="fa fa-clock-o" aria-hidden="true"></i>
-          <%= t(:"episode.published_at", time_ago: time_ago_in_words(@episode.published_at)) %>
-        </p>
+        <div class="fc-episode-extra-info">
+          <p class="published-at">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <%= t(:"episode.published_at", time_ago: time_ago_in_words(@episode.published_at)) %>
+          </p>
+          <% if not @next_episode.nil? %>
+            <p class="next-episode">
+              <i class="fa fa-play-circle" aria-hidden="true"></i>
+              <%= link_to(t(:"episode.next", episode: @next_episode.title).truncate(50),
+                          episode_path(@next_episode.channel, @next_episode)) %>
+            </p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

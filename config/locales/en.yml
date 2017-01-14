@@ -9,6 +9,7 @@ en:
     one: Channel
     other: Channels
   episode:
+    next: "Next episode is %{episode}"
     published_at: "Published %{time_ago} ago"
     recent: Last episodes
     one: Episode
