@@ -1,5 +1,6 @@
 en:
   feedcast: Feedcast
+  access_website: Access the website
   errors:
     not_found: Oops! Page not found!
   channel:
@@ -20,7 +21,6 @@ en:
     zero: No comment
     one: Comment
     other: Comments
-
   views:
     pagination:
       first: "&laquo; First"

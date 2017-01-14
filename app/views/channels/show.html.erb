@@ -7,9 +7,10 @@
       <h3><%= @channel.title %></h3>
     </div>
     <div class="btn-group-vertical" role="group" aria-label="...">
-      <button class="btn btn-default"><i class="fa fa-link"></i> Acessar site</button>
-      <button class="btn btn-default"><i class="fa fa-star"></i> Adicionar aos favoritos</button>
-      <button class="btn btn-default"><i class="fa fa-share"></i> Compartilhar</button>
+      <a class="btn btn-default" target="_blank" href="<%= @channel.site_url %>">
+        <i class="fa fa-link"></i>
+        <%= t(:access_website) %>
+      </a>
     </div>
   </div>
   <div class="channel-top__info panel panel-default">
