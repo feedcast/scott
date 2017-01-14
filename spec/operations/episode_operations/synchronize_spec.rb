@@ -5,33 +5,61 @@ RSpec.describe EpisodeOperations::Synchronize, type: :operation do
     let(:channel) { Fabricate(:channel) }
 
     context "and the episode does not exists" do
-      let(:params) do
-        {
-          title: "Foo 001",
-          summary: "shorter",
-          description: "foo",
-          url: "foo-001.mp3",
-          published_at: Time.parse("01-01-2017 19:30"),
-          channel: channel
-        }
-      end
+      context "and the publish date is in the future" do
+        let(:params) do
+          {
+            title: "Foo 001",
+            summary: "shorter",
+            description: "foo",
+            url: "foo-001.mp3",
+            published_at: 14.hours.from_now,
+            channel: channel
+          }
+        end
 
-      it "creates a new episode" do
-        expect {
+        it "does not create a new episode" do
+          allow_any_instance_of(EpisodeOperations::Synchronize).to receive(:call).and_return(Mongoid::Errors::Validations)
           run(EpisodeOperations::Synchronize, params)
-        }.to change(Episode, :count).by(1)
+
+          expect(Episode.count).to eq(0)
+        end
+
+        it "raises an error" do
+          expect {
+            run(EpisodeOperations::Synchronize, params)
+          }.to raise_error(Mongoid::Errors::Validations)
+        end
       end
 
-      it "populates the episode" do
-        run(EpisodeOperations::Synchronize, params)
+      context "and the publish date is in the past" do
+        let(:params) do
+          {
+            title: "Foo 001",
+            summary: "shorter",
+            description: "foo",
+            url: "foo-001.mp3",
+            published_at: Time.parse("01-01-2017 19:30"),
+            channel: channel
+          }
+        end
 
-        episode = Episode.last
+        it "creates a new episode" do
+          expect {
+            run(EpisodeOperations::Synchronize, params)
+          }.to change(Episode, :count).by(1)
+        end
 
-        expect(episode.title).to eq(params[:title])
-        expect(episode.summary).to eq(params[:summary])
-        expect(episode.description).to eq(params[:description])
-        expect(episode.audio.url).to eq(params[:url])
-        expect(episode.channel_id).to eq(params[:channel].id)
+        it "populates the episode" do
+          run(EpisodeOperations::Synchronize, params)
+
+          episode = Episode.last
+
+          expect(episode.title).to eq(params[:title])
+          expect(episode.summary).to eq(params[:summary])
+          expect(episode.description).to eq(params[:description])
+          expect(episode.audio.url).to eq(params[:url])
+          expect(episode.channel_id).to eq(params[:channel].id)
+        end
       end
     end
 

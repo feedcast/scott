@@ -31,6 +31,18 @@ RSpec.describe "Synchronizer", type: :operation do
             expect(channel.episodes.count).to eq(1)
           end
         end
+
+        context "and one episode is in the future" do
+          let(:channel) { Fabricate(:channel_with_a_valid_feed_and_one_episode_in_the_future) }
+
+          it "changes the status to synchronized" do
+            expect(channel).to be_synchronized
+          end
+
+          it "creates only the valid episodes in the past" do
+            expect(channel.episodes.count).to eq(4)
+          end
+        end
       end
 
       context "and the feed is empty" do

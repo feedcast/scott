@@ -41,6 +41,9 @@ gem "split"
 # Sanitize
 gem "sanitize"
 
+# Validators
+gem "date_validator"
+
 # Assets
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"

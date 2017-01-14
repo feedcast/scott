@@ -13,7 +13,7 @@ class Episode
 
   validates :title, presence: true
   validates :audio, presence: true
-  validates :published_at, presence: true
+  validates :published_at, presence: true, date: { before: Proc.new{ 12.hours.from_now } }
 
   belongs_to :channel
   embeds_one :audio
