@@ -51,7 +51,7 @@ gem "uglifier", ">= 1.3.0"
 source "https://rails-assets.org" do
   gem "rails-assets-bootstrap"
   gem "rails-assets-fontawesome", "~> 4.3.0"
-  gem "rails-assets-feedcast-player", "~> 0.0.6"
+  gem "rails-assets-feedcast-player", "~> 0.0.8"
 end
 
 group :development, :test do
