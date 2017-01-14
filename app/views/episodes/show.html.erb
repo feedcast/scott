@@ -14,7 +14,10 @@
         <p><%= html_sanitize(@episode.summary) %></p>
       </div>
       <div class="panel-footer">
-        <p class="fc-episode-extra-info">Publicado em <%= @episode.published_at %></p>
+        <p class="fc-episode-extra-info">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <%= t(:"episode.published_at", time_ago: time_ago_in_words(@episode.published_at)) %>
+        </p>
       </div>
     </div>
   </div>

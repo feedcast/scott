@@ -9,6 +9,7 @@ pt-BR:
     one: Canal
     other: Canais
   episode:
+    published_at: "Publicado %{time_ago} atrás"
     recent: Últimos Episódios
     one: Episódio
     other: Episódios
