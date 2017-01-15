@@ -17,7 +17,7 @@ RSpec.describe Episode, type: :model do
 
       context "and there are recentest episode" do
         it "returns the next published episode" do
-          expect(episodes.second.next).to eq(episodes.first)
+          expect(episodes.third.next).to eq(episodes.second)
         end
       end
     end

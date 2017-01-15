@@ -25,7 +25,7 @@ class Episode
     recentest = self.channel.episodes
                             .where(:id.ne => self.id,
                                    :published_at.gt => self.published_at)
-                            .order_by(published_at: :desc)
+                            .order_by(published_at: :asc)
                             .first
 
     return recentest unless recentest.nil?
