@@ -266,14 +266,31 @@ $lines-to-show: 2
 
 div.fc-episode-extra-info
   min-height: 20px
-  p.published-at
-    position: relative
+  .published-at
+    display: inline-block
+    width: 50%
+    float: left
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+  .next-episode
+    display: inline-block
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    text-align: center
+    width: 50%
     float: left
 
-  p.next-episode
-    position: relative
-    float: right
-
 .pagination
-  margin-left: 50%
-  transform: translateX(-50%)
+  margin: 20px auto
+  display: table
+  .page-item
+    display: none
+    &.show,
+    &.active,
+    &:first-child,
+    &:last-child,
+    &.active + .page-item
+      display: inline-block !important

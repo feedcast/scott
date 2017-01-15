@@ -15,16 +15,16 @@
       </div>
       <div class="panel-footer">
         <div class="fc-episode-extra-info">
-          <p class="published-at">
+          <span class="published-at">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             <%= t(:"episode.published_at", time_ago: time_ago_in_words(@episode.published_at)) %>
-          </p>
+          </span>
           <% if not @next_episode.nil? %>
-            <p class="next-episode">
+            <span class="next-episode">
               <i class="fa fa-play-circle" aria-hidden="true"></i>
-              <%= link_to(t(:"episode.next", episode: @next_episode.title).truncate(50),
+              <%= link_to(t(:"episode.next", episode: @next_episode.title),
                           episode_path(@next_episode.channel, @next_episode)) %>
-            </p>
+            </span>
           <% end %>
         </div>
       </div>
