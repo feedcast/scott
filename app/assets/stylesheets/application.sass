@@ -97,7 +97,8 @@ $lines-to-show: 2
       display: block
       display: -webkit-box
       height: $font-size*$line-height*$lines-to-show
-      margin: 0 auto
+      margin: 5px auto
+      text-align: center
       font-size: $font-size
       line-height: $line-height
       -webkit-line-clamp: $lines-to-show
@@ -110,7 +111,7 @@ $lines-to-show: 2
       margin: 0px
       background-color: rgba(0,0,0,.7)
       color: #fefefe
-      bottom: $font-size*$line-height*$lines-to-show
+      bottom: $font-size*$line-height*$lines-to-show + 5
       right: 0px
 
 .title-gallery
@@ -145,13 +146,17 @@ $lines-to-show: 2
   .btn-group-vertical
     width: 100%
 .channel-top__image
-  height: 300px
-  width: 300px
+  height: 330px
+  width: 330px
   background-size: auto 100%
   background-repeat: no-repeat
-  background-color: $navbar-bg-color
   background-position: center
   position: relative
+  margin: -15px
+
+.footer-channel-card
+  text-align: center
+  color: #395067
 
   h3
     position: absolute
@@ -249,6 +254,8 @@ $lines-to-show: 2
   color: #fff
 
 @media ( max-width: 768px )
+  .channel-top__image
+    margin: 0px
   .channel-top__navbar-left,
   .channel-top__image,
   .channel-top__info
@@ -288,9 +295,9 @@ div.fc-episode-extra-info
   display: table
   .page-item
     display: none
-    &.show,
     &.active,
     &:first-child,
-    &:last-child,
-    &.active + .page-item
+    &:nth-child(2),
+    &:nth-last-of-type(2),
+    &:last-child
       display: inline-block !important

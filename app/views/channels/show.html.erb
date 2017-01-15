@@ -4,12 +4,10 @@
   <div class="channel-top__navbar-left panel">
     <div class="panel-body">
       <div class="channel-top__image" style="background-image: url(<%= image_url_for(@channel) %>)"></div>
-      <h3><center><%= @channel.title %></center></h3>
     </div>
-    <div class="btn-group-vertical" role="group" aria-label="...">
-      <a class="btn btn-default" target="_blank" href="<%= @channel.site_url %>">
-        <i class="fa fa-link"></i>
-        <%= t(:access_website) %>
+    <div class="panel-footer">
+      <a target="_blank" href="<%= @channel.site_url %>" alt="<%= t(:access_website) %>">
+        <h4 class="footer-channel-card"><%= @channel.title %></h4>
       </a>
     </div>
   </div>
