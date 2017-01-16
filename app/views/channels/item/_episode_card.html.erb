@@ -5,7 +5,7 @@
         <div style="height: 300px; width: 100%; background-image:url(<%= image_url_for(episode.channel) %>); background-size: cover; background-position: center"></div>
     </div>
     <div class="panel-footer">
-      Ir para canal <b><%= episode.channel.title %></b>
+      <%= t(:"channel.go_to") %> <b><%= episode.channel.title %></b>
     </div>
   </div>
   </a>

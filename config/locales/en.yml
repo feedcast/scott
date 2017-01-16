@@ -4,6 +4,7 @@ en:
   errors:
     not_found: Oops! Page not found!
   channel:
+    go_to: Go to channel
     recent: Last channels
     zero: No Channels
     one: Channel

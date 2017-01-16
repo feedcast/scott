@@ -4,6 +4,7 @@ pt-BR:
   errors:
     not_found: Oops! Página não encontrada!
   channel:
+    go_to: Ir para o canal
     recent: Novos Canais
     zero: Nenhum Canal
     one: Canal
