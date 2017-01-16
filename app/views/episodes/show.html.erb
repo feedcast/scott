@@ -1,7 +1,7 @@
 <% content_for(:title, @episode.title.truncate(50)) %>
 
 <div class="row">
-  <%= render partial: "channels/item/episode_card", locals: { episode: @episode } %>
+  <%= render partial: "channels/item/card", locals: { channel: @episode.channel } %>
   <div class="col-xs-12 col-sm-7 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
