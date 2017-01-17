@@ -1,5 +1,6 @@
 pt-BR:
   feedcast: Feedcast
+  description: Escute os seus podcasts favoritos e descubra novos, tudo no mesmo lugar!
   access_website: Acesse o site
   errors:
     not_found: Oops! Página não encontrada!

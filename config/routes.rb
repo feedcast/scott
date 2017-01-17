@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get "/:channel", to: "channels#show", as: "channel"
   get "/:channel/page/:page", to: "channels#show"
 
-  get "/:channel/:episode", to: "episodes#show", as: "episode"
+  get "/:channel/:episode", to: "episodes#show", as: "channel_episode"
 end

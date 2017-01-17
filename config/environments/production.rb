@@ -76,4 +76,7 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  # Default polymorphic host
+  config.action_controller.default_url_options = { host: ENV.fetch("FEEDCAST_HOST") }
 end

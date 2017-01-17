@@ -2,6 +2,9 @@
 REDIS_URL: redis://127.0.0.1:6379
 # MONGODB_URI: mongodb://<user>:<password>@<host>:<port>/<datab
 
+# Host
+#FEEDCAST_HOST: feedcast.com.br
+
 # Admin Area
 FEEDCAST_HTTP_AUTH_USER: admin
 FEEDCAST_HTTP_AUTH_PASSWORD: admin

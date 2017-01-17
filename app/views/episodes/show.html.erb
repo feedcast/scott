@@ -1,4 +1,5 @@
 <% content_for(:title, @episode.title.truncate(50)) %>
+<%= render partial: "episodes/item/meta", locals: { episode: @episode } %>
 
 <div class="row">
 <div class="col-xs-12 episode-show">
@@ -18,7 +19,7 @@
           <span class="next-episode">
             <i class="fa fa-play-circle" aria-hidden="true"></i>
             <%= link_to(t(:"episode.next", episode: @next_episode.title),
-                        episode_path(@next_episode.channel, @next_episode)) %>
+                        channel_episode_path(@next_episode.channel, @next_episode)) %>
           </span>
         <% end %>
       </div>

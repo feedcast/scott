@@ -6,16 +6,21 @@ gem "rails", "~> 5.0.1"
 # Server
 gem "puma", "~> 3.0"
 
+# Operations
+gem "functional_operations"
+
 # Database
 gem "mongoid", "~> 6.0.0"
 gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
 gem "mongoid-slug"
+
+# Validators
+gem "date_validator"
+
+# Pagination
 gem "kaminari"
 gem "kaminari-mongoid"
 gem "kaminari-actionview"
-
-# Operations
-gem "functional_operations"
 
 # Admin
 gem "rails_admin", "~> 1.0"
@@ -31,9 +36,6 @@ gem "figaro"
 gem "newrelic_rpm"
 gem "rollbar"
 
-# Podcast RSS Feeds
-gem "house.rb", ">= 0.1.1"
-
 # AB Testing
 gem "redis"
 gem "split"
@@ -41,8 +43,12 @@ gem "split"
 # Sanitize
 gem "sanitize"
 
-# Validators
-gem "date_validator"
+# SEO
+gem "meta-tags"
+
+# Podcast RSS Feeds
+gem "house.rb", ">= 0.1.1"
+
 
 # Assets
 gem "sass-rails", "~> 5.0"

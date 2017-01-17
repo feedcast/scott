@@ -1,5 +1,6 @@
 en:
   feedcast: Feedcast
+  description: Listen to your favorite podcasts and discover new ones, all in the same place!
   access_website: Access the website
   errors:
     not_found: Oops! Page not found!

@@ -1,0 +1,11 @@
+<%
+
+set_meta_tags description: episode.description.truncate(150),
+              og: {
+                title: episode.title.truncate(70),
+                description: episode.description.truncate(150),
+                type:  "music.song",
+                url: polymorphic_url([episode.channel, episode]),
+                image: image_url_for(episode.channel)
+              }
+%>
