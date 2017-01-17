@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="row">
-        <%= paginate @channels %>
+        <%= paginate @channels, params: { term: params[:term] } %>
       </div>
     </div>
   </div>
