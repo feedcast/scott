@@ -6,7 +6,7 @@
       <div class="channel-top__image" style="background-image: url(<%= image_url_for(@channel) %>)"></div>
     </div>
     <div class="panel-footer">
-      <a target="_blank" href="<%= @channel.site_url %>" alt="<%= t(:access_website) %>">
+      <a href="<%= channel_path(@channel) %>" alt="<%= t(:access_website) %>">
         <h4 class="footer-channel-card"><%= @channel.title %></h4>
       </a>
     </div>

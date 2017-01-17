@@ -1,12 +1,10 @@
-<div class="col-xs-12 col-sm-5 col-md-4">
-  <div class="panel panel-default fc-episode-channel">
-    <a href="<%= channel_path(channel) %>">
-    <div class="panel-body">
-        <div style="height: 300px; width: 100%; background-image:url(<%= image_url_for(channel) %>); background-size: cover; background-position: center"></div>
-    </div>
-    <div class="panel-footer">
-      <%= t(:"channel.go_to") %> <b><%= channel.title %></b>
-    </div>
+<div class="channel-top__navbar-left panel">
+  <div class="panel-body">
+    <div class="channel-top__image" style="background-image: url(<%= image_url_for(channel) %>)"></div>
   </div>
-  </a>
+  <div class="panel-footer">
+    <a href="<%= channel_path(channel) %>" alt="<%= t(:access_website) %>">
+      <h4 class="footer-channel-card"><%= channel.title %></h4>
+    </a>
+  </div>
 </div>

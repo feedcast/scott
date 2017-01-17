@@ -1,38 +1,39 @@
 <% content_for(:title, @episode.title.truncate(50)) %>
 
 <div class="row">
+<div class="col-xs-12 episode-show">
   <%= render partial: "channels/item/card", locals: { channel: @episode.channel } %>
-  <div class="col-xs-12 col-sm-7 col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>
-          <%= @episode.title %>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <%= render partial: "episodes/item/player", locals: { episode: @episode, next_episode: @next_episode } %>
-        <p><%= html_sanitize(@episode.summary) %></p>
-      </div>
-      <div class="panel-footer">
-        <div class="fc-episode-extra-info">
-          <span class="published-at">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <%= t(:"episode.published_at", time_ago: time_ago_in_words(@episode.published_at)) %>
+  <div class="channel-top__info panel panel-default">
+    <div class="panel-heading">
+      <h3>
+        <%= @episode.title %>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <%= render partial: "episodes/item/player", locals: { episode: @episode, next_episode: @next_episode } %>
+      <p><%= html_sanitize(@episode.summary) %></p>
+    </div>
+    <div class="panel-footer">
+      <div class="fc-episode-extra-info">
+        <span class="published-at">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <%= t(:"episode.published_at", time_ago: time_ago_in_words(@episode.published_at)) %>
+        </span>
+        <% if not @next_episode.nil? %>
+          <span class="next-episode">
+            <i class="fa fa-play-circle" aria-hidden="true"></i>
+            <%= link_to(t(:"episode.next", episode: @next_episode.title),
+                        episode_path(@next_episode.channel, @next_episode)) %>
           </span>
-          <% if not @next_episode.nil? %>
-            <span class="next-episode">
-              <i class="fa fa-play-circle" aria-hidden="true"></i>
-              <%= link_to(t(:"episode.next", episode: @next_episode.title),
-                          episode_path(@next_episode.channel, @next_episode)) %>
-            </span>
-          <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+</div>
+
 <div class="row">
-  <div class="col-xs-12">
+<div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3><%= t(:comment, count: 2) %></h3>
@@ -41,5 +42,5 @@
         <%= render partial: "episodes/comments" %>
       </div>
     </div>
-  </div>
+</div>
 </div>
