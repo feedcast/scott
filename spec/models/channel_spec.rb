@@ -84,4 +84,20 @@ RSpec.describe Channel, type: :model do
       end
     end
   end
+
+  describe "listed" do
+    let!(:channels) do
+      [
+        Fabricate(:channel, listed: true),
+        Fabricate(:channel, listed: true),
+        Fabricate(:channel, listed: false),
+        Fabricate(:channel, listed: false),
+      ]
+    end
+
+    it "returns only the listed channels" do
+      expect(Channel.listed.count).to eq(2)
+      expect(Channel.listed).to eq(channels.first(2))
+    end
+  end
 end

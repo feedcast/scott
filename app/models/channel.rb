@@ -14,6 +14,7 @@ class Channel
   field :synchronization_status, type: Symbol, default: :new
   field :synchronization_status_message, type: String
   field :synchronized_at, type: Time, default: 1.year.ago
+  field :listed, type: Boolean, default: true
 
   slug :title
 
@@ -24,24 +25,8 @@ class Channel
   has_many :episodes, dependent: :destroy
   accepts_nested_attributes_for :episodes
 
-  rails_admin do
-    list do
-      field :title do
-        searchable true
-      end
-    end
-    configure :episodes do
-      hide
-    end
-    configure :uuid do
-      hide
-    end
-  end
-
-  def self.search(term)
-    criteria = Regexp.escape(term)
-    where(title: /#{criteria}/i)
-  end
+  scope :listed, ->{ where(listed: true) }
+  scope :search, ->(term){ where(title: /#{Regexp.escape(term)}/i) }
 
   def synchronization_success!
     self.synchronization_status = :success
@@ -66,4 +51,19 @@ class Channel
   def failed?
     synchronization_status == :failure
   end
+
+  rails_admin do
+    list do
+      field :title do
+        searchable true
+      end
+    end
+    configure :episodes do
+      hide
+    end
+    configure :uuid do
+      hide
+    end
+  end
+
 end
