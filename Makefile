@@ -31,7 +31,7 @@ guard:
 
 .PHONY: synchronize
 synchronize:
-	bin/rake with:logger channels:synchronize
+	bin/rake with:english with:logger channels:synchronize
 
 .PHONY: deploy
 deploy:

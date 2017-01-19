@@ -1,5 +1,10 @@
 namespace :with do
-  desc "Include Rails Logger"
+  desc "Tasks definitions"
+
+  task english: :environment do
+    Rails.application.config.i18n.default_locale = :en
+  end
+
   task logger: :environment do
     if defined?(Rails)
       Rails.logger = if defined?(ActiveSupport::TaggedLogging)
