@@ -3,7 +3,7 @@ module EpisodeOperations
     LIMIT_PER_RUN = 25
 
     def perform
-      Episode.not_analysed.limit(LIMIT_PER_RUN).each do |episode|
+      Episode.not_analysed.limit(LIMIT_PER_RUN).order_by(published_at: :desc).each do |episode|
         analyse!(episode.audio)
       end
     end
