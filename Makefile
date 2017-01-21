@@ -44,3 +44,7 @@ deploy:
 .PHONY: deploy_beta
 deploy_beta:
 	git push heroku-beta master
+
+.PHONY: compose
+compose:
+	docker-compose up -d
