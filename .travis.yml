@@ -1,8 +1,16 @@
+dist: trusty
+sudo: required
+cache: bundler
+
 services:
   - mongodb
   - redis-server
 
-cache: bundler
+addons:
+  firefox: "50.0"
+  code_climate:
+    repo_token:
+      secure: NVRBL7LTRjZFuFM7fb2I6visCA7vIgXm/TFMwC/j1ZdGqv1z+piD1qU1BRsN9EkTdY4Hp+Op8k76u2krFiMSAv145RwRmoDBI69Jl5kXcdeipIzBKP+Wi2kwr+5YN2gbKj8F19NQFGoIyRBy2ZQh9EhIBj2f9a+n+FC519Yw1tqQM8h19opDrXvaE/S9jO7z3za+q7AJijtaodoIuMBoQ84yDXqdva5iE8eB3p90ZebMFYIp9xvwMUjTM3tGVZKqSI0MJITia1NTzfj0h6Xm+mnuFN0NIUcnaZVj/m7VbBJ1stJjgYQT1Xy0B8eUhRpMzrqXwcNCT3N+MnXX7CBkpAd2vlMhg/inR10jt/+TQiScBsMjXsrCeG/3UltN1gdlDQAbb5QhHfwjs6JauWCnIL34oIzpQPYx4MsbulVjwTM9jJfrR4zbSDwb3KCm4KorRPZ9B/sCxGjEnBv0zKGJGrL6JY4L6wYG6Yb3XWdRXqlFY7z9vNoMwuhsnV8MvM+O2xd3Iy8FgR3da/pgWU3h5adYJtbkxBqsB2Y8oGDZ4URPhCFy4G2MXhr9JtUq1ay7JTuHREz+WnmHDTMfUOFrxsZ3TOyi8A+gdXhEUOzK0XVQXSCQVp95mxwc1naU0KsHuyEIx4Gx/VO6RrfFEr+TffPAdUH6pk4lTF+bVf3WVtw=
 
 env:
   global:
@@ -21,6 +29,10 @@ before_install:
   - sleep 3
   # Nokogiri local binds
   - gem install nokogiri -- --with-cflags='--std=gnu99'
+  # FFMPEG
+  - sudo add-apt-repository ppa:mc3man/trusty-media -y
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq ffmpeg
 
 install:
   - make
@@ -30,12 +42,6 @@ script:
 
 after_success:
   - make report_coverage
-
-addons:
-  firefox: "50.0"
-  code_climate:
-    repo_token:
-      secure: NVRBL7LTRjZFuFM7fb2I6visCA7vIgXm/TFMwC/j1ZdGqv1z+piD1qU1BRsN9EkTdY4Hp+Op8k76u2krFiMSAv145RwRmoDBI69Jl5kXcdeipIzBKP+Wi2kwr+5YN2gbKj8F19NQFGoIyRBy2ZQh9EhIBj2f9a+n+FC519Yw1tqQM8h19opDrXvaE/S9jO7z3za+q7AJijtaodoIuMBoQ84yDXqdva5iE8eB3p90ZebMFYIp9xvwMUjTM3tGVZKqSI0MJITia1NTzfj0h6Xm+mnuFN0NIUcnaZVj/m7VbBJ1stJjgYQT1Xy0B8eUhRpMzrqXwcNCT3N+MnXX7CBkpAd2vlMhg/inR10jt/+TQiScBsMjXsrCeG/3UltN1gdlDQAbb5QhHfwjs6JauWCnIL34oIzpQPYx4MsbulVjwTM9jJfrR4zbSDwb3KCm4KorRPZ9B/sCxGjEnBv0zKGJGrL6JY4L6wYG6Yb3XWdRXqlFY7z9vNoMwuhsnV8MvM+O2xd3Iy8FgR3da/pgWU3h5adYJtbkxBqsB2Y8oGDZ4URPhCFy4G2MXhr9JtUq1ay7JTuHREz+WnmHDTMfUOFrxsZ3TOyi8A+gdXhEUOzK0XVQXSCQVp95mxwc1naU0KsHuyEIx4Gx/VO6RrfFEr+TffPAdUH6pk4lTF+bVf3WVtw=
 
 notifications:
   slack:
