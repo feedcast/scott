@@ -21,6 +21,8 @@ class Episode
 
   index({ published_at: 1, channel_id: 1 }, unique: true)
 
+  scope :not_analysed, -> { where(:"audio.status".in => ["new", "failed"]) }
+
   def next
     recentest = self.channel.episodes
                             .where(:id.ne => self.id,

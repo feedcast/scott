@@ -33,6 +33,10 @@ guard:
 synchronize:
 	bin/rake with:english with:logger channels:synchronize
 
+.PHONY: analyse
+analyse:
+	bin/rake with:english with:logger episodes:analyse
+
 .PHONY: deploy
 deploy:
 	git push heroku master

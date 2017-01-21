@@ -36,6 +36,12 @@ gem "figaro"
 gem "newrelic_rpm"
 gem "rollbar"
 
+# Podcast RSS Feeds
+gem "house.rb", ">= 0.1.1"
+
+# Audio analysis
+gem "streamio-ffmpeg"
+
 # AB Testing
 gem "redis"
 gem "split"
@@ -45,10 +51,6 @@ gem "sanitize"
 
 # SEO
 gem "meta-tags"
-
-# Podcast RSS Feeds
-gem "house.rb", ">= 0.1.1"
-
 
 # Assets
 gem "sass-rails", "~> 5.0"

@@ -8,3 +8,21 @@ Fabricator(:episode) do
     Fabricate.build(:audio, episode: episode)
   end
 end
+
+Fabricator(:episode_with_analysed_audio, from: :episode) do
+  audio do |episode|
+    Fabricate.build(:audio_analysed, episode: episode)
+  end
+end
+
+Fabricator(:episode_with_failed_audio, from: :episode) do
+  audio do |episode|
+    Fabricate.build(:audio_failed, episode: episode)
+  end
+end
+
+Fabricator(:episode_with_invalid_audio, from: :episode) do
+  audio do |episode|
+    Fabricate.build(:audio_invalid, episode: episode)
+  end
+end

@@ -3,6 +3,20 @@ require "rails_helper"
 RSpec.describe Episode, type: :model do
   let(:channel) { Fabricate(:channel) }
 
+  describe "not analised" do
+    let!(:episodes) do
+      [
+        Fabricate(:episode),
+        Fabricate(:episode_with_failed_audio),
+        Fabricate(:episode_with_analysed_audio)
+      ]
+    end
+
+    it "returns only the episodes with status" do
+      expect(Episode.not_analysed).to eq(episodes.first(2))
+    end
+  end
+
   describe "next" do
     context "when there are other episodes for the channel" do
       let(:episodes) do
