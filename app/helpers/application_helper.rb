@@ -20,4 +20,8 @@ module ApplicationHelper
   def placeholdit(text)
     "http://placehold.it/350x150?text=#{URI.encode(text.truncate(15))}"
   end
+
+  def format_duration(seconds)
+    Time.at(seconds).utc.strftime("%H:%M:%S")
+  end
 end

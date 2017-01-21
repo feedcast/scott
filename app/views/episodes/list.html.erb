@@ -13,7 +13,7 @@
               <div class="episode-img img-rounded"
                 style="background-image: url(<%= image_url_for(episode.channel) %>)"></div>
               <h3><%= episode.title %></h3>
-              <h5 class="duration">--:--:--</h5>
+              <h5 class="duration"><%= format_duration(episode.audio.duration) %></h5>
             </a>
           </div>
         <% end %>

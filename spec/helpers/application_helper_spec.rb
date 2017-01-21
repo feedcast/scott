@@ -52,4 +52,10 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(helper.image_url_for(channel)).to eq("http://placehold.it/350x150?text=This%20is%20a%20no...")
     end
   end
+
+  describe "format duration" do
+    it "converts seconds to the specified format" do
+      expect(helper.format_duration(60)).to eq("00:01:00")
+    end
+  end
 end
