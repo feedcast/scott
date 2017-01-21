@@ -4,6 +4,10 @@ en:
   access_website: Access the website
   errors:
     not_found: Oops! Page not found!
+  category:
+    zero: No Categories
+    one: Category
+    other: Categories
   channel:
     go_to: Go to channel
     recent: Last channels

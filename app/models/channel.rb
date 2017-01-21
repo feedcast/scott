@@ -22,6 +22,7 @@ class Channel
   validates :synchronized_at, presence: true
   validates :synchronization_status, presence: true, inclusion: { in: FEED_SYNCHRONIZATION_STATUSES }
 
+  has_and_belongs_to_many :categories
   has_many :episodes, dependent: :destroy
   accepts_nested_attributes_for :episodes
 
@@ -65,5 +66,4 @@ class Channel
       hide
     end
   end
-
 end

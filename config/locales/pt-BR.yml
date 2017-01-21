@@ -4,6 +4,10 @@ pt-BR:
   access_website: Acesse o site
   errors:
     not_found: Oops! Página não encontrada!
+  category:
+    zero: Nenhuma Categoria
+    one: Categoria
+    other: Categorias
   channel:
     go_to: Ir para o canal
     recent: Novos Canais
