@@ -5,6 +5,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:category])
-    @channels = @category.channels.order_by(created_at: :desc)
+    @channels = @category.channels.listed.order_by(created_at: :desc)
   end
 end
