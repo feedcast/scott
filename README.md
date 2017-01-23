@@ -49,6 +49,20 @@ We are running [Split](https://github.com/splitrb/split), an AB testing framewor
 
 More information available at Split's [official page](https://github.com/splitrb/split).
 
-### Synchronization
+### Asynchronous taks
+
+#### Synchronization
 
 In order to synchronize the channels' data with the XML feeds, run: `make synchronize`.
+
+That will sequentially download and process all the XML RSS feeds, creating new episodes or updating the existing ones.
+
+The task takes a while to run if there are lots of channels, grab a chair.
+
+#### Audio Analysis
+
+In order to analyse the episodes' audio info with the real audio files, run: `make analyse`.
+
+That will sequentially download and process all the audio files, adding information like codec, duration, size, sample rate, bitrate and more.
+
+The task takes a while to run, but it is limited to 100 audio files per run, it prioritizes the last published episodes always.
