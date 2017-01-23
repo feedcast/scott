@@ -7,7 +7,15 @@ Please consider reading our [Contribution Guide](CONTRIBUTING.md) before anythin
 
 ## Setup
 
-It is expected to have already installed Ruby(2.4) with MongoDB and Redis or Docker.
+It is expected to have already installed:
+
+ * Ruby (rbenv/rvm)
+ * ffmpeg (background audio analysis)
+ * MongoDB
+ * Redis
+ * Docker (if you don't want to install Mongo/Redis)
+
+If you are in a mac you can install the non-ruby or database dependencies by running `brew bundle`.
 
 Run `make setup` to install the dependencies and set the default environment variables.
 
