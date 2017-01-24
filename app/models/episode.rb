@@ -35,6 +35,16 @@ class Episode
     Episode.where(:id.ne => self.id).sample
   end
 
+  def stats
+    project = { "$project": { published_year:  { "$year":  "$published_at" }, published_month: { "$month": "$published_at" }, duration: { "$sum": "$audio.duration" }, size: { "$sum": "$audio.size" }, } }
+
+    group = { "$group": { "_id": { year: "$published_year", month: "$published_month" }, amount: { "$sum": 1 }, duration: { "$sum": "$duration" }, size: { "$sum": "$size" }, } }
+
+    sort = { "$sort": { "_id.year": 1, "_id.month": 1 } }
+
+    Episode.collection.aggregate([project, group, sort])
+  end
+
   rails_admin do
     list do
       field :title do
