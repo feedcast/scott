@@ -7,9 +7,17 @@ module ChannelOperations
     def perform
       @feed = download_feed_for(@channel)
 
-      @channel.description = @feed.description unless @feed.description.nil?
-      @channel.image_url = @feed.image_url unless @feed.image_url.nil?
-      @channel.site_url = @feed.site_link unless @feed.site_link.nil?
+      if @feed.description.present? && @channel.description.nil?
+        @channel.description = @feed.description
+      end
+
+      if @feed.image_url.present? && @channel.image_url.nil?
+        @channel.image_url = @feed.image_url
+      end
+
+      if @feed.site_link.present? && @channel.site_url.nil?
+        @channel.site_url = @feed.site_link
+      end
 
       synchronize_episodes_with!(@feed.items, @channel)
 

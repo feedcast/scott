@@ -23,67 +23,102 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
       allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items).and_return(true)
     end
 
-    context "and the description is present" do
-      it "updates it" do
-        expect {
+    describe "description" do
+      context "when the feed description is present" do
+        context "and the channel does not have a description yet" do
+          it "updates it" do
+            channel.description = nil
+            channel.save
+
+            expect {
+              run(ChannelOperations::Synchronize, channel: channel)
+            }.to change(channel, :description).to("Foo")
+          end
+        end
+
+        context "and the channel already has a description" do
+          it "does not not update it" do
+            run(ChannelOperations::Synchronize, channel: channel)
+
+            expect(channel.description).to eq("bar")
+          end
+        end
+      end
+
+      context "when the feed description is nil" do
+        it "does not updates it" do
+          allow(feed).to receive(:description).and_return(nil)
+
           run(ChannelOperations::Synchronize, channel: channel)
-        }.to change(channel, :description).from("bar").to("Foo")
+
+          expect(channel.description).to_not be_nil
+        end
       end
     end
 
-    context "and the description is nil" do
-      it "does not updates it" do
-        allow(feed).to receive(:description).and_return(nil)
+    describe "image_url" do
+      context "when the feed image_url is present" do
+        context "and the channel does not have a image_url yet" do
+          it "updates it" do
+            channel.image_url = nil
+            channel.save
 
-        run(ChannelOperations::Synchronize, channel: channel)
+            expect {
+              run(ChannelOperations::Synchronize, channel: channel)
+            }.to change(channel, :image_url).to("http://foo.bar/logo.png")
+          end
+        end
 
-        expect(channel.description).to_not be_nil
+        context "and the channel already has a image_url" do
+          it "does not not update it" do
+            run(ChannelOperations::Synchronize, channel: channel)
+
+            expect(channel.image_url).to eq("foo.png")
+          end
+        end
       end
-    end
 
-    context "and the image_url is present" do
-      it "updates it" do
-        expect {
+      context "when the feed image_url is nil" do
+        it "does not updates it" do
+          allow(feed).to receive(:image_url).and_return(nil)
+
           run(ChannelOperations::Synchronize, channel: channel)
-        }.to change(channel, :image_url).from("foo.png").to(feed.image_url)
+
+          expect(channel.image_url).to_not be_nil
+        end
       end
     end
 
-    context "and the image_url is nil" do
-      it "does not updates it" do
-        allow(feed).to receive(:image_url).and_return(nil)
+    describe "site_url" do
+      context "when the feed site_link is present" do
+        context "and the channel does not have a site_url yet" do
+          it "updates it" do
+            channel.site_url = nil
+            channel.save
 
-        run(ChannelOperations::Synchronize, channel: channel)
+            expect {
+              run(ChannelOperations::Synchronize, channel: channel)
+            }.to change(channel, :site_url).to("http://feedcast.com.br/my-cool-channel")
+          end
+        end
 
-        expect(channel.image_url).to_not be_nil
+        context "and the channel already has a site_url" do
+          it "does not not update it" do
+            run(ChannelOperations::Synchronize, channel: channel)
+
+            expect(channel.site_url).to eq("http://google.com")
+          end
+        end
       end
-    end
 
-    context "and the site_url is nil" do
-      it "does not updates it" do
-        allow(feed).to receive(:site_link).and_return(nil)
+      context "when the feed site_url is nil" do
+        it "does not updates it" do
+          allow(feed).to receive(:site_url).and_return(nil)
 
-        run(ChannelOperations::Synchronize, channel: channel)
-
-        expect(channel.site_url).to_not be_nil
-      end
-    end
-
-    context "and the site_url is present" do
-      it "updates it" do
-        expect {
           run(ChannelOperations::Synchronize, channel: channel)
-        }.to change(channel, :site_url).from("http://google.com").to(feed.site_link)
-      end
-    end
 
-    context "and the site_url is nil" do
-      it "does not updates it" do
-        allow(feed).to receive(:site_link).and_return(nil)
-
-        run(ChannelOperations::Synchronize, channel: channel)
-
-        expect(channel.site_url).to_not be_nil
+          expect(channel.site_url).to_not be_nil
+        end
       end
     end
 
