@@ -10,6 +10,7 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
            audio_bitrate: 3000,
            audio_sample_rate: 4400)
   end
+  let(:audio_wave) { [ 0, 3, 120, 300, 400 ] }
   let(:tmp_file) { Tempfile.new(audio.id).path.to_s }
 
   before do
@@ -21,6 +22,10 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
     allow_any_instance_of(AudioOperations::Analyse).to receive(:run)
                                                    .with(AudioOperations::FFMPEG, file_path: tmp_file)
                                                    .and_return(audio_data)
+    allow_any_instance_of(AudioOperations::Analyse).to receive(:run)
+                                                   .with(AudioOperations::Wave, file_path: tmp_file,
+                                                                                duration: audio_data.duration)
+                                                   .and_return(audio_wave)
   end
 
   context "when params are valid" do
@@ -53,6 +58,10 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
 
       it "sample_rate" do
         expect(audio.sample_rate).to be(4400)
+      end
+
+      it "wave" do
+        expect(audio.wave).to eq(audio_wave)
       end
     end
   end

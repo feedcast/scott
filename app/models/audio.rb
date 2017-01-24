@@ -14,6 +14,7 @@ class Audio
   field :codec, type: String, default: ""
   field :bitrate, type: Integer, default: 0
   field :sample_rate, type: Integer, default: 0
+  field :wave, type: Array, default: []
 
   field :status, type: Symbol, default: :new
   field :analysed_at, type: DateTime

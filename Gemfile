@@ -50,6 +50,9 @@ gem "house.rb", ">= 0.1.1"
 # Audio analysis
 gem "streamio-ffmpeg"
 
+# Commands
+gem "tty-command"
+
 # AB Testing
 gem "redis"
 gem "split"

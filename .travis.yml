@@ -29,10 +29,11 @@ before_install:
   - sleep 3
   # Nokogiri local binds
   - gem install nokogiri -- --with-cflags='--std=gnu99'
-  # FFMPEG
+  # FFMPEG / AudioWaveform
+  - sudo add-apt-repository ppa:chris-needham/ppa -y
   - sudo add-apt-repository ppa:mc3man/trusty-media -y
   - sudo apt-get update -qq
-  - sudo apt-get install -y -qq ffmpeg
+  - sudo apt-get install -y -qq ffmpeg audiowaveform
 
 install:
   - make

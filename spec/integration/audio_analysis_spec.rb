@@ -21,6 +21,7 @@ RSpec.describe "Audio Analysis", type: :operation do
       it "updates the audio info" do
         expect(valid_audio).to be_analysed
         expect(valid_audio.duration).to be(362.135378)
+        expect(valid_audio.wave).to be_an(Array)
         expect(valid_audio.codec).to eq("mp3")
       end
     end
