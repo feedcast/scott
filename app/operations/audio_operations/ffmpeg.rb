@@ -11,7 +11,7 @@ module AudioOperations
     def perform
       file = ::FFMPEG::Movie.new(@file_path)
 
-      raise InvalidAudioFile.new("Invalid Audio File") unless file.valid?
+      raise InvalidAudioFile.new("Invalid Audio File - #{file.metadata[:error][:string]}") unless file.valid?
 
       file
     end

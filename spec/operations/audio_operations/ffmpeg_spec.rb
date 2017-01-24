@@ -11,11 +11,11 @@ RSpec.describe AudioOperations::FFMPEG, type: :operation do
     end
 
     it "returns the size" do
-      expect(output.size).to eq(3428651)
+      expect(output.size).to be(3428651)
     end
 
     it "returns the duration" do
-      expect(output.duration).to eq(362.135378)
+      expect(output.duration).to be(362.135378)
     end
 
     it "returns the codec" do
@@ -23,11 +23,11 @@ RSpec.describe AudioOperations::FFMPEG, type: :operation do
     end
 
     it "returns the bitrate" do
-      expect(output.audio_bitrate).to eq(64000)
+      expect(output.audio_bitrate).to be(64000)
     end
 
     it "returns the sample_rate" do
-      expect(output.audio_sample_rate).to eq(44100)
+      expect(output.audio_sample_rate).to be(44100)
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe AudioOperations::FFMPEG, type: :operation do
     it "raises an error" do
       expect {
         run(AudioOperations::FFMPEG, params)
-      }.to raise_error(AudioOperations::FFMPEG::InvalidAudioFile)
+      }.to raise_error(AudioOperations::FFMPEG::InvalidAudioFile, "Invalid Audio File - Invalid argument")
     end
   end
 end
