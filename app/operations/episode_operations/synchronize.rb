@@ -3,7 +3,7 @@ module EpisodeOperations
     def arguments
       required :title, String
       optional :summary, String
-      required :description, String
+      optional :description, String
       required :url, String
       required :published_at, Time
       required :channel, Channel
