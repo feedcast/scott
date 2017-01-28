@@ -11,6 +11,15 @@
         <h4 class="footer-channel-card"><%= @channel.title %></h4>
       </a>
     </div>
+    <div class="panel-footer footer-gategories">
+      <p>
+      <% @channel.categories.each do |category| %>
+         <a href="<%= category_path(category) %>" class="label label-danger category-label">
+          <%= category.icon_html %> <%= category.title %>
+        </a>
+      <% end %>
+      </p>
+    </div>
   </div>
   <div class="channel-top__info panel panel-default">
     <div class="panel-heading">
