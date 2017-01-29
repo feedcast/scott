@@ -62,6 +62,10 @@ class Channel
       field :listed do
         searchable true
       end
+
+      field :categories do
+        searchable true
+      end
     end
     configure :episodes do
       hide
