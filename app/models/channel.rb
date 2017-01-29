@@ -74,6 +74,10 @@ class Channel
       field :created_at do
         searchable true
       end
+
+      field :image_url do
+        searchable true
+      end
     end
 
     configure :episodes do
