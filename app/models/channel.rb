@@ -66,10 +66,16 @@ class Channel
       field :categories do
         searchable true
       end
+
+      field :synchronization_status do
+        searchable false
+      end
     end
+
     configure :episodes do
       hide
     end
+
     configure :uuid do
       hide
     end
