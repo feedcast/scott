@@ -1,0 +1,2 @@
+class ChannelsDecorator < CollectionDecorator
+end

@@ -22,6 +22,9 @@ gem "kaminari"
 gem "kaminari-mongoid"
 gem "kaminari-actionview"
 
+# Decorator
+gem "draper", git: "https://github.com/drapergem/draper"
+
 # Admin
 gem "rails_admin", "~> 1.0"
 

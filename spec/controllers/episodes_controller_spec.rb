@@ -16,6 +16,7 @@ RSpec.describe EpisodesController, type: :controller do
       before do
         allow(Channel).to receive(:find).and_return(channel)
         allow(episodes).to receive(:find).and_return(episode)
+        allow(episode).to receive(:next).and_return(episodes.last)
       end
 
       it "returns success" do
