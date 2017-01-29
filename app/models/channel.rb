@@ -70,6 +70,10 @@ class Channel
       field :synchronization_status do
         searchable false
       end
+
+      field :created_at do
+        searchable true
+      end
     end
 
     configure :episodes do
