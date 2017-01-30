@@ -2,7 +2,7 @@
 
 1. Star the project.
 2. Open or find an issue [here](https://github.com/feedcast/core/issues).
-3. Fork it (https://github.com/marceloboeira/feedcast/fork)
+3. Fork it (https://github.com/feedcast/core/fork)
 4. Create your feature branch (git checkout -b my-awesome-new-feature)
 5. Commit your changes (**follwing our [commit policy](#commit-policy) and [style guide](#style-guide)**)
 6. Push to the branch (git push origin my-new-feature)
