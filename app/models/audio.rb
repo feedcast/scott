@@ -11,7 +11,7 @@ class Audio
   field :sample_rate, type: Integer, default: 0
 
   field :status, type: Symbol, default: :new
-  field :analised_at, type: DateTime
+  field :analysed_at, type: DateTime
   field :error_message, type: String
 
   validates :url, presence: true
@@ -29,7 +29,7 @@ class Audio
 
   def analyse!
     self.status = :analysed
-    self.analised_at = Time.now
+    self.analysed_at = Time.now
     self.error_message = ""
 
     save!
@@ -37,7 +37,7 @@ class Audio
 
   def fail!(message)
     self.status = :failed
-    self.analised_at = Time.now
+    self.analysed_at = Time.now
     self.error_message = message
 
     save!

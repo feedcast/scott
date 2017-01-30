@@ -31,7 +31,7 @@ RSpec.describe Channel, type: :model do
         channel.synchronization_failure!("Feed is Invalid")
       end
 
-      it "sets the feed_synchronization_status to success" do
+      it "sets the feed_synchronization_status to failed" do
         expect(channel).to be_failed
       end
 
