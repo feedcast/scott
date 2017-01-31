@@ -51,6 +51,10 @@ More information available at Split's [official page](https://github.com/splitrb
 
 ### Asynchronous taks
 
+**Important**
+
+On an ideal scenario we would have a stream-like pipeline to manage the asynchronous tasks, meaning that everytime a new channel is created it would trigget its own sychronization, the same is valid for episodes and audios. However, given the current aspects of our infrastructure, it makes more sense to use a "cron task" approach, because it is cheaper and it serve its purpose. Either way our operations are prepared to the switch since the conception, if at some point we need to create a more "real-time" pipeline it is not difficult.
+
 #### Synchronization
 
 In order to synchronize the channels' data with the XML feeds, run: `make synchronize`.
