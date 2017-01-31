@@ -3,6 +3,11 @@ require "rails_helper"
 RSpec.describe Audio do
   let(:audio) { Fabricate(:episode).audio }
 
+  before do
+    audio.error_count = 1
+    audio.save
+  end
+
   describe "status" do
     it "defaults to new" do
       expect(audio.status).to eq(:new)
@@ -24,6 +29,10 @@ RSpec.describe Audio do
       it "cleans the failure message" do
         expect(audio.error_message).to be_empty
       end
+
+      it "sets the error count to zero" do
+        expect(audio.error_count).to be(0)
+      end
     end
 
     describe "failure!" do
@@ -41,6 +50,10 @@ RSpec.describe Audio do
 
       it "stores the reason for the failure" do
         expect(audio.error_message).to eq("Audio is invalid!")
+      end
+
+      it "increments the error count" do
+        expect(audio.error_count).to be(2)
       end
     end
   end

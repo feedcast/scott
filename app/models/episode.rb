@@ -21,7 +21,10 @@ class Episode
 
   index({ published_at: 1, channel_id: 1 }, unique: true)
 
-  scope :not_analysed, -> { where(:"audio.status".ne => "analysed") }
+  scope :not_analysed, -> do
+    where(:"audio.status".ne => Audio::ANALYSED)
+     .and(:"audio.error_count".lt => Audio::MAX_ERROR_COUNT)
+  end
 
   def next
     recentest = self.channel.episodes

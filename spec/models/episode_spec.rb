@@ -8,11 +8,12 @@ RSpec.describe Episode, type: :model do
       [
         Fabricate(:episode),
         Fabricate(:episode_with_failed_audio),
+        Fabricate(:episode_with_failed_audio_3_errors),
         Fabricate(:episode_with_analysed_audio)
       ]
     end
 
-    it "returns only the episodes with status" do
+    it "returns only the episodes with new/failed status with less than 3 attemps" do
       expect(Episode.not_analysed).to eq(episodes.first(2))
     end
   end

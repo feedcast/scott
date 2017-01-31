@@ -1,7 +1,12 @@
 class Audio
   include Mongoid::Document
 
-  STATUS = [ :new, :analysed, :failed ]
+  ANALYSED = :analysed
+  FAILED = :failed
+  NEW = :new
+  STATUS = [ NEW, ANALYSED, FAILED ]
+
+  MAX_ERROR_COUNT = 3
 
   field :url, type: String
   field :size, type: Integer, default: 0
@@ -13,6 +18,7 @@ class Audio
   field :status, type: Symbol, default: :new
   field :analysed_at, type: DateTime
   field :error_message, type: String
+  field :error_count, type: Integer, default: 0
 
   validates :url, presence: true
   validates :status, inclusion: { in: STATUS }
@@ -31,6 +37,7 @@ class Audio
     self.status = :analysed
     self.analysed_at = Time.now
     self.error_message = ""
+    self.error_count = 0
 
     save!
   end
@@ -39,6 +46,7 @@ class Audio
     self.status = :failed
     self.analysed_at = Time.now
     self.error_message = message
+    self.error_count += 1
 
     save!
   end
