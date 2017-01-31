@@ -9,8 +9,6 @@ class ChannelsController < ApplicationController
   end
 
   def search
-    ab_finished(:ab_search_placeholder)
-
     @channels = Channel.listed.search(search_term).limit(24).page(page).decorate
 
     render :list

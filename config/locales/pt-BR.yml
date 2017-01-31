@@ -20,11 +20,7 @@ pt-BR:
     recent: Últimos Episódios
     one: Episódio
     other: Episódios
-  search:
-    option_a: Pesquise
-    option_b: Pesquise por canais
-    option_c: Encontre seu canal favorito
-    option_d: O que você quer ouvir?
+  search: Encontre seu canal favorito
   comment:
     zero: Nenhum comentario
     one: Comentário
