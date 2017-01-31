@@ -21,6 +21,12 @@ Fabricator(:episode_with_failed_audio, from: :episode) do
   end
 end
 
+Fabricator(:episode_with_failed_audio_2_errors, from: :episode) do
+  audio do |episode|
+    Fabricate.build(:audio_failed, episode: episode, error_count: 2)
+  end
+end
+
 Fabricator(:episode_with_failed_audio_3_errors, from: :episode) do
   audio do |episode|
     Fabricate.build(:audio_failed, episode: episode, error_count: 3)
