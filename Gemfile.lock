@@ -228,7 +228,7 @@ GEM
       sprockets-rails (>= 2.0.0)
     rails-assets-bootstrap (3.3.7)
       rails-assets-jquery (>= 1.9.1, < 4)
-    rails-assets-feedcast-player (0.0.10)
+    rails-assets-feedcast-player (0.0.14)
     rails-assets-fontawesome (4.7.0)
     rails-assets-jquery (3.1.1)
     rails-dom-testing (2.0.2)
@@ -386,7 +386,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-assets-bootstrap!
-  rails-assets-feedcast-player (~> 0.0.10)!
+  rails-assets-feedcast-player (~> 0.0.14)!
   rails-assets-fontawesome (~> 4.7.0)!
   rails-i18n
   rails_admin (~> 1.0)
