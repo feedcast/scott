@@ -14,6 +14,7 @@ en:
     zero: No Channels
     one: Channel
     other: Channels
+    page_title: "Channels - Page %{page}"
   episode:
     next: "Next episode is %{episode}"
     published_at: "Published %{time_ago} ago"

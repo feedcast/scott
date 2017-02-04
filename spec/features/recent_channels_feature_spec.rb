@@ -12,6 +12,7 @@ RSpec.feature "Recent Channels", type: :feature do
 
   scenario "list the 24 most recent channels" do
     when_i_visit_the_recent_channels_page
+    then_i_see_the_page_title
     then_i_see_a_list_with_the_most_recent_channels
   end
 
@@ -19,6 +20,10 @@ RSpec.feature "Recent Channels", type: :feature do
 
   def when_i_visit_the_recent_channels_page
     visit "/channels/recent"
+  end
+
+  def then_i_see_the_page_title
+    expect(page).to have_title("Channels - Page 1")
   end
 
   def then_i_see_a_list_with_the_most_recent_channels
