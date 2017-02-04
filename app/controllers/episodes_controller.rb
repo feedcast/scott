@@ -1,8 +1,6 @@
 class EpisodesController < ApplicationController
   def show
-    channel = Channel.find(params[:channel])
-
-    @episode = Episode.find_by("_slugs" => params[:episode], "channel_id" => channel.id).decorate
+    @episode = Episode.find_for(channel_slug, episode_slug)
   end
 
   def list
@@ -10,6 +8,14 @@ class EpisodesController < ApplicationController
   end
 
   private
+
+  def channel_slug
+    params[:channel]
+  end
+
+  def episode_slug
+    params[:episode]
+  end
 
   def page
     params[:page]

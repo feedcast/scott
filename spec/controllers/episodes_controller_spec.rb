@@ -13,8 +13,7 @@ RSpec.describe EpisodesController, type: :controller do
 
     context "with valid params" do
       before do
-        allow(Channel).to receive(:find).and_return(channel)
-        allow(Episode).to receive(:find_by).and_return(episode)
+        allow(Episode).to receive(:find_for).with(channel.slug, episode.slug).and_return(episode)
       end
 
       it "returns success" do

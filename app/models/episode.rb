@@ -28,6 +28,10 @@ class Episode
      .and(:"audio.error_count".lt => Audio::MAX_ERROR_COUNT)
   end
 
+  def self.find_for(channel, episode)
+    Episode.find_by(_slugs: episode, channel_id: Channel.find(channel).id)
+  end
+
   def next
     recentest = self.channel.episodes
                             .where(:id.ne => self.id,
