@@ -3,8 +3,7 @@ require "rails_helper"
 RSpec.describe EpisodesController, type: :controller do
   describe "show" do
     let(:channel) { Fabricate.build(:channel_with_episodes) }
-    let(:episodes) { channel.episodes }
-    let(:episode) { episodes.first }
+    let(:episode) { channel.episodes.first }
     let(:params) do
       {
         channel: channel.slug,
@@ -15,8 +14,7 @@ RSpec.describe EpisodesController, type: :controller do
     context "with valid params" do
       before do
         allow(Channel).to receive(:find).and_return(channel)
-        allow(episodes).to receive(:find).and_return(episode)
-        allow(episode).to receive(:next).and_return(episodes.last)
+        allow(Episode).to receive(:find_by).and_return(episode)
       end
 
       it "returns success" do

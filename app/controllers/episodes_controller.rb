@@ -2,7 +2,7 @@ class EpisodesController < ApplicationController
   def show
     channel = Channel.find(params[:channel])
 
-    @episode = channel.episodes.find(params[:episode]).decorate
+    @episode = Episode.find_by("_slugs" => params[:episode], "channel_id" => channel.id).decorate
   end
 
   def list
