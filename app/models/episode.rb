@@ -11,7 +11,7 @@ class Episode
   field :description, type: String
   field :published_at, type: DateTime
 
-  slug :title, scoped: :channel
+  slug :title, scope: :channel
 
   validates :title, presence: true
   validates :audio, presence: true
