@@ -1,4 +1,4 @@
-# :headphones: Feedcast [![Build Status](https://travis-ci.org/feedcast/core.svg?branch=master)](https://travis-ci.org/feedcast/core) [![Code Climate](https://codeclimate.com/github/feedcast/core/badges/gpa.svg)](https://codeclimate.com/github/feedcast/core)
+# :headphones: Feedcast [![Build Status](https://travis-ci.org/feedcast/core.svg?branch=master)](https://travis-ci.org/feedcast/core) [![Code Climate](https://codeclimate.com/github/marceloboeira/feedcast/badges/gpa.svg)](https://codeclimate.com/github/marceloboeira/feedcast)
 > Listen to all your favorite podcasts in the same place
 
 ## Contributing
