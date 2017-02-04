@@ -9,11 +9,6 @@ guard :bundler do
   files.each { |file| watch(helper.real_path(file)) }
 end
 
-guard "rails", host: "127.0.0.1", port: 3250 do
-  watch("Gemfile.lock")
-  watch(%r{^(config|lib)/.*})
-end
-
 guard :rspec, cmd: "bundle exec rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)

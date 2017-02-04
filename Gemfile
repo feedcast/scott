@@ -69,7 +69,6 @@ group :development, :test do
   # Guard
   gem "guard-bundler", require: false
   gem "guard-rspec", require: false
-  gem "guard-rails", require: false
 
   # RSpec
   gem "rspec-rails", "~> 3.5"
