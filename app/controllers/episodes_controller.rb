@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
   def show
-    @episode = Episode.find_for(channel_slug, episode_slug)
+    @episode = Episode.find_for(channel_slug, episode_slug).decorate
   end
 
   def list

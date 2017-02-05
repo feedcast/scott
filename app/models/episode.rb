@@ -33,15 +33,17 @@ class Episode
   end
 
   def next
-    recentest = self.channel.episodes
-                            .where(:id.ne => self.id,
-                                   :published_at.gt => self.published_at)
-                            .order_by(published_at: :asc)
-                            .first
+    return @next if @next.present?
 
-    return recentest unless recentest.nil?
+    @next = Episode.where(:id.ne => self.id,
+                          :published_at.gt => self.published_at,
+                          :channel_id => channel.id)
+                    .order_by(published_at: :asc)
+                    .first
 
-    Episode.where(:id.ne => self.id).sample
+    @next = Episode.where(:id.ne => self.id).sample if @next.nil?
+
+    @next
   end
 
   rails_admin do
