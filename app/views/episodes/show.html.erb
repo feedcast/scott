@@ -7,7 +7,7 @@
   <div class="channel-top__info panel panel-default">
     <div class="panel-body">
       <%= render partial: "episodes/item/player", locals: { episode: @episode, next_episode: @episode.next } %>
-      <p><%= html_sanitize(@episode.summary) %></p>
+      <p><%= simple_format(html_sanitize(@episode.summary)) %></p>
     </div>
     <div class="panel-footer">
       <div class="fc-episode-extra-info">
