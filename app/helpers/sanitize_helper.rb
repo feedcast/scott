@@ -2,7 +2,7 @@ require "sanitize"
 
 module SanitizeHelper
   DEFAULT_CONFIG = {
-    :elements => [ "a", "b", "br", "hr", "u", "i", "ul", "li", "abbr" ],
+    :elements => [ "a", "b", "br", "hr", "u", "i", "ul", "li", "abbr", "p" ],
     :attributes => {
       "a" => ["href"],
     },

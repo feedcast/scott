@@ -52,6 +52,9 @@ gem "split"
 # Sanitize
 gem "sanitize"
 
+# Summary processing
+gem "rails_autolink"
+
 # SEO
 gem "meta-tags"
 
