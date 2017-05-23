@@ -11,7 +11,7 @@ module ChannelOperations
     def perform
       @feed = House::Podcast.new(@feed_url)
     rescue => e
-      raise InvalidFeed.new("#{@feed_url} is not a valid xml feed: #{e.message}")
+      raise InvalidFeed, "#{@feed_url} is not a valid xml feed: #{e.message}"
     end
   end
 end

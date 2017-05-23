@@ -15,7 +15,7 @@ module AudioOperations
 
       file.path
     rescue StandardError => e
-      raise DownloadError.new(e.message)
+      raise DownloadError, e.message
     end
 
     private
