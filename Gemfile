@@ -3,6 +3,10 @@ ruby "2.4.1"
 
 gem "rails", "~> 5.0.1"
 
+# API
+gem "grape"
+gem "grape-active_model_serializers"
+
 # Server
 gem "puma", "~> 3.0"
 

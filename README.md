@@ -53,6 +53,14 @@ We are running [Split](https://github.com/splitrb/split), an AB testing framewor
 
 More information available at Split's [official page](https://github.com/splitrb/split).
 
+### API
+
+The api is running under `/api`, same port as the core.
+
+#### Endpoints
+
+`GET /api/channels/:uuid` - Returns the serialized channel
+
 ### Asynchronous taks
 
 **Important**

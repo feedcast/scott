@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount API => "/api"
   mount Split::Dashboard => "/admin/experiments", as: "split_dashboard"
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"
 
