@@ -6,8 +6,4 @@ class API::V1::Channel < Grape::API
       channel
     end
   end
-
-  rescue_from Mongoid::Errors::DocumentNotFound do
-    error!({ message: "not found" }, 404)
-  end
 end
