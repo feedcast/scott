@@ -15,12 +15,4 @@ class Category
   def icon_html
     FontAwesome::Icon.new(icon).to_html
   end
-
-  rails_admin do
-    list do
-      field :title do
-        searchable true
-      end
-    end
-  end
 end
