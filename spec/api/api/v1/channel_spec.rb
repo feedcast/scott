@@ -41,6 +41,7 @@ RSpec.describe API::V1::Channel, type: :request do
 
   describe "/api/channels/:uuid" do
     let(:channel) { Fabricate(:channel) }
+    let(:serialized_channel) { ChannelSerializer.new(channel).as_json }
     let(:uuid) { channel.uuid }
 
     before do
@@ -53,12 +54,7 @@ RSpec.describe API::V1::Channel, type: :request do
       end
 
       it "returns the channel information" do
-        expect(json_response).to eq(
-          uuid: channel.uuid,
-          slug: channel.slug,
-          title: channel.title,
-          description: channel.description
-        )
+        expect(json_response).to eq(serialized_channel)
       end
     end
 
