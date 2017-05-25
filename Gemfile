@@ -77,7 +77,7 @@ group :development, :test do
   gem "rspec-rails", "~> 3.5"
 
   # Rack Server
-  gem "sinatra", "2.0.0.beta2"
+  gem "sinatra", "2.0.0"
   gem "sham_rack"
 
   # Test Support
