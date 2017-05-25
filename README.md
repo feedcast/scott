@@ -59,7 +59,9 @@ The api is running under `/api`, same port as the core.
 
 #### Endpoints
 
-`GET /api/channels/:uuid` - Returns the serialized channel
+`GET /api/channels` - Returns the list of all channels
+`GET /api/channels/:uuid` - Returns the channel
+`GET /api/channels/:uuid/episodes` - Returns the channel's episodes
 
 ### Asynchronous taks
 
