@@ -9,15 +9,6 @@ GIT
       activesupport (~> 5.0)
       request_store (~> 1.0)
 
-GIT
-  remote: https://github.com/marceloboeira/mongoid-uuid
-  revision: be0cfa220d72019a06f292cab071ca8a5bde982f
-  specs:
-    mongoid-uuid (1.1.0)
-      mongoid (>= 3.0, < 7)
-      rake
-      uuid (~> 2.3)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -183,6 +174,10 @@ GEM
       mongoid (>= 3.0)
       mongoid-compatibility
       stringex (~> 2.0)
+    mongoid-uuid (1.2.0)
+      mongoid (>= 3.0, < 7)
+      rake
+      uuid (>= 2.3, < 3)
     multi_json (1.12.1)
     mustermann (1.0.0.beta2)
     nenv (0.3.0)
@@ -379,7 +374,7 @@ DEPENDENCIES
   meta-tags
   mongoid (~> 6.0.0)
   mongoid-slug
-  mongoid-uuid!
+  mongoid-uuid
   newrelic_rpm
   puma (~> 3.0)
   rails (~> 5.0.1)

@@ -11,7 +11,7 @@ gem "functional_operations"
 
 # Database
 gem "mongoid", "~> 6.0.0"
-gem "mongoid-uuid", git: "https://github.com/marceloboeira/mongoid-uuid"
+gem "mongoid-uuid"
 gem "mongoid-slug"
 
 # Validators
