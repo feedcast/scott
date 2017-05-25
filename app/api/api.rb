@@ -6,5 +6,7 @@ class API < Grape::API
     error!({ message: "not found" }, 404)
   end
 
-  mount API::V1
+  namespace :api do
+    mount API::V1
+  end
 end

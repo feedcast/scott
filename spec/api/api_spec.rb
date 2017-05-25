@@ -2,7 +2,7 @@ require "rails_helper"
 require "support/json_response"
 
 class API < Grape::API
-  namespace :test do
+  namespace "api/test" do
     get :document_not_found do
       raise Mongoid::Errors::DocumentNotFound.new(Channel, foo: "bar")
     end
