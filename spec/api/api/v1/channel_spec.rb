@@ -32,9 +32,9 @@ RSpec.describe API::V1::Channel, type: :request do
       end
 
       it "returns with the correct serialization for each channel" do
-        channel = ChannelSerializer.new(Channel.first).as_json
+        serialized_channel = ChannelSerializer.new(Channel.first).as_json
 
-        expect(json_response[:channels].first).to eq(channel)
+        expect(json_response[:channels]).to include(serialized_channel)
       end
     end
   end
@@ -48,7 +48,7 @@ RSpec.describe API::V1::Channel, type: :request do
       get "/api/channels/#{uuid}"
     end
 
-    context "when the uuid is valid" do
+    context "when the channel exists" do
       it "returns success" do
         expect(response).to have_http_status(:success)
       end
@@ -58,7 +58,7 @@ RSpec.describe API::V1::Channel, type: :request do
       end
     end
 
-    context "when the uuid is not valid" do
+    context "when the channel does not exist" do
       let(:uuid) { "invalid-uuid" }
 
       it "returns not found" do
@@ -67,6 +67,51 @@ RSpec.describe API::V1::Channel, type: :request do
 
       it "returns the error message" do
         expect(json_response).to eq(message: "not found")
+      end
+    end
+  end
+
+  describe "/api/channels/:uuid/episodes" do
+    let(:uuid) { channel.uuid }
+
+    before do
+      get "/api/channels/#{uuid}/episodes"
+    end
+
+    context "when the channel does not exist" do
+      let(:uuid) { "invalid-uuid" }
+
+      it "returns not found" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns the error message" do
+        expect(json_response).to eq(message: "not found")
+      end
+    end
+
+    context "when the channel exists" do
+      let(:channel) { Fabricate(:channel) }
+
+      it "returns success" do
+        expect(response).to have_http_status(:success)
+      end
+
+      context "and it does not have any episodes" do
+        it "returns an empty array" do
+          expect(json_response).to eq(episodes: [])
+        end
+      end
+
+      context "and it has episodes" do
+        let(:channel) { Fabricate(:channel_with_episodes) }
+        let(:episodes) { channel.episodes }
+        let(:serialized_episode) { EpisodeSerializer.new(episodes.first).as_json }
+
+        it "returns the list of episodes" do
+          expect(json_response[:episodes].size).to be(episodes.size)
+          expect(json_response[:episodes]).to include(serialized_episode)
+        end
       end
     end
   end

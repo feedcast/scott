@@ -12,6 +12,12 @@ class API::V1::Channel < Grape::API
 
         channel
       end
+
+      get :episodes do
+        episodes = ::Channel.find_by(uuid: params[:uuid]).episodes
+
+        { episodes: ::EpisodesSerializer.new(episodes).as_json }
+      end
     end
   end
 end
