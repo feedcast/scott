@@ -48,3 +48,7 @@ deploy_beta:
 .PHONY: compose
 compose:
 	docker-compose up -d
+
+.PHONY: decompose
+decompose:
+	docker-compose stop
