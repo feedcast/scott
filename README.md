@@ -39,6 +39,8 @@ The server will start at `http://localhost:5000` by default.
 
 To stop the docker compose daemon safely (without destroying the instances), use `make decompose`
 
+To run the console, use `make console`
+
 ### Admin Area
 
 The application is using [Rails Admin](https://github.com/sferik/rails_admin).

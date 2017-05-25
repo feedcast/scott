@@ -14,6 +14,10 @@ seed:
 start:
 	bin/puma -C config/puma.rb
 
+.PHONY: console
+console:
+	bin/rails console
+
 .PHONY: spec
 spec:
 	bin/rspec
