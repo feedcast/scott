@@ -4,7 +4,7 @@ class Episode
   include Mongoid::Uuid
   include Mongoid::Slug
 
-  ADVANCED_PUBLISHING_INTERVAL = 12.hours
+  PUBLISHING_IN_ADVANCE_INTERVAL = 12.hours
 
   field :title, type: String
   field :summary, type: String
@@ -15,7 +15,7 @@ class Episode
 
   validates :title, presence: true
   validates :audio, presence: true
-  validates :published_at, presence: true, date: { before: Proc.new{ ADVANCED_PUBLISHING_INTERVAL.from_now } }
+  validates :published_at, presence: true, date: { before: Proc.new{ PUBLISHING_IN_ADVANCE_INTERVAL.from_now } }
 
   belongs_to :channel
   embeds_one :audio
