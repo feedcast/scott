@@ -2,6 +2,43 @@ require "rails_helper"
 require "support/json_response"
 
 RSpec.describe API::V1::Channel, type: :request do
+  describe "/api/channels" do
+    let(:channels) { [] }
+
+    before do
+      channels
+
+      get "/api/channels/"
+    end
+
+    it "returns success" do
+      expect(response).to have_http_status(:success)
+    end
+
+    context "when there are no channels" do
+      it "returns an empty array" do
+        expect(json_response).to eq(channels: [])
+      end
+    end
+
+    context "when there are channels" do
+      let(:channels) do
+        [Fabricate(:channel), Fabricate(:channel), Fabricate(:channel)]
+      end
+
+      it "returns the array of channels" do
+        expect(json_response).to include(:channels)
+        expect(json_response[:channels].size).to be(3)
+      end
+
+      it "returns with the correct serialization for each channel" do
+        channel = ChannelSerializer.new(Channel.first).as_json
+
+        expect(json_response[:channels].first).to eq(channel)
+      end
+    end
+  end
+
   describe "/api/channels/:uuid" do
     let(:channel) { Fabricate(:channel) }
     let(:uuid) { channel.uuid }
