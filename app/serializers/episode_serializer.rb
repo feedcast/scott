@@ -1,5 +1,11 @@
 class EpisodeSerializer < ActiveModel::Serializer
-  attributes :uuid, :slug, :title, :summary, :description, :published_at
+  attributes :uuid,
+             :slug,
+             :title,
+             :summary,
+             :description,
+             :published_at
+
   has_one :audio
 
   def published_at
