@@ -1,6 +1,9 @@
 Fabricator(:channel) do
   title { Faker::Hipster.word }
   feed_url { Faker::Internet.url(path: "/feed") }
+  categories do
+    [Fabricate.build(:category), Fabricate.build(:category)]
+  end
 end
 
 Fabricator(:channel_with_an_invalid_feed_url, from: :channel) do

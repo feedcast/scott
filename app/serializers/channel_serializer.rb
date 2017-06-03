@@ -9,6 +9,8 @@ class ChannelSerializer < ActiveModel::Serializer
              :synchronization_status,
              :synchronization_status_message
 
+  has_many :categories
+
   def synchronization_status
     object.synchronization_status.to_s
   end

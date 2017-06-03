@@ -40,7 +40,7 @@ RSpec.describe API::V1::Channel, type: :request do
   end
 
   describe "/api/channels/:uuid" do
-    let(:channel) { Fabricate(:channel) }
+    let(:channel) { Fabricate(:channel, categories: []) }
     let(:serialized_channel) { ChannelSerializer.new(channel).as_json }
     let(:uuid) { channel.uuid }
 
