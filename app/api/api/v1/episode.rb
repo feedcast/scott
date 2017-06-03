@@ -1,5 +1,6 @@
 class API::V1::Episode < Grape::API
   namespace :episodes do
+    paginate per_page: 10
     get do
       episodes = ::Episode.all
 

@@ -51,6 +51,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    api-pagination (4.6.3)
     arel (8.0.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -398,6 +399,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  api-pagination
   byebug
   capybara
   codeclimate-test-reporter (~> 1.0.0)

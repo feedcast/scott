@@ -1,10 +1,10 @@
 class API::V1::Channel < Grape::API
   namespace :channels do
+    paginate per_page: 10
     get do
-      channels = ::Channel.all
+      channels = paginate(::Channel.all)
 
       { channels: ::ChannelsSerializer.new(channels).as_json }
-
     end
 
     route_param :uuid do
@@ -14,8 +14,9 @@ class API::V1::Channel < Grape::API
         channel
       end
 
+      paginate per_page: 10
       get :episodes do
-        episodes = ::Channel.find_by(uuid: params[:uuid]).episodes
+        episodes = paginate(::Channel.find_by(uuid: params[:uuid]).episodes)
 
         { episodes: ::EpisodesSerializer.new(episodes).as_json }
       end

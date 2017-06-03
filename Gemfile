@@ -6,6 +6,7 @@ gem "rails", "~> 5"
 # API
 gem "grape"
 gem "grape-active_model_serializers"
+gem "api-pagination"
 
 # Server
 gem "puma", "~> 3"
