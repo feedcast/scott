@@ -65,7 +65,6 @@ The api is running under `/api`, same port as the core.
 `GET /api/episodes` - Returns the list of all episodes (really slow, doesn't have pagination yet)
 `GET /api/episodes/:uuid` - Returns the specific episode
 
-
 ### Asynchronous taks
 
 **Important**
