@@ -1,20 +1,20 @@
 source "https://rubygems.org"
 ruby "2.4.1"
 
-gem "rails", "~> 5.0.1"
+gem "rails", "~> 5"
 
 # API
 gem "grape"
 gem "grape-active_model_serializers"
 
 # Server
-gem "puma", "~> 3.0"
+gem "puma", "~> 3"
 
 # Operations
 gem "functional_operations"
 
 # Database
-gem "mongoid", "~> 6.0.0"
+gem "mongoid", "~> 6"
 gem "mongoid-uuid"
 gem "mongoid-slug"
 
@@ -27,10 +27,10 @@ gem "kaminari-mongoid"
 gem "kaminari-actionview"
 
 # Decorator
-gem "draper", git: "https://github.com/drapergem/draper"
+gem "draper"
 
 # Admin
-gem "rails_admin", "~> 1.0"
+gem "rails_admin", "~> 1"
 
 # I18n
 gem "rails-i18n"
@@ -78,10 +78,10 @@ group :development, :test do
   gem "guard-rspec", require: false
 
   # RSpec
-  gem "rspec-rails", "~> 3.5"
+  gem "rspec-rails", "~> 3"
 
   # Rack Server
-  gem "sinatra", "2.0.0"
+  gem "sinatra", "2"
   gem "sham_rack"
 
   # Test Support
