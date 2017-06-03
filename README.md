@@ -59,11 +59,11 @@ The api is running under `/api`, same port as the core.
 
 #### Endpoints
 
-`GET /api/channels` - Returns the list of all channels
-`GET /api/channels/:uuid` - Returns the channel
-`GET /api/channels/:uuid/episodes` - Returns the channel's episodes
-`GET /api/episodes` - Returns the list of all episodes (really slow, doesn't have pagination yet)
-`GET /api/episodes/:uuid` - Returns the specific episode
+* `GET /api/channels?page=N&per_page=Y` - Returns the list of all channels
+* `GET /api/channels/:uuid` - Returns the channel
+* `GET /api/channels/:uuid/episodes?page=N&per_page=Y` - Returns the channel's episodes
+* `GET /api/episodes?page=N&per_page=Y` - Returns the list of all episodes
+* `GET /api/episodes/:uuid` - Returns the specific episode
 
 ### Asynchronous taks
 
