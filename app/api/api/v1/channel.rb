@@ -4,9 +4,10 @@ class API::V1::Channel < Grape::API
       channels = ::Channel.all
 
       { channels: ::ChannelsSerializer.new(channels).as_json }
+
     end
 
-    namespace ":uuid" do
+    route_param :uuid do
       get do
         channel = ::Channel.find_by(uuid: params[:uuid])
 
