@@ -9,4 +9,8 @@ class API < Grape::API
   namespace :api do
     mount API::V1
   end
+
+  before do
+    header "Access-Control-Allow-Origin", "*"
+  end
 end
