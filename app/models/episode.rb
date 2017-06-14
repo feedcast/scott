@@ -20,6 +20,7 @@ class Episode
   belongs_to :channel
   embeds_one :audio
   accepts_nested_attributes_for :audio
+  has_many :episode_listens, dependent: :destroy
 
   index({ published_at: 1, channel_id: 1 }, unique: true)
 

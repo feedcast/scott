@@ -1,6 +1,9 @@
 class EpisodesController < ApplicationController
   def show
-    @episode = Episode.includes(:channel).find_for(channel_slug, episode_slug).decorate
+    episode = Episode.includes(:channel).find_for(channel_slug, episode_slug)
+    @episode = episode.decorate
+
+    EpisodeListen.create(user_id: user_id, episode: episode)
   end
 
   def list
