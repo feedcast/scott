@@ -1,5 +1,4 @@
 require "net/http"
-require "tempfile"
 
 module AudioOperations
   class DownloadError < StandardError; end

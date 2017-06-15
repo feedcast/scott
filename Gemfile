@@ -14,6 +14,9 @@ gem "puma", "~> 3"
 # Operations
 gem "functional_operations"
 
+# Data Pipelines
+gem "aws-sdk"
+
 # Database
 gem "mongoid", "~> 6"
 gem "mongoid-uuid"

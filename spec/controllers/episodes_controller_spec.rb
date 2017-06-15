@@ -13,6 +13,7 @@ RSpec.describe EpisodesController, type: :controller do
 
     context "with valid params" do
       let(:user_id) { SecureRandom.uuid }
+
       before do
         allow(Episode).to receive(:find_for).with(channel.slug, episode.slug).and_return(episode)
         allow(EpisodeListen).to receive(:create).with(anything).and_return(true)

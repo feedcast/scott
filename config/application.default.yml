@@ -1,21 +1,34 @@
 # Database
-REDIS_URL: redis://127.0.0.1:6379
+#
 # MONGODB_URI: mongodb://<user>:<password>@<host>:<port>/<datab
+REDIS_URL: redis://127.0.0.1:6379
 
 # Host
-#FEEDCAST_HOST: feedcast.com.br
+#
+# FEEDCAST_HOST: feedcast.com.br
 
 # Admin Area
+#
 FEEDCAST_HTTP_AUTH_USER: admin
 FEEDCAST_HTTP_AUTH_PASSWORD: admin
 
 # Operations
+#
 EPISODE_ANALYSIS_LIMIT_PER_RUN: 100
 
+# AWS - Data Pipelines
+#
+# AWS_ID: <token>
+# AWS_SECRET: <token>
+# AWS_REGION: <region> - Defaults to "eu-central-1"
+# AWS_BUCKET: <bucket> - Defaults to "feedcast"
+
 # Metrics
+#
 # GOOGLE_ANALYTICS_ID: UA-XXXXXX-1
 
 # Rails
+#
 # RAILS_SERVE_STATIC_FILES: <enable|disable>
 # RAILS_LOG_TO_STDOUT: <enable|disable>
 # RAILS_ENV: <production|production|beta>
@@ -23,6 +36,7 @@ EPISODE_ANALYSIS_LIMIT_PER_RUN: 100
 # SECRET_KEY_BASE: output of <rake secret>
 
 # Monitoring
+#
 # ROLLBAR_ACCESS_TOKEN: <token>
 # ROLLBAR_ENV: <env> - Defaults to Rails.env
 # NEW_RELIC_LICENSE_KEY: <New Relic Application Key>

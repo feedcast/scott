@@ -10,7 +10,7 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
            audio_bitrate: 3000,
            audio_sample_rate: 4400)
   end
-  let(:tmp_file) { Tempfile.new(audio.id).path.to_s }
+  let(:tmp_file) { Tempfile.new(audio.id).path }
 
   before do
     FileUtils.touch(tmp_file)

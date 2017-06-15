@@ -1,9 +1,7 @@
 development:
   clients:
     default:
-      database: feedcast_development
-      hosts:
-        - localhost:27017
+      uri: "mongodb://heroku_rk350hdp:k441hshmcb67ama56vcgh0bm58@ds157258.mlab.com:57258/heroku_rk350hdp"
       options:
   options:
 test:
