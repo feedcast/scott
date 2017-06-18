@@ -7,7 +7,7 @@
   - analysis
   - default
 production:
-  :concurrency: 10
+  :concurrency: 20
 beta:
   :concurrency: 5
 development:
