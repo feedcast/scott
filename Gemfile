@@ -13,6 +13,8 @@ gem "puma", "~> 3"
 
 # Operations
 gem "functional_operations"
+gem "sidekiq"
+gem "sidekiq-scheduler"
 
 # Database
 gem "mongoid", "~> 6"

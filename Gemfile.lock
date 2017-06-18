@@ -85,6 +85,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.2)
     database_cleaner (1.6.1)
     date_validator (0.9.0)
@@ -102,6 +103,8 @@ GEM
       request_store (~> 1.0)
     equalizer (0.0.11)
     erubi (1.6.0)
+    et-orbi (1.0.4)
+      tzinfo
     execjs (2.7.0)
     fabrication (2.16.1)
     faker (1.7.3)
@@ -323,6 +326,8 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     rubyzip (1.2.1)
+    rufus-scheduler (3.4.2)
+      et-orbi (~> 1.0)
     sanitize (4.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -341,6 +346,16 @@ GEM
     sham_rack (1.4.0)
       rack
     shellany (0.0.1)
+    sidekiq (5.0.3)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.3, >= 3.3.3)
+    sidekiq-scheduler (2.1.5)
+      redis (~> 3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      tilt (>= 1.4.0)
     simple-random (1.0.3)
     simplecov (0.13.0)
       docile (~> 1.1.0)
@@ -440,6 +455,8 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   sham_rack
+  sidekiq
+  sidekiq-scheduler
   simplecov
   sinatra (= 2)
   split

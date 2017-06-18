@@ -1,1 +1,2 @@
-web: make start
+web: make web
+worker: make worker

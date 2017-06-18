@@ -1,0 +1,22 @@
+---
+:verbose: true
+:concurrency: 10
+:timeout: 30
+:queues:
+  - synchronization
+  - analysis
+  - default
+production:
+  :concurrency: 10
+beta:
+  :concurrency: 5
+development:
+  :concurrency: 5
+
+:schedule:
+  channel_synchronization_scheduler_job:
+    every: 30m
+    class: ChannelSynchronizationSchedulerJob
+  audio_synchronization_scheduler_job:
+    every: 1h
+    class: AudioAnalysisSchedulerJob

@@ -3,6 +3,7 @@ default: setup
 
 .PHONY: setup
 setup:
+	gem install foreman
 	bin/bundle install
 	cp config/application.default.yml config/application.yml
 
@@ -12,7 +13,15 @@ seed:
 
 .PHONY: start
 start:
+	foreman start
+
+.PHONY: web
+web:
 	bin/puma -C config/puma.rb
+
+.PHONY: worker
+worker:
+	bin/sidekiq -C config/sidekiq.yml
 
 .PHONY: console
 console:
@@ -32,14 +41,6 @@ report_coverage:
 .PHONY: guard
 guard:
 	bin/guard
-
-.PHONY: synchronize
-synchronize:
-	bin/rake with:english with:logger channels:synchronize
-
-.PHONY: analyse
-analyse:
-	bin/rake with:english with:logger episodes:analyse
 
 .PHONY: deploy
 deploy:

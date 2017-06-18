@@ -10,6 +10,8 @@ require "spec_helper"
 require "rspec/rails"
 require "draper/test/rspec_integration"
 require "functional_operations/rspec"
+require "sidekiq/testing"
+Sidekiq::Testing.inline!
 
 Dir[Rails.root.join("spec/support/auto/*.rb")].each { |f| require f }
 

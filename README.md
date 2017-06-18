@@ -47,6 +47,12 @@ The application is using [Rails Admin](https://github.com/sferik/rails_admin).
 
 The admin area can be accessed at `http://localhost:5000/admin` by default.
 
+### Workers
+
+We are now using sidekiq to manage our asynchronous jobs.
+
+Sidekiq dashboard can be accessed at `http://localhost:5000/admin/jobs` by default.
+
 ### Experiments
 
 We are running [Split](https://github.com/splitrb/split), an AB testing framework, at `http://localhost:5000/admin/experiments`.
@@ -65,25 +71,3 @@ The api is running under `/api`, same port as the core.
 * `GET /api/episodes?page=N&per_page=Y` - Returns the list of all episodes
 * `GET /api/episodes/:uuid` - Returns the specific episode
 * `GET /api/categories/:slug?page=N&per_page=Y` - Returns the list of categories
-
-### Asynchronous taks
-
-**Important**
-
-On an ideal scenario we would have a streamlined pipeline to manage the asynchronous tasks, meaning that everytime a new channel is created it would trigger its own sychronization, the same is valid for episodes and audios. However, given the current aspects of our infrastructure, it makes more sense to use a "cron task" approach, because it is cheaper and it serve its purpose. Either way our operations are prepared to the switch since the conception, if at some point we need to create a more automated pipeline it is not difficult.
-
-#### Synchronization
-
-In order to synchronize the channels' data with the XML feeds, run: `make synchronize`.
-
-That will sequentially download and process all the XML RSS feeds, creating new episodes or updating the existing ones.
-
-The task takes a while to run if there are lots of channels, grab a chair.
-
-#### Audio Analysis
-
-In order to analyse the episodes' audio info with the real audio files, run: `make analyse`.
-
-That will sequentially download and process all the audio files, adding information like codec, duration, size, sample rate, bitrate and more.
-
-The task takes a while to run, but it is limited to 100 audio files per run, it prioritizes the last published episodes always.
