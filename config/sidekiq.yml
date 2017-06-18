@@ -15,8 +15,8 @@ development:
 
 :schedule:
   channel_synchronization_scheduler_job:
-    every: 30m
+    every: 15m
     class: ChannelSynchronizationSchedulerJob
   audio_synchronization_scheduler_job:
-    every: 1h
+    every: 30m
     class: AudioAnalysisSchedulerJob
