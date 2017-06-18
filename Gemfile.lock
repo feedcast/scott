@@ -351,6 +351,8 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.3, >= 3.3.3)
+    sidekiq-failures (1.0.0)
+      sidekiq (>= 4.0.0)
     sidekiq-scheduler (2.1.5)
       redis (~> 3)
       rufus-scheduler (~> 3.2)
@@ -456,6 +458,7 @@ DEPENDENCIES
   selenium-webdriver
   sham_rack
   sidekiq
+  sidekiq-failures
   sidekiq-scheduler
   simplecov
   sinatra (= 2)
