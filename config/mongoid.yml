@@ -24,3 +24,5 @@ production:
   clients:
     default:
       uri: <%= ENV["MONGODB_URI"] %>
+      options:
+        max_pool_size: 30
