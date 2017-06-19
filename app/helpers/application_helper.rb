@@ -14,7 +14,7 @@ module ApplicationHelper
   def image_url_for(channel)
     return placeholdit(channel.title) if channel.image_url.nil? || channel.image_url.empty?
 
-    channel.image_url
+    channel.proxy_image_url
   end
 
   def placeholdit(text)

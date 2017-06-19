@@ -14,4 +14,8 @@ class ChannelSerializer < ActiveModel::Serializer
   def synchronization_status
     object.synchronization_status.to_s
   end
+
+  def image_url
+    object.proxy_image_url
+  end
 end

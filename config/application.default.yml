@@ -24,3 +24,7 @@ FEEDCAST_HTTP_AUTH_PASSWORD: admin
 # ROLLBAR_ENV: <env> - Defaults to Rails.env
 # NEW_RELIC_LICENSE_KEY: <New Relic Application Key>
 # NEW_RELIC_APP_NAME: <Application Name>
+
+# Image Proxy
+#
+# FEEDCAST_IMAGE_PROXY_HOST: images.feedcast.com.br

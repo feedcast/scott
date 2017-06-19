@@ -16,12 +16,13 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
   describe "image url for cannel" do
     context "when the channel image is present" do
       let(:channel) { Fabricate.build(:channel, image_url: "foo.png") }
 
-      it "returns the url" do
-        expect(helper.image_url_for(channel)).to eq("foo.png")
+      it "returns the proxy url" do
+        expect(helper.image_url_for(channel)).to match(/foo.png/)
       end
     end
 

@@ -52,4 +52,9 @@ class Channel
   def failed?
     synchronization_status == :failure
   end
+
+  # It should not be here, move it once we have the API-only
+  def proxy_image_url(height: 300, width: 300)
+    ImageProxy::URL.new(image_url || "", height: height, width: width).to_s
+  end
 end
