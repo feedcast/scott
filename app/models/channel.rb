@@ -27,7 +27,7 @@ class Channel
   accepts_nested_attributes_for :episodes
 
   scope :listed, ->{ where(listed: true) }
-  scope :search, ->(term){ where(title: /#{Regexp.escape(term)}/i) }
+  scope :search, ->(term){ where(title: /#{::Regexp.escape(term)}/i) }
 
   def synchronization_success!
     self.synchronization_status = :success
