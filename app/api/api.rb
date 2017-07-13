@@ -11,6 +11,7 @@ class API < Grape::API
   end
 
   before do
-    header "Access-Control-Allow-Origin", "*"
+    header("Access-Control-Expose-Headers", "X-Total-Results")
+    header("Access-Control-Allow-Origin", "*")
   end
 end
