@@ -7,6 +7,7 @@ class EpisodeSerializer < ActiveModel::Serializer
              :published_at
 
   has_one :audio
+  belongs_to :channel
 
   def published_at
     object.published_at.to_formatted_s
