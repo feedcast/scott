@@ -2,7 +2,7 @@ class API::V1::Category < Grape::API
   namespace :categories do
     paginate per_page: 10
     get do
-      categories = ::Category.all
+      categories = paginate(::Category.all)
 
       { categories: ::CategoriesSerializer.new(categories).as_json }
     end
