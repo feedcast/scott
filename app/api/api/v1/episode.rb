@@ -2,7 +2,7 @@ class API::V1::Episode < Grape::API
   namespace :episodes do
     paginate per_page: 10
     get do
-      episodes = ::Episode.all
+      episodes = paginate(::Episode.all)
 
       { episodes: ::EpisodesSerializer.new(episodes).as_json }
     end
