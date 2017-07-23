@@ -40,7 +40,7 @@ RSpec.describe API::V1::Category, type: :request do
   end
 
   describe "/api/categories/:slug" do
-    let(:category) { Fabricate(:category) }
+    let(:category) { Fabricate(:category_with_channels) }
     let(:serialized_category) { ::CategorySerializer.new(category).as_json }
     let(:slug) { category.slug }
 

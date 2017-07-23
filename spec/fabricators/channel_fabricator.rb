@@ -6,6 +6,10 @@ Fabricator(:channel) do
   end
 end
 
+Fabricator(:channel_without_categories, from: :channel) do
+  categories { [] }
+end
+
 Fabricator(:channel_with_an_invalid_feed_url, from: :channel) do
   feed_url { "http://foo.feedcast.com/not_found.xml" }
 end
