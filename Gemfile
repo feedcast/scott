@@ -28,10 +28,6 @@ gem "date_validator"
 # Pagination
 gem "kaminari"
 gem "kaminari-mongoid"
-gem "kaminari-actionview"
-
-# Decorator
-gem "draper"
 
 # Admin
 gem "rails_admin", "~> 1"
@@ -57,25 +53,6 @@ gem "streamio-ffmpeg"
 gem "redis"
 gem "split"
 
-# Sanitize
-gem "sanitize"
-
-# Summary processing
-gem "rails_autolink"
-
-# SEO
-gem "meta-tags"
-
-# Assets
-gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
-
-source "https://rails-assets.org" do
-  gem "rails-assets-bootstrap"
-  gem "rails-assets-fontawesome", "~> 4.7.0"
-  gem "rails-assets-feedcast-player", "~> 0.0.14"
-end
-
 group :development, :test do
   # Guard
   gem "guard-bundler", require: false
@@ -92,10 +69,6 @@ group :development, :test do
   gem "fabrication"
   gem "faker"
   gem "database_cleaner"
-
-  # Feature tests
-  gem "capybara"
-  gem "selenium-webdriver"
 
   # Coverage
   gem "simplecov"

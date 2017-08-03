@@ -1,2 +1,0 @@
-class EpisodesDecorator < CollectionDecorator 
-end

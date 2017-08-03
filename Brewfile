@@ -1,2 +1,1 @@
 brew "ffmpeg"
-brew "geckodriver"

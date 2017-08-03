@@ -1,2 +1,0 @@
-class CategoriesDecorator < CollectionDecorator
-end
