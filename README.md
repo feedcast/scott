@@ -53,12 +53,6 @@ We are now using sidekiq to manage our asynchronous jobs.
 
 Sidekiq dashboard can be accessed at `http://localhost:5000/admin/jobs` by default.
 
-### Experiments
-
-We are running [Split](https://github.com/splitrb/split), an AB testing framework, at `http://localhost:5000/admin/experiments`.
-
-More information available at Split's [official page](https://github.com/splitrb/split).
-
 ### API
 
 The api is running under `/api`, same port as the core.

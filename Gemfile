@@ -51,7 +51,6 @@ gem "streamio-ffmpeg"
 
 # AB Testing
 gem "redis"
-gem "split"
 
 group :development, :test do
   # Guard

@@ -312,7 +312,6 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 3)
       tilt (>= 1.4.0)
-    simple-random (1.0.3)
     simplecov (0.13.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -324,10 +323,6 @@ GEM
       rack-protection (= 2.0.0)
       tilt (~> 2.0)
     slop (3.6.0)
-    split (3.0.0)
-      redis (>= 2.1)
-      simple-random (>= 0.9.3)
-      sinatra (>= 1.2.6)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -400,7 +395,6 @@ DEPENDENCIES
   sidekiq-scheduler
   simplecov
   sinatra (= 2)
-  split
   streamio-ffmpeg
   web-console (>= 3.3.0)
 
