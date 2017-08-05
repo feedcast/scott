@@ -2,13 +2,13 @@ require "rails_helper"
 require "support/json_response"
 
 RSpec.describe API::V1::Episode, type: :request do
-  describe "/api/episodes" do
+  describe "/episodes" do
     let(:episodes) { [] }
 
     before do
       episodes
 
-      get "/api/episodes/"
+      get "/episodes/"
     end
 
     it "returns success" do
@@ -39,13 +39,13 @@ RSpec.describe API::V1::Episode, type: :request do
     end
   end
 
-  describe "/api/episodes/:uuid" do
+  describe "/episodes/:uuid" do
     let(:episode) { Fabricate(:episode) }
     let(:serialized_episode) { EpisodeSerializer.new(episode).as_json }
     let(:uuid) { episode.uuid }
 
     before do
-      get "/api/episodes/#{uuid}"
+      get "/episodes/#{uuid}"
     end
 
     context "when the episode exists" do

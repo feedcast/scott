@@ -6,12 +6,10 @@ class API < Grape::API
     error!({ message: "not found" }, 404)
   end
 
-  namespace :api do
-    mount API::V1
-  end
-
   before do
     header("Access-Control-Expose-Headers", "total")
     header("Access-Control-Allow-Origin", "*")
   end
+
+  mount API::V1
 end

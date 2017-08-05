@@ -2,7 +2,7 @@ require "rails_helper"
 require "support/json_response"
 
 class API < Grape::API
-  namespace "api/test" do
+  namespace "/test" do
     get :document_not_found do
       raise Mongoid::Errors::DocumentNotFound.new(Channel, foo: "bar")
     end
@@ -12,7 +12,7 @@ end
 RSpec.describe API, type: :request do
   context "when there is a mongoid document not found error" do
     before do
-      get "/api/test/document_not_found"
+      get "/test/document_not_found"
     end
 
     it "returns not found" do

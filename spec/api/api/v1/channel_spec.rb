@@ -2,13 +2,13 @@ require "rails_helper"
 require "support/json_response"
 
 RSpec.describe API::V1::Channel, type: :request do
-  describe "/api/channels" do
+  describe "/channels" do
     let(:channels) { [] }
 
     before do
       channels
 
-      get "/api/channels/"
+      get "/channels/"
     end
 
     it "returns success" do
@@ -39,13 +39,13 @@ RSpec.describe API::V1::Channel, type: :request do
     end
   end
 
-  describe "/api/channels/:uuid" do
+  describe "/channels/:uuid" do
     let(:channel) { Fabricate(:channel, categories: []) }
     let(:serialized_channel) { ChannelSerializer.new(channel).as_json }
     let(:uuid) { channel.uuid }
 
     before do
-      get "/api/channels/#{uuid}"
+      get "/channels/#{uuid}"
     end
 
     context "when the channel exists" do
@@ -71,11 +71,11 @@ RSpec.describe API::V1::Channel, type: :request do
     end
   end
 
-  describe "/api/channels/:uuid/episodes" do
+  describe "/channels/:uuid/episodes" do
     let(:uuid) { channel.uuid }
 
     before do
-      get "/api/channels/#{uuid}/episodes"
+      get "/channels/#{uuid}/episodes"
     end
 
     context "when the channel does not exist" do

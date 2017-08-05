@@ -2,13 +2,13 @@ require "rails_helper"
 require "support/json_response"
 
 RSpec.describe API::V1::Category, type: :request do
-  describe "/api/categories" do
+  describe "/categories" do
     let(:categories) { [] }
 
     before do
       categories
 
-      get "/api/categories/"
+      get "/categories/"
     end
 
     it "returns success" do
@@ -39,13 +39,13 @@ RSpec.describe API::V1::Category, type: :request do
     end
   end
 
-  describe "/api/categories/:slug" do
+  describe "/categories/:slug" do
     let(:category) { Fabricate(:category_with_channels) }
     let(:serialized_category) { ::CategorySerializer.new(category).as_json }
     let(:slug) { category.slug }
 
     before do
-      get "/api/categories/#{slug}"
+      get "/categories/#{slug}"
     end
 
     context "when the category exists" do

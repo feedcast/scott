@@ -53,15 +53,11 @@ We are now using sidekiq to manage our asynchronous jobs.
 
 Sidekiq dashboard can be accessed at `http://localhost:5000/admin/jobs` by default.
 
-### API
-
-The api is running under `/api`, same port as the core.
-
 #### Endpoints
 
-* `GET /api/channels?page=N&per_page=Y` - Returns the list of all channels
-* `GET /api/channels/:uuid` - Returns the channel
-* `GET /api/channels/:uuid/episodes?page=N&per_page=Y` - Returns the channel's episodes
-* `GET /api/episodes?page=N&per_page=Y` - Returns the list of all episodes
-* `GET /api/episodes/:uuid` - Returns the specific episode
-* `GET /api/categories/:slug?page=N&per_page=Y` - Returns the list of categories
+* `GET /channels?page=N&per_page=Y` - Returns the list of all channels
+* `GET /channels/:uuid` - Returns the channel
+* `GET /channels/:uuid/episodes?page=N&per_page=Y` - Returns the channel's episodes
+* `GET /episodes?page=N&per_page=Y` - Returns the list of all episodes
+* `GET /episodes/:uuid` - Returns the specific episode
+* `GET /categories/:slug?page=N&per_page=Y` - Returns the list of categories
