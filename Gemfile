@@ -7,6 +7,7 @@ gem "rails", "~> 5"
 gem "grape"
 gem "grape-active_model_serializers"
 gem "api-pagination"
+gem "grape-rails-cache"
 
 # Server
 gem "puma", "~> 3"
@@ -49,8 +50,9 @@ gem "house.rb", ">= 0.1.1"
 # Audio analysis
 gem "streamio-ffmpeg"
 
-# AB Testing
+# Cache
 gem "redis"
+gem "redis-rails"
 
 group :development, :test do
   # Guard

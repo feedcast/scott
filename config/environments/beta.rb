@@ -35,8 +35,14 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  uri = URI.parse(ENV.fetch("REDIS_URL", "redis://127.0.0.1:6379"))
+  config.cache_store = :redis_store, {
+    host: uri.host,
+    port: uri.port,
+    password: uri.password,
+    username: uri.user,
+    namespace: "cache",
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
