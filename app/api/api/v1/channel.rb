@@ -5,6 +5,7 @@ class API::V1::Channel < Grape::API
     paginate per_page: 10
     get do
       page, per_page = params[:page], params[:per_page]
+
       cache(key: "api:channels:list:#{page}:#{per_page}", expires_in: 10.minutes) do
         channels = paginate(::Channel.all)
 
@@ -15,6 +16,7 @@ class API::V1::Channel < Grape::API
     route_param :uuid do
       get do
         uuid = params[:uuid]
+
         cache(key: "api:channels:#{uuid}", expires_in: 1.hour) do
           channel = ::Channel.find_by(uuid: uuid)
 
