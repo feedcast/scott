@@ -29,7 +29,7 @@ class API::V1::Channel < Grape::API
         uuid, page, per_page = params[:uuid], params[:page], params[:per_page]
 
         cache(key: "api:channels:#{uuid}:episodes:list:#{page}:#{per_page}", expires_in: 10.minutes) do
-          episodes = paginate(::Channel.find_by(uuid: uuid).episodes.order(created_at: :desc))
+          episodes = paginate(::Channel.find_by(uuid: uuid).episodes.order(published_at: :desc))
 
           { episodes: ::EpisodesSerializer.new(episodes).as_json }
         end
