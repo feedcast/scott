@@ -49,7 +49,6 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bindex (0.5.0)
     bson (4.2.1)
     builder (3.2.3)
     byebug (9.0.6)
@@ -366,11 +365,6 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    web-console (3.5.1)
-      actionview (>= 5.0)
-      activemodel (>= 5.0)
-      bindex (>= 0.4.0)
-      railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -417,7 +411,6 @@ DEPENDENCIES
   simplecov
   sinatra (= 2)
   streamio-ffmpeg
-  web-console (>= 3.3.0)
 
 RUBY VERSION
    ruby 2.4.1p111
