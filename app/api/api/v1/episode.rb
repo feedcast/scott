@@ -23,6 +23,25 @@ class API::V1::Episode < Grape::API
           EpisodeSerializer.new(episode)
         end
       end
+
+
+      namespace :next do
+        params do
+          requires :amount, type: Integer, values: (1..10).to_a
+        end
+        route_param :amount do
+          get do
+            uuid, amount = params[:uuid], params[:amount]
+
+            cache(key: "api:episodes:#{uuid}:next:#{amount}", expires_in: 6.hours) do
+              episode = Episode.find_by!(uuid: uuid)
+              episodes = EpisodeOperations::Next.new.call(episode: episode, amount: amount)
+
+              { episodes: ::EpisodesSerializer.new(episodes).as_json }
+            end
+          end
+        end
+      end
     end
   end
 end

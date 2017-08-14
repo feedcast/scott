@@ -70,4 +70,68 @@ RSpec.describe API::V1::Episode, type: :request do
       end
     end
   end
+
+  describe "/episodes/:uuid/next" do
+    let(:episode) { Fabricate(:episode) }
+    let(:amount) { 1 }
+    let(:uuid) { episode.uuid }
+
+    before do
+      allow_any_instance_of(EpisodeOperations::Next).to receive(:call).and_return([episode, episode])
+
+      get "/episodes/#{uuid}/next/#{amount}"
+    end
+
+    context "when the episode exists" do
+      context "when the amount is bigger than 0 and smaller than 10" do
+        let(:amount) { 5 }
+
+        it "returns success" do
+          expect(response).to have_http_status(:success)
+        end
+
+        it "returns the expected content" do
+          serialized_episode = EpisodeSerializer.new(episode).as_json
+
+          expect(json_response[:episodes]).to include(serialized_episode)
+        end
+      end
+
+      context "when the amount is bigger than 10" do
+        let(:amount) { 100 }
+
+        it "returns bad request" do
+          expect(response).to have_http_status(:bad_request)
+        end
+
+        it "returns the error message" do
+          expect(json_response).to eq(error: "amount does not have a valid value")
+        end
+      end
+
+      context "when the amount is lower or equal to 0" do
+        let(:amount) { 0 }
+
+        it "returns bad request" do
+          expect(response).to have_http_status(:bad_request)
+        end
+
+        it "returns the error message" do
+          expect(json_response).to eq(error: "amount does not have a valid value")
+        end
+      end
+    end
+
+    context "when the episode does not exist" do
+      let(:uuid) { "invalid-uuid" }
+
+      it "returns not found" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns the error message" do
+        expect(json_response).to eq(message: "not found")
+      end
+    end
+  end
 end

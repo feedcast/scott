@@ -1,20 +1,23 @@
 module EpisodeOperations
   class Next < FunctionalOperations::Operation
     def arguments
-      required :uuid, String
+      required :episode, Episode
+      required :amount, Integer
     end
 
     def perform
-      episode = find(@uuid)
+      episodes = []
+      episode = @episode
 
-      next_published_for(episode) || sample_from_another_channel_for(episode)
+      @amount.times do
+        episode = next_published_for(episode) || sample_from_another_channel_for(episode)
+        episodes << episode unless episode.nil?
+      end
+
+      episodes
     end
 
     private
-
-    def find(uuid)
-      Episode.includes(:channel).find_by(uuid: uuid)
-    end
 
     def sample_from_another_channel_for(episode)
       Episode.where(:id.ne => episode.id, :channel_id.ne => episode.channel_id).sample
