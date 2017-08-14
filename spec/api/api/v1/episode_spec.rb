@@ -8,7 +8,7 @@ RSpec.describe API::V1::Episode, type: :request do
     before do
       episodes
 
-      get "/episodes/"
+      get "/episodes"
     end
 
     it "returns success" do

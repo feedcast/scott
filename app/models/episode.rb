@@ -32,18 +32,4 @@ class Episode
   def self.find_for(channel, episode)
     Episode.find_by(_slugs: episode, channel_id: Channel.find(channel).id)
   end
-
-  def next
-    return @next if @next.present?
-
-    @next = Episode.where(:id.ne => self.id,
-                          :published_at.gt => self.published_at,
-                          :channel_id => channel.id)
-                    .order_by(published_at: :asc)
-                    .first
-
-    @next = Episode.where(:id.ne => self.id).sample if @next.nil?
-
-    @next
-  end
 end
