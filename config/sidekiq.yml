@@ -5,6 +5,7 @@
 :queues:
   - synchronization
   - analysis
+  - index
   - default
 production:
   :concurrency: 15
@@ -20,3 +21,6 @@ development:
   audio_synchronization_scheduler_job:
     every: 15m
     class: AudioAnalysisSchedulerJob
+  search_indexer_scheduler_job:
+    every: 10m
+    class: SearchIndexerSchedulerJob

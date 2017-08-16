@@ -15,6 +15,10 @@ RSpec.describe "Synchronizer", type: :operation do
             expect(channel).to be_synchronized
           end
 
+          it "changes the updated_at attribute" do
+            expect(channel.updated_at.utc).to be_within(1.second).of Time.now
+          end
+
           it "creates the episodes in the database" do
             expect(channel.episodes.count).to eq(2)
           end
@@ -69,6 +73,10 @@ RSpec.describe "Synchronizer", type: :operation do
         expect {
           run(ChannelOperations::Synchronize, channel: channel)
         }.to change { channel.episodes.count }.from(2).to(5)
+      end
+
+      it "changes the updated_at attribute" do
+        expect(channel.updated_at.utc).to be_within(1.second).of Time.now
       end
     end
   end
