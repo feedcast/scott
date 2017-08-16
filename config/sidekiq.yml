@@ -5,7 +5,7 @@
 :queues:
   - synchronization
   - analysis
-  - index
+  - indexing
   - default
 production:
   :concurrency: 15

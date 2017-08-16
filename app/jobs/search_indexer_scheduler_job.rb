@@ -1,5 +1,5 @@
 class SearchIndexerSchedulerJob < ApplicationJob
-  queue_as :index
+  queue_as :indexing
 
   def perform
     run(ChannelOperations::IndexAllOutdated)
