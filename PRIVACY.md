@@ -3,7 +3,7 @@
 ----------
 
 
-This Privacy Policy governs the manner in which Feedcast collects, uses, maintains and discloses information collected from users (each, a "User") of the [http://www.feedcast.com.br](www.feedcast.com.br) website ("Site").
+This Privacy Policy governs the manner in which Feedcast collects, uses, maintains and discloses information collected from users (each, a "User") of the [http://feedcast.io](feedcast.io) website ("Site").
 
 ### Personal identification information
 
