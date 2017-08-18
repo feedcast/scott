@@ -22,5 +22,12 @@ module Feedcast
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.active_job.queue_adapter = :sidekiq
+
+
+    # Remove some useless middlewares
+    config.middleware.delete Rack::Sendfile
+    config.middleware.delete Rack::Pjax
+    config.middleware.delete ActionDispatch::Flash
+    config.middleware.delete Rack::MethodOverride
   end
 end
