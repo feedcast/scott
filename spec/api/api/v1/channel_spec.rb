@@ -39,13 +39,13 @@ RSpec.describe API::V1::Channel, type: :request do
     end
   end
 
-  describe "/channels/:uuid" do
+  describe "/channels/:slug" do
     let(:channel) { Fabricate(:channel, categories: []) }
     let(:serialized_channel) { ChannelSerializer.new(channel).as_json }
-    let(:uuid) { channel.uuid }
+    let(:slug) { channel.slug }
 
     before do
-      get "/channels/#{uuid}"
+      get "/channels/#{slug}"
     end
 
     context "when the channel exists" do
@@ -59,7 +59,7 @@ RSpec.describe API::V1::Channel, type: :request do
     end
 
     context "when the channel does not exist" do
-      let(:uuid) { "invalid-uuid" }
+      let(:slug) { "invalid-slug" }
 
       it "returns not found" do
         expect(response).to have_http_status(:not_found)
@@ -71,15 +71,15 @@ RSpec.describe API::V1::Channel, type: :request do
     end
   end
 
-  describe "/channels/:uuid/episodes" do
-    let(:uuid) { channel.uuid }
+  describe "/channels/:slug/episodes" do
+    let(:slug) { channel.slug }
 
     before do
-      get "/channels/#{uuid}/episodes"
+      get "/channels/#{slug}/episodes"
     end
 
     context "when the channel does not exist" do
-      let(:uuid) { "invalid-uuid" }
+      let(:slug) { "invalid-slug" }
 
       it "returns not found" do
         expect(response).to have_http_status(:not_found)
