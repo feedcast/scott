@@ -10,7 +10,7 @@
 
 ## Contributing
 
-Please consider reading our [Contribution Guide](CONTRIBUTING.md) before anything else.
+Please consider reading our [Contribution Guide](https://github.com/feedcast/contributing) before anything else.
 
 ## Setup
 
