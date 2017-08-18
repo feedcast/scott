@@ -7,7 +7,7 @@ module ImageProxy
     attr_accessor :image_url, :height, :width
 
     def initialize(original_url, height: 300, width: 300)
-      @image_url, @height, @width  = escape(original_url), height, width
+      @image_url, @height, @width = escape(original_url), height, width
     end
 
     def to_s
