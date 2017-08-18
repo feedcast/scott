@@ -29,7 +29,7 @@ class Episode
      .and(:"audio.error_count".lt => Audio::MAX_ERROR_COUNT)
   end
 
-  def self.find_for(channel, episode)
-    Episode.find_by(_slugs: episode, channel_id: Channel.find(channel).id)
+  def self.find_for(channel_slug, episode_slug)
+    Episode.find_by(_slugs: episode_slug, channel_id: Channel.find(channel_slug).id)
   end
 end

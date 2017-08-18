@@ -3,11 +3,9 @@ require "support/json_response"
 
 RSpec.describe API::V1::Episode, type: :request do
   describe "/episodes" do
-    let(:episodes) { [] }
+    let!(:episodes) { [] }
 
     before do
-      episodes
-
       get "/episodes"
     end
 
@@ -39,27 +37,42 @@ RSpec.describe API::V1::Episode, type: :request do
     end
   end
 
-  describe "/episodes/:uuid" do
+  describe "/episodes/:channel_slug/:episode_slug" do
     let(:episode) { Fabricate(:episode) }
     let(:serialized_episode) { EpisodeSerializer.new(episode).as_json }
-    let(:uuid) { episode.uuid }
+    let(:channel_slug) { episode.channel.slug }
+    let(:episode_slug) { episode.slug }
 
     before do
-      get "/episodes/#{uuid}"
+      get "/episodes/#{channel_slug}/#{episode_slug}"
     end
 
-    context "when the episode exists" do
-      it "returns success" do
-        expect(response).to have_http_status(:success)
+    context "when the channel exists" do
+      context "when the episode exists" do
+        it "returns success" do
+          expect(response).to have_http_status(:success)
+        end
+
+        it "returns the episode information" do
+          expect(json_response).to eq(serialized_episode)
+        end
       end
 
-      it "returns the episode information" do
-        expect(json_response).to eq(serialized_episode)
+      context "when the episode does not exist" do
+        let(:episode_slug) { "invalid-episode" }
+
+        it "returns not found" do
+          expect(response).to have_http_status(:not_found)
+        end
+
+        it "returns the error message" do
+          expect(json_response).to eq(message: "not found")
+        end
       end
     end
 
-    context "when the episode does not exist" do
-      let(:uuid) { "invalid-uuid" }
+    context "when the channel does not exist" do
+      let(:channel_slug) { "invalid-channel" }
 
       it "returns not found" do
         expect(response).to have_http_status(:not_found)
@@ -71,15 +84,16 @@ RSpec.describe API::V1::Episode, type: :request do
     end
   end
 
-  describe "/episodes/:uuid/next" do
+  describe "/episodes/:channel_slug/:episode_slug/next" do
     let(:episode) { Fabricate(:episode) }
     let(:amount) { 1 }
-    let(:uuid) { episode.uuid }
+    let(:channel_slug) { episode.channel.slug }
+    let(:episode_slug) { episode.slug }
 
     before do
       allow_any_instance_of(EpisodeOperations::Next).to receive(:call).and_return([episode, episode])
 
-      get "/episodes/#{uuid}/next/#{amount}"
+      get "/episodes/#{channel_slug}/#{episode_slug}/next/#{amount}"
     end
 
     context "when the episode exists" do
@@ -123,7 +137,7 @@ RSpec.describe API::V1::Episode, type: :request do
     end
 
     context "when the episode does not exist" do
-      let(:uuid) { "invalid-uuid" }
+      let(:episode_slug) { "invalid-slug" }
 
       it "returns not found" do
         expect(response).to have_http_status(:not_found)
