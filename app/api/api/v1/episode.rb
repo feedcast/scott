@@ -33,7 +33,7 @@ class API::V1::Episode < Grape::API
             get do
               channel_slug, episode_slug, amount = params[:channel_slug], params[:episode_slug], params[:amount]
 
-              cache(key: "api:episodes:#{channel_slug}:#{episode_slug}:next:#{amount}", expires_in: 6.hours) do
+              cache(key: "api:episodes:#{channel_slug}:#{episode_slug}:next:#{amount}", expires_in: 1.day) do
                 episode = Episode.find_for(channel_slug, episode_slug)
                 episodes = EpisodeOperations::Next.new.call(episode: episode, amount: amount)
 
