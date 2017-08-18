@@ -1,5 +1,13 @@
-# :headphones: Feedcast [![Build Status](https://travis-ci.org/feedcast/core.svg?branch=master)](https://travis-ci.org/feedcast/core) [![Code Climate](https://codeclimate.com/github/marceloboeira/feedcast/badges/gpa.svg)](https://codeclimate.com/github/marceloboeira/feedcast) [![Test Coverage](https://codeclimate.com/github/marceloboeira/feedcast/badges/coverage.svg)](https://codeclimate.com/github/marceloboeira/feedcast/coverage)
-> Listen to all your favorite podcasts in the same place
+<p align="center">
+  <img src="https://raw.githubusercontent.com/feedcast/scott/master/docs/logo.jpg" width="400">
+  <h1 align="center" style="margin-top: -50px">Scott</h1>
+  <p align="center">:briefcase: The Podcast Manager<p>
+</p>
+
+
+## Badges
+
+[![Build Status](https://travis-ci.org/feedcast/scott.svg?branch=master)](https://travis-ci.org/feedcast/scott) [![Code Climate](https://codeclimate.com/github/marceloboeira/feedcast/badges/gpa.svg)](https://codeclimate.com/github/marceloboeira/feedcast) [![Test Coverage](https://codeclimate.com/github/marceloboeira/feedcast/badges/coverage.svg)](https://codeclimate.com/github/marceloboeira/feedcast/coverage)
 
 ## Contributing
 
