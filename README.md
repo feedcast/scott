@@ -4,7 +4,6 @@
   <p align="center">:briefcase: The Podcast Manager<p>
 </p>
 
-
 ## Badges
 
 [![Build Status](https://travis-ci.org/feedcast/scott.svg?branch=master)](https://travis-ci.org/feedcast/scott) [![Code Climate](https://codeclimate.com/github/marceloboeira/feedcast/badges/gpa.svg)](https://codeclimate.com/github/marceloboeira/feedcast) [![Test Coverage](https://codeclimate.com/github/marceloboeira/feedcast/badges/coverage.svg)](https://codeclimate.com/github/marceloboeira/feedcast/coverage)
