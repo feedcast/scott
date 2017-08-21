@@ -5,7 +5,7 @@ module ChannelOperations
     end
 
     def perform
-      # Put request to Scully with @channel.to_json
+      SearchIndexRequest.new(@channel.to_json)
     end
   end
 end

@@ -4,6 +4,7 @@ REDIS_URL: redis://127.0.0.1:6379
 
 # Host
 FEEDCAST_HOST: api.dev.feedcast.io
+FEEDCAST_SEARCH: https://search.feedcast.io
 
 # Admin Area
 FEEDCAST_HTTP_AUTH_USER: admin
