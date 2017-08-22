@@ -106,6 +106,9 @@ GEM
     grape-rails-cache (0.1.2)
       activesupport
       grape
+    graphiql-rails (1.4.4)
+      rails
+    graphql (1.6.7)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -380,6 +383,8 @@ DEPENDENCIES
   grape
   grape-active_model_serializers
   grape-rails-cache
+  graphiql-rails
+  graphql
   guard-bundler
   guard-rspec
   house.rb (>= 0.1.1)
