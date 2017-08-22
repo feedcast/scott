@@ -1,8 +1,8 @@
 .PHONY: default
-default: setup
+default: install
 
-.PHONY: setup
-setup:
+.PHONY: install
+install:
 	gem install foreman
 	bin/bundle install
 	cp config/application.default.yml config/application.yml

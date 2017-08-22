@@ -24,7 +24,7 @@ It is expected to have already installed:
 
 If you are in a mac you can install the non-ruby or database dependencies by running `brew bundle`.
 
-Run `make setup` to install the dependencies and set the default environment variables.
+Run `make install` to install the dependencies and set the default environment variables.
 
 Run `make seed` to add sample channels.
 
@@ -34,7 +34,7 @@ We are currently using [Figaro](https://github.com/laserlemon/figaro) to manage 
 
 The variables can be defined at `config/application.yml`  and the default template setup with the list of all variables is available at `config/application.default.yml`.
 
-The command `make setup` already copies the default file template to `config/application.yml`.
+The command `make install` already copies the default file template to `config/application.yml`.
 
 ## Showtime
 
