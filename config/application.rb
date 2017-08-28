@@ -28,6 +28,5 @@ module Feedcast
     config.middleware.delete Rack::Sendfile
     config.middleware.delete Rack::Pjax
     config.middleware.delete ActionDispatch::Flash
-    config.middleware.delete Rack::MethodOverride
   end
 end
