@@ -7,7 +7,7 @@ class API::V1::Channel < Grape::API
       page, per_page = params[:page], params[:per_page]
 
       cache(key: "api:channels:list:#{page}:#{per_page}", expires_in: 10.minutes) do
-        channels = paginate(::Channel.all)
+        channels = paginate(::Channel.all.order(created_at: :desc))
 
         { channels: ::ChannelsSerializer.new(channels).as_json }
       end
