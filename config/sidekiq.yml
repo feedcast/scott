@@ -21,6 +21,6 @@ development:
   audio_synchronization_scheduler_job:
     every: 15m
     class: AudioAnalysisSchedulerJob
-  search_indexer_scheduler_job:
-    every: 10m
-    class: SearchIndexerSchedulerJob
+  episode_indexer_scheduler_job:
+    every: 15m
+    class: EpisodeIndexerSchedulerJob

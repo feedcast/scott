@@ -1,11 +1,11 @@
-module ChannelOperations
+module EpisodeOperations
   class Index < FunctionalOperations::Operation
     def arguments
-      required :channel, Channel
+      required :episode, Episode
     end
 
     def perform
-      SearchIndexRequest.new(@channel.to_json)
+      SearchIndexRequest.new(@episode.to_json)
     end
   end
 end

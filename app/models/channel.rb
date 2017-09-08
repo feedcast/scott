@@ -14,7 +14,6 @@ class Channel
   field :synchronization_status, type: Symbol, default: :new
   field :synchronization_status_message, type: String
   field :synchronized_at, type: Time, default: 1.year.ago
-  field :indexed_at, type: Time
   field :listed, type: Boolean, default: true
 
   slug :title

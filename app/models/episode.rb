@@ -10,6 +10,7 @@ class Episode
   field :summary, type: String
   field :description, type: String
   field :published_at, type: DateTime
+  field :indexed_at, type: DateTime
 
   slug :title, scope: :channel
 
