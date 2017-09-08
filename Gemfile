@@ -23,6 +23,9 @@ gem "mongoid", "~> 6"
 gem "mongoid-uuid"
 gem "mongoid-slug"
 
+# Indexing
+gem "rest-client"
+
 # Validators
 gem "date_validator"
 
@@ -61,6 +64,9 @@ group :development, :test do
   # Rack Server
   gem "sinatra", "2"
   gem "sham_rack"
+
+  # HTTP Mock
+  gem "webmock"
 
   # Test Support
   gem "fabrication"
