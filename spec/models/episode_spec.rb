@@ -38,7 +38,7 @@ RSpec.describe Episode, type: :model do
       end
     end
 
-    describe "not analised" do
+    describe "not analysed" do
       let!(:episodes) do
         [
           Fabricate(:episode),

@@ -1,7 +1,7 @@
 module AudioServices
   class ScheduleAnalysis
     def call
-      Episode.not_analysed.order_by(published_at: :desc).each do |episode|
+      Episode.not_analysed.each do |episode|
         schedule_analysis_for(episode.audio)
       end
     end

@@ -1,25 +1,25 @@
 require "rails_helper"
 
 RSpec.describe AudioServices::ScheduleAnalysis do
-  let!(:episodes) do
+  let(:episodes) do
     [
-      Fabricate(:episode),
-      Fabricate(:episode),
-      Fabricate(:episode),
-      Fabricate(:episode_with_failed_audio),
-      Fabricate(:episode_with_analysed_audio),
+      double(:episode, audio: double(:audio)),
+      double(:episode, audio: double(:audio)),
+      double(:episode, audio: double(:audio)),
     ]
   end
   let(:service) { AudioServices::ScheduleAnalysis.new }
 
-  it "runs only the not analysed ones" do
-    episodes.first(4).each do |episode|
+  before do
+    allow(Episode).to receive(:not_analysed).and_return(episodes)
+  end
+
+  it "schedule an analysis for the return of the query" do
+    episodes.each do |episode|
       allow(service).to receive(:schedule_analysis_for).with(episode.audio)
 
       expect(service).to receive(:schedule_analysis_for).with(episode.audio)
     end
-
-    expect(service).to_not receive(:schedule_analysis_for).with(episodes.last.audio)
 
     service.call
   end
