@@ -22,5 +22,5 @@ development:
     every: 15m
     class: AudioAnalysisSchedulerJob
   episode_indexer_scheduler_job:
-    every: 15m
+    every: 48h
     class: EpisodeIndexerSchedulerJob
