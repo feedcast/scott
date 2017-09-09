@@ -2,6 +2,6 @@ class AudioAnalysisSchedulerJob < ApplicationJob
   queue_as :analysis
 
   def perform
-    run(AudioOperations::ScheduleAll)
+    AudioServices::ScheduleAnalysis.new.call
   end
 end

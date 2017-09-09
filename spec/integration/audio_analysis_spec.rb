@@ -14,7 +14,7 @@ RSpec.describe "Audio Analysis", type: :operation do
     let(:unanalysable_audio) { episodes.last.reload.audio }
 
     before do
-      run(AudioOperations::ScheduleAll, {})
+      AudioServices::ScheduleAnalysis.new.call
     end
 
     context "with the correct audios" do

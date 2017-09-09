@@ -1,6 +1,6 @@
-module AudioOperations
-  class ScheduleAll < FunctionalOperations::Operation
-    def perform
+module AudioServices
+  class ScheduleAnalysis
+    def call
       Episode.not_analysed.order_by(published_at: :desc).each do |episode|
         schedule_analysis_for(episode.audio)
       end
