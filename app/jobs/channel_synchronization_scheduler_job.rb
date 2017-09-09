@@ -1,7 +1,7 @@
 class ChannelSynchronizationSchedulerJob < ApplicationJob
   queue_as :synchronization
 
-  def perform(*args)
+  def perform
     run(ChannelOperations::ScheduleAll)
   end
 end
