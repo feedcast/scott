@@ -16,7 +16,7 @@ module EpisodeServices
     end
 
     def serialize(episode)
-      { uuid: episode.uuid, title: episode.title }.to_json
+      ::EpisodeSearchSerializer.new(episode).to_json
     end
 
     def index_uri

@@ -6,7 +6,7 @@ RSpec.describe EpisodeServices::Index do
   let(:service) { EpisodeServices::Index.new }
   let(:scully_stub) do
     stub_request(:put, scully_url)
-      .with(body: { uuid: episode.uuid, title: episode.title }.to_json)
+      .with(body: ::EpisodeSearchSerializer.new(episode).to_json)
   end
 
   before do
