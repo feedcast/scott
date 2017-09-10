@@ -12,8 +12,7 @@ gem "grape-rails-cache"
 # Server
 gem "puma", "~> 3"
 
-# Operations
-gem "functional_operations"
+# Background Processing
 gem "sidekiq"
 gem "sidekiq-scheduler"
 gem "sidekiq-failures"
@@ -23,7 +22,7 @@ gem "mongoid", "~> 6"
 gem "mongoid-uuid"
 gem "mongoid-slug"
 
-# Indexing
+# Services Request
 gem "rest-client"
 
 # Validators

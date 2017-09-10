@@ -35,7 +35,7 @@ class API::V1::Episode < Grape::API
 
               cache(key: "api:episodes:#{channel_slug}:#{episode_slug}:next:#{amount}", expires_in: 1.day) do
                 episode = Episode.find_for(channel_slug, episode_slug)
-                episodes = EpisodeOperations::Next.new.call(episode: episode, amount: amount)
+                episodes = EpisodeServices::Next.new.call(episode, amount)
 
                 { episodes: ::EpisodesSerializer.new(episodes).as_json }
               end

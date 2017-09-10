@@ -1,6 +1,8 @@
 require "rails_helper"
 
-RSpec.describe ChannelOperations::Synchronize, type: :operation do
+RSpec.describe ChannelServices::Synchronize do
+  let(:service) { ChannelServices::Synchronize.new }
+
   context "when the feed is valid" do
     let(:channel) { Fabricate(:channel, image_url: "foo.png", description: "bar", site_url: "http://google.com") }
     let(:items) do
@@ -19,8 +21,8 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     end
 
     before do
-      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(ChannelOperations::DownloadFeed, feed_url: channel.feed_url).and_return(feed)
-      allow_any_instance_of(ChannelOperations::Synchronize).to receive(:run).with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items).and_return(true)
+      allow(service).to receive(:download).with(channel.feed_url).and_return(feed)
+      allow(service).to receive(:synchronize_episodes_with!).and_return(true)
     end
 
     describe "description" do
@@ -30,15 +32,15 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
             channel.description = nil
             channel.save
 
-            expect {
-              run(ChannelOperations::Synchronize, channel: channel)
-            }.to change(channel, :description).to("Foo")
+            service.call(channel)
+
+            expect(channel.description).to eq("Foo")
           end
         end
 
         context "and the channel already has a description" do
-          it "does not not update it" do
-            run(ChannelOperations::Synchronize, channel: channel)
+          it "does not update it" do
+            service.call(channel)
 
             expect(channel.description).to eq("bar")
           end
@@ -49,9 +51,7 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
         it "does not updates it" do
           allow(feed).to receive(:description).and_return(nil)
 
-          run(ChannelOperations::Synchronize, channel: channel)
-
-          expect(channel.description).to_not be_nil
+          expect(channel.description).to_not eq(nil)
         end
       end
     end
@@ -63,26 +63,25 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
             channel.image_url = nil
             channel.save
 
-            expect {
-              run(ChannelOperations::Synchronize, channel: channel)
-            }.to change(channel, :image_url).to("http://foo.bar/logo.png")
+            service.call(channel)
+            expect(channel.image_url).to eq("http://foo.bar/logo.png")
           end
         end
 
         context "and the channel already has a image_url" do
-          it "does not not update it" do
-            run(ChannelOperations::Synchronize, channel: channel)
+          it "does not update it" do
+            service.call(channel)
 
-            expect(channel.image_url).to eq("foo.png")
+            expect(channel.image_url).to_not eq("http://foo.bar/logo.png")
           end
         end
       end
 
       context "when the feed image_url is nil" do
-        it "does not updates it" do
+        it "does not update it" do
           allow(feed).to receive(:image_url).and_return(nil)
 
-          run(ChannelOperations::Synchronize, channel: channel)
+          service.call(channel)
 
           expect(channel.image_url).to_not be_nil
         end
@@ -96,28 +95,28 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
             channel.site_url = nil
             channel.save
 
-            expect {
-              run(ChannelOperations::Synchronize, channel: channel)
-            }.to change(channel, :site_url).to("http://feedcast.com.br/my-cool-channel")
+            service.call(channel)
+
+            expect(channel.site_url).to eq("http://feedcast.com.br/my-cool-channel")
           end
         end
 
         context "and the channel already has a site_url" do
-          it "does not not update it" do
-            run(ChannelOperations::Synchronize, channel: channel)
+          it "does not update it" do
+            service.call(channel)
 
-            expect(channel.site_url).to eq("http://google.com")
+            expect(channel.site_url).to_not eq("http://feedcast.com.br/my-cool-channel")
           end
         end
       end
 
       context "when the feed site_url is nil" do
-        it "does not updates it" do
+        it "does not update it" do
           allow(feed).to receive(:site_url).and_return(nil)
 
-          run(ChannelOperations::Synchronize, channel: channel)
+          service.call(channel)
 
-          expect(channel.site_url).to_not be_nil
+          expect(channel.site_url).to_not eq(nil)
         end
       end
     end
@@ -126,14 +125,13 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
       let(:channel) { Fabricate(:channel, synchronization_status: :new, synchronized_at: 3.hours.ago) }
 
       it "triggers the episodes' synchronization" do
-        expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run)
-          .with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
+        expect(service).to receive(:synchronize_episodes_with!).with(items, channel)
 
-        run(ChannelOperations::Synchronize, channel: channel)
+        service.call(channel)
       end
 
       it "sets the channel status to synchronized" do
-        run(ChannelOperations::Synchronize, channel: channel)
+        service.call(channel)
 
         expect(channel.reload).to be_synchronized
       end
@@ -146,14 +144,13 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
         let(:channel) { Fabricate(:channel, synchronization_status: :success, synchronized_at: 3.hours.ago) }
 
         it "triggers the episodes' synchronization" do
-          expect_any_instance_of(ChannelOperations::Synchronize).to receive(:run)
-            .with(EpisodeOperations::SynchronizeAll, channel: channel, feed_items: items)
+          expect(service).to receive(:synchronize_episodes_with!).with(items, channel)
 
-          run(ChannelOperations::Synchronize, channel: channel)
+          service.call(channel)
         end
 
         it "sets the channel status to synchronized" do
-          run(ChannelOperations::Synchronize, channel: channel)
+          service.call(channel)
 
           expect(channel.reload).to be_synchronized
         end
@@ -165,24 +162,22 @@ RSpec.describe ChannelOperations::Synchronize, type: :operation do
     let(:channel) { Fabricate(:channel, synchronized_at: 3.hours.ago) }
 
     before do
-      allow_any_instance_of(ChannelOperations::DownloadFeed).to receive(:call)
-        .and_raise(ChannelOperations::DownloadFeed::InvalidFeed.new("invalid feed"))
+      allow(service).to receive(:download)
+        .and_raise(ChannelServices::DownloadFeed::InvalidFeed.new("invalid feed"))
     end
 
     it "does not raise an error" do
-      expect {
-        run(ChannelOperations::Synchronize, channel: channel)
-      }.to_not raise_error
+      expect { service.call(channel) }.to_not raise_error
     end
 
     it "sets the channel status to failure" do
-      run(ChannelOperations::Synchronize, channel: channel)
+      service.call(channel)
 
       expect(channel).to be_failed
     end
 
     it "sets the failure message" do
-      run(ChannelOperations::Synchronize, channel: channel)
+      service.call(channel)
 
       expect(channel.synchronization_status_message).to include("invalid feed")
     end

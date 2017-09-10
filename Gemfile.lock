@@ -96,7 +96,6 @@ GEM
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     formatador (0.2.5)
-    functional_operations (2.3.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     grape (1.0.0)
@@ -399,7 +398,6 @@ DEPENDENCIES
   fabrication
   faker
   figaro
-  functional_operations
   grape
   grape-active_model_serializers
   grape-rails-cache
@@ -434,4 +432,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.0
+   1.15.3

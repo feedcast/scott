@@ -1,15 +1,10 @@
-module EpisodeOperations
-  class Next < FunctionalOperations::Operation
-    def arguments
-      required :episode, Episode
-      required :amount, Integer
-    end
-
-    def perform
+module EpisodeServices
+  class Next
+    def call(episode, amount)
       episodes = []
-      episode = @episode
+      episode = episode
 
-      @amount.times do
+      amount.times do
         episode = next_published_for(episode) || sample_from_another_channel_for(episode)
         episodes << episode unless episode.nil?
       end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe EpisodeOperations::Next, type: :operation do
+RSpec.describe EpisodeServices::Next do
   let!(:channel) { Fabricate(:channel, title: "Foo") }
   let!(:other_channel) { Fabricate(:channel_with_episodes) }
   let(:episode) { episodes.third }
@@ -14,8 +14,8 @@ RSpec.describe EpisodeOperations::Next, type: :operation do
     ]
   end
   let(:amount) { 1 }
-  let(:operation) { run(EpisodeOperations::Next, episode: episode, amount: amount) }
-  let(:next_episodes) { operation }
+  let(:service) { EpisodeServices::Next.new.call(episode, amount) }
+  let(:next_episodes) { service }
 
   context "when there are other episodes for the channel" do
     context "and there are recentest episode" do

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Audio Analysis", type: :operation do
+RSpec.describe "Audio Analysis" do
   context "when there are audios to be analysed" do
     let!(:episodes) do
       [

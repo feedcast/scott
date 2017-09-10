@@ -1,16 +1,12 @@
 require "rest-client"
 
-module EpisodeOperations
-  class Index < FunctionalOperations::Operation
-    def arguments
-      required :episode, Episode
-    end
+module EpisodeServices
+  class Index
+    def call(episode)
+      trigger_request(episode)
 
-    def perform
-      response = trigger_request(@episode)
-      
-      @episode.indexed_at = Time.zone.now
-      @episode.save!
+      episode.indexed_at = Time.zone.now
+      episode.save!
     end
 
     private

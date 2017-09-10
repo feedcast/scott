@@ -1,6 +1,6 @@
-module ChannelOperations
-  class ScheduleAll < FunctionalOperations::Operation
-    def perform
+module ChannelServices
+  class ScheduleSynchronization
+    def call
       Channel.all.each do |channel|
         schedule_sync_for(channel)
       end

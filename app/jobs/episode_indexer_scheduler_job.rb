@@ -2,6 +2,6 @@ class EpisodeIndexerSchedulerJob < ApplicationJob
   queue_as :indexing
 
   def perform
-    run(EpisodeOperations::IndexAllOutdated)
+    EpisodeServices::IndexOutdated.new.call
   end
 end

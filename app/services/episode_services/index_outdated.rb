@@ -1,6 +1,6 @@
-module EpisodeOperations
-  class IndexAllOutdated < FunctionalOperations::Operation
-    def perform
+module EpisodeServices
+  class IndexOutdated
+    def call
       Episode.all.each do |episode|
         if episode.indexed_at.nil? || episode.updated_at > episode.indexed_at
           schedule_indexer_for(episode)

@@ -91,7 +91,7 @@ RSpec.describe API::V1::Episode, type: :request do
     let(:episode_slug) { episode.slug }
 
     before do
-      allow_any_instance_of(EpisodeOperations::Next).to receive(:call).and_return([episode, episode])
+      allow_any_instance_of(EpisodeServices::Next).to receive(:call).and_return([episode, episode])
 
       get "/episodes/#{channel_slug}/#{episode_slug}/next/#{amount}"
     end

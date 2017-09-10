@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "Synchronizer", type: :operation do
+RSpec.describe "Channel Synchronizer" do
   before do
-    run(ChannelOperations::Synchronize, channel: channel)
+    ChannelServices::Synchronize.new.call(channel)
   end
 
   context "when the feed is valid" do
@@ -71,7 +71,7 @@ RSpec.describe "Synchronizer", type: :operation do
 
       it "updates the channel episodes count" do
         expect {
-          run(ChannelOperations::Synchronize, channel: channel)
+          ChannelServices::Synchronize.new.call(channel)
         }.to change { channel.episodes.count }.from(2).to(5)
       end
 
