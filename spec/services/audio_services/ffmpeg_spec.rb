@@ -1,14 +1,10 @@
 require "rails_helper"
 
-RSpec.describe AudioOperations::FFMPEG, type: :operation do
-  let(:output) do
-    run(AudioOperations::FFMPEG, params)
-  end
+RSpec.describe AudioServices::FFMPEG do
+  let(:output) { AudioServices::FFMPEG.new.call(filepath) }
 
   context "when the file is valid" do
-    let(:params) do
-      { file_path:  File.join("spec/fixtures/valid.mp3") }
-    end
+    let(:filepath) { File.join("spec/fixtures/valid.mp3") }
 
     it "returns the size" do
       expect(output.size).to be(3428651)
@@ -32,14 +28,12 @@ RSpec.describe AudioOperations::FFMPEG, type: :operation do
   end
 
   context "when the file is invalid" do
-    let(:params) do
-      { file_path:  File.join("spec/fixtures/invalid.mp3") }
-    end
+    let(:filepath) { File.join("spec/fixtures/invalid.mp3") }
 
     it "raises an error" do
       expect {
-        run(AudioOperations::FFMPEG, params)
-      }.to raise_error(AudioOperations::FFMPEG::InvalidAudioFile, "Invalid Audio File - Invalid argument")
+        AudioServices::FFMPEG.new.call(filepath)
+      }.to raise_error(AudioServices::FFMPEG::InvalidAudioFile, "Invalid Audio File - Invalid argument")
     end
   end
 end

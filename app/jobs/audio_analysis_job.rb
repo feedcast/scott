@@ -1,7 +1,13 @@
 class AudioAnalysisJob < ApplicationJob
   queue_as :analysis
 
-  def perform(episode_uuid)
-    run(AudioOperations::Analyse, audio: Episode.find_by(uuid: episode_uuid).audio)
+  def perform(uuid)
+    AudioServices::Analyse.new.call(audio(uuid))
+  end
+
+  private
+
+  def audio(uuid)
+    Episode.find_by(uuid: uuid).audio
   end
 end

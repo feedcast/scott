@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe AudioOperations::Analyse, type: :operation do
+RSpec.describe AudioServices::Analyse do
   let(:audio) { Fabricate(:episode).audio }
   let(:audio_data) do
     double(:audio_data,
@@ -10,29 +10,26 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
            audio_bitrate: 3000,
            audio_sample_rate: 4400)
   end
+  let(:service) { AudioServices::Analyse.new }
   let(:tmp_file) { Tempfile.new(audio.id).path.to_s }
 
   before do
     FileUtils.touch(tmp_file)
 
-    allow_any_instance_of(AudioOperations::Analyse).to receive(:run)
-                                                   .with(AudioOperations::Download, url: audio.url)
-                                                   .and_return(tmp_file)
-    allow_any_instance_of(AudioOperations::Analyse).to receive(:run)
-                                                   .with(AudioOperations::FFMPEG, file_path: tmp_file)
-                                                   .and_return(audio_data)
+    allow(service).to receive(:download).with(audio.url).and_return(tmp_file)
+    allow(service).to receive(:ffmpeg).with(tmp_file).and_return(audio_data)
   end
 
   context "when params are valid" do
     it "changes the audio status to analysed" do
-      run(AudioOperations::Analyse, audio: audio)
+      service.call(audio)
 
       expect(audio).to be_analysed
     end
 
     describe "it updates audio" do
       before do
-        run(AudioOperations::Analyse, audio: audio)
+        service.call(audio)
       end
 
       it "size" do
@@ -59,13 +56,11 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
 
   context "when params are invalid" do
     before do
-      allow_any_instance_of(AudioOperations::Analyse).to receive(:run)
-                                                     .with(AudioOperations::Download, url: audio.url)
-                                                     .and_raise("DownloadError")
+      allow(service).to receive(:download).with(audio.url).and_raise("DownloadError")
     end
 
     it "changes the audio status to failed" do
-      run(AudioOperations::Analyse, audio: audio)
+      service.call(audio)
 
       expect(audio).to be_failed
       expect(audio.error_message).to eq("DownloadError")
@@ -73,7 +68,7 @@ RSpec.describe AudioOperations::Analyse, type: :operation do
 
     it "does not raise the error" do
       expect{
-        run(AudioOperations::Analyse, audio: audio)
+        service.call(audio)
       }.to_not raise_error
     end
   end

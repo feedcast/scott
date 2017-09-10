@@ -1,15 +1,11 @@
 require "net/http"
 require "tempfile"
 
-module AudioOperations
+module AudioServices
   class DownloadError < StandardError; end
-  class Download < FunctionalOperations::Operation
-    def arguments
-      required :url, String
-    end
-
-    def perform
-      content = get(@url).body
+  class Download
+    def call(url)
+      content = get(url).body
 
       file = create_tempfile_with(content)
 

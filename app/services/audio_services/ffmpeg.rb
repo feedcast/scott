@@ -1,15 +1,11 @@
 require "streamio-ffmpeg"
 
-module AudioOperations
-  class FFMPEG < FunctionalOperations::Operation
+module AudioServices
+  class FFMPEG
     class InvalidAudioFile < StandardError; end
 
-    def arguments
-      required :file_path, String
-    end
-
-    def perform
-      file = ::FFMPEG::Movie.new(@file_path)
+    def call(file_path)
+      file = ::FFMPEG::Movie.new(file_path)
 
       raise InvalidAudioFile, "Invalid Audio File - #{file.metadata[:error][:string]}" unless file.valid?
 
