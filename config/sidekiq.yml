@@ -7,7 +7,7 @@
   - indexing
   - default
 production:
-  :concurrency: 15
+  :concurrency: 20
 beta:
   :concurrency: 5
 development:
