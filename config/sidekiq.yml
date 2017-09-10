@@ -1,6 +1,5 @@
 ---
 :verbose: true
-:concurrency: 10
 :timeout: 30
 :queues:
   - synchronization
