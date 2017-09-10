@@ -1,9 +1,9 @@
-require "sham_rack"
+require "webmock"
+include WebMock::API
 
-# Hack to allow ShamRack to work with WebMock, we plan to get rid of one soon!
-WebMock.allow_net_connect!
+# WebMock.allow_net_connect!
 
-ShamRack.at("feedcast.com").sinatra do
+class MockFileServer < Sinatra::Base
   get "/:file" do
     File.read(File.join("spec", "fixtures", params[:file]))
   end
@@ -12,3 +12,5 @@ ShamRack.at("feedcast.com").sinatra do
     redirect "/#{params[:file]}", 301
   end
 end
+
+stub_request(:any, /feedcast/).to_rack(MockFileServer)

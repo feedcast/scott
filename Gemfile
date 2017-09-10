@@ -62,7 +62,6 @@ group :development, :test do
 
   # Rack Server
   gem "sinatra", "2"
-  gem "sham_rack"
 
   # HTTP Mock
   gem "webmock"
