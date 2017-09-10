@@ -1,11 +1,11 @@
-require "net/http"
+require "rest-client"
 require "tempfile"
 
 module AudioServices
   class DownloadError < StandardError; end
   class Download
     def call(url)
-      content = get(url).body
+      content = get(url)
 
       file = create_tempfile_with(content)
 
@@ -26,14 +26,10 @@ module AudioServices
     end
 
     def get(uri)
-      response = Net::HTTP.get_response(URI.parse(uri))
-      response_code = response.code.to_i
-
-      if response_code >= 300 && response_code <= 399
-        response = get(response.header["location"])
-      end
-
-      response
+      response = RestClient::Request.execute(method: :get,
+                                             url: uri,
+                                             raw_response: true)
+      response.to_s
     end
   end
 end
