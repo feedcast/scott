@@ -3,8 +3,8 @@
 :timeout: 30
 :queues:
   - synchronization
-  - analysis
   - indexing
+  - analysis
   - default
 production:
   :concurrency: 20
