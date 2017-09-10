@@ -1,7 +1,9 @@
 class EpisodeSearchSerializer < ActiveModel::Serializer
   attributes :uuid,
              :path,
-             :title
+             :title,
+             :summary,
+             :description
 
   def path
     "/#{object.channel.slug}/#{object.slug}"
