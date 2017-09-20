@@ -12,6 +12,6 @@ RSpec.describe EpisodeServices::CleanIndex do
   it "runs indexer for all outdated the episodes" do
     service.call
 
-    expect(Episode.all.map { |i| i.indexed_at }).to all(be_nil)
+    expect(Episode.all.map(&:indexed_at)).to all(be_nil)
   end
 end
