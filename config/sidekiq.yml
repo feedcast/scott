@@ -23,3 +23,6 @@ development:
   episode_indexer_scheduler_job:
     every: 48h
     class: EpisodeIndexerSchedulerJob
+  episode_index_cleaner_scheduler_job:
+    every: 30d
+    class: EpisodeIndexCleanerSchedulerJob
