@@ -67,5 +67,5 @@ Sidekiq dashboard can be accessed at `http://localhost:5000/admin/jobs` by defau
 * `GET /channels/:slug/episodes?page=N&per_page=Y` - Returns the channel's episodes
 * `GET /episodes?page=N&per_page=Y` - Returns the list of all episodes
 * `GET /episodes/:channel_slug/:episode_slug` - Returns the specific episode
-* `GET /episodes/:channel_slug/:episode_slug/next/:amount` - Returns the the queue of next episodes for the given one
+* `GET /episodes/:channel_slug/:episode_slug/next/:amount` - Returns the queue of next episodes for the given one
 * `GET /categories/:slug?page=N&per_page=Y` - Returns the list of categories
